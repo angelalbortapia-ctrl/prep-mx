@@ -54,5 +54,3 @@ export const sampleQuestions: Question[] = [
     dificultad: 'medium',
   },
 ];
-
-export const freeDiagnosticQuestions = sampleQuestions;
