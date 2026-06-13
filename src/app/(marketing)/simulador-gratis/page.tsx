@@ -3,7 +3,7 @@ import { freeDiagnosticQuestions } from '@/lib/sample-questions';
 
 export default function SimuladorGratisPage() {
   return (
-    <section className="px-4 py-8 md:py-12">
+    <section className="mx-auto max-w-3xl px-4 py-8 md:px-8 md:py-12">
       <ExamSimulator
         questions={freeDiagnosticQuestions}
         title="Diagnóstico gratuito"

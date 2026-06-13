@@ -11,7 +11,7 @@ interface MathRendererProps {
 
 export default function MathRenderer({ content }: MathRendererProps) {
   return (
-    <div className="prose prose-neutral max-w-none text-base leading-relaxed dark:prose-invert">
+    <div className="math-content text-[15px] leading-relaxed text-foreground md:text-base [&_p]:my-1">
       <ReactMarkdown
         remarkPlugins={[remarkMath]}
         rehypePlugins={[[rehypeKatex, { strict: false, throwOnError: false }]]}

@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import { Sparkles, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProgressBar } from '@/components/exam/ProgressBar';
 import { QuestionCard } from '@/components/exam/QuestionCard';
@@ -57,32 +58,53 @@ export function ExamSimulator({
     setSelectedOption(undefined);
   }
 
+  function handleRetry() {
+    setIndex(0);
+    setScore(0);
+    setFinished(false);
+    setCardState('idle');
+    setSelectedOption(undefined);
+    localStorage.removeItem(`prepmx-timer-${sessionKey}`);
+  }
+
   if (finished) {
     const pct = Math.round((score / questions.length) * 100);
 
     return (
-      <div className="mx-auto max-w-lg space-y-6 text-center">
-        <h2 className="text-2xl font-bold">Diagnóstico completado</h2>
-        <p className="text-4xl font-bold text-primary">{pct}%</p>
-        <p className="text-muted-foreground">
-          Acertaste {score} de {questions.length} preguntas.
-        </p>
+      <div className="exam-shell mx-auto max-w-lg space-y-6 text-center">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+          <Trophy className="h-8 w-8" />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold">Diagnóstico completado</h2>
+          <p className="mt-2 text-muted-foreground">
+            Acertaste {score} de {questions.length} preguntas
+          </p>
+        </div>
+        <div className="relative mx-auto flex h-36 w-36 items-center justify-center">
+          <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="none" stroke="hsl(var(--secondary))" strokeWidth="8" />
+            <circle
+              cx="50"
+              cy="50"
+              r="42"
+              fill="none"
+              stroke="hsl(var(--primary))"
+              strokeWidth="8"
+              strokeLinecap="round"
+              strokeDasharray={`${pct * 2.64} 264`}
+            />
+          </svg>
+          <span className="text-3xl font-extrabold text-primary">{pct}%</span>
+        </div>
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-          <Button asChild className="h-12">
-            <Link href="/sign-up">Guardar resultado y ver mi plan</Link>
+          <Button asChild className="h-12 rounded-xl shadow-lg shadow-primary/20">
+            <Link href="/sign-up">
+              <Sparkles className="mr-2 h-4 w-4" />
+              Guardar y ver mi plan
+            </Link>
           </Button>
-          <Button
-            variant="outline"
-            className="h-12"
-            onClick={() => {
-              setIndex(0);
-              setScore(0);
-              setFinished(false);
-              setCardState('idle');
-              setSelectedOption(undefined);
-              localStorage.removeItem(`prepmx-timer-${sessionKey}`);
-            }}
-          >
+          <Button variant="outline" className="h-12 rounded-xl bg-white" onClick={handleRetry}>
             Reintentar
           </Button>
         </div>
@@ -91,12 +113,12 @@ export function ExamSimulator({
   }
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="space-y-6">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-xl font-bold md:text-2xl">{title}</h1>
-          <p className="text-sm text-muted-foreground">
-            Modo práctica — feedback inmediato
+          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">{title}</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Modo práctica · Feedback inmediato en cada respuesta
           </p>
         </div>
         <Timer
@@ -118,8 +140,8 @@ export function ExamSimulator({
 
       {(cardState === 'correct' || cardState === 'error') && (
         <div className="flex justify-end">
-          <Button onClick={handleNext} className="h-12 min-w-32">
-            {index + 1 >= questions.length ? 'Ver resultado' : 'Siguiente'}
+          <Button onClick={handleNext} className="h-12 min-w-36 rounded-xl shadow-md shadow-primary/20">
+            {index + 1 >= questions.length ? 'Ver resultado' : 'Siguiente →'}
           </Button>
         </div>
       )}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface TimerProps {
@@ -90,12 +91,13 @@ export function Timer({ sessionId, durationSeconds, onExpire, className }: Timer
   return (
     <div
       className={cn(
-        'inline-flex items-center rounded-md border px-3 py-1.5 font-mono text-sm tabular-nums',
-        isLow && 'border-destructive text-destructive',
+        'inline-flex items-center gap-2 rounded-xl border bg-white px-4 py-2 font-mono text-sm font-semibold tabular-nums shadow-sm',
+        isLow ? 'border-red-300 bg-red-50 text-red-600' : 'border-border text-foreground',
         className
       )}
       aria-live="polite"
     >
+      <Clock className={cn('h-4 w-4', isLow ? 'text-red-500' : 'text-primary')} />
       {formatTime(remaining)}
     </div>
   );

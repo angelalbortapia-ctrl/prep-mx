@@ -1,13 +1,22 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { CheckCircle2, XCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { OpcionId, Question, QuestionCardState } from '@/types/question';
 
 const MathRenderer = dynamic(() => import('@/components/math/MathRenderer'), {
   ssr: false,
-  loading: () => <p className="animate-pulse text-sm text-muted-foreground">Cargando fórmula...</p>,
+  loading: () => (
+    <div className="h-6 w-3/4 animate-pulse rounded-md bg-muted" />
+  ),
 });
+
+const materiaStyles: Record<string, string> = {
+  matematicas: 'bg-violet-100 text-violet-700',
+  fisica: 'bg-sky-100 text-sky-700',
+  quimica: 'bg-emerald-100 text-emerald-700',
+};
 
 interface QuestionCardProps {
   question: Question;
@@ -25,19 +34,19 @@ function optionStyles(
 ): string {
   if (state === 'idle' || state === 'selected') {
     return selectedOption === optionId
-      ? 'border-primary bg-primary/5 ring-2 ring-primary'
-      : 'hover:border-primary/50 hover:bg-accent';
+      ? 'border-primary bg-primary/5 shadow-md shadow-primary/10 ring-2 ring-primary/30'
+      : 'border-border bg-white hover:border-primary/40 hover:bg-primary/[0.02] hover:shadow-sm';
   }
 
   if (optionId === correctAnswer) {
-    return 'border-green-600 bg-green-50 text-green-900 dark:bg-green-950 dark:text-green-100';
+    return 'border-green-400 bg-green-50 shadow-sm';
   }
 
   if (selectedOption === optionId) {
-    return 'border-destructive bg-destructive/10 text-destructive';
+    return 'border-red-300 bg-red-50 shadow-sm';
   }
 
-  return 'opacity-50';
+  return 'border-border bg-muted/30 opacity-60';
 }
 
 export function QuestionCard({
@@ -48,15 +57,23 @@ export function QuestionCard({
   showExplanation = false,
 }: QuestionCardProps) {
   const answered = state === 'correct' || state === 'error';
-  const disabled = answered;
+  const badgeClass = materiaStyles[question.materia] ?? 'bg-primary/10 text-primary';
 
   return (
-    <article className="space-y-6 rounded-xl border bg-card p-4 md:p-6">
-      <header className="space-y-1">
-        <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-          {question.materia} · {question.tema}
-        </p>
-        <div className="text-base md:text-lg">
+    <article className="exam-shell space-y-6">
+      <header className="space-y-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className={cn('rounded-full px-3 py-1 text-xs font-semibold capitalize', badgeClass)}>
+            {question.materia}
+          </span>
+          <span className="text-xs text-muted-foreground">{question.tema.replace('_', ' ')}</span>
+          {question.dificultad && (
+            <span className="rounded-full bg-muted px-2 py-0.5 text-xs capitalize text-muted-foreground">
+              {question.dificultad}
+            </span>
+          )}
+        </div>
+        <div className="text-lg font-medium leading-snug md:text-xl">
           <MathRenderer content={question.pregunta} />
         </div>
       </header>
@@ -68,18 +85,26 @@ export function QuestionCard({
               type="button"
               role="option"
               aria-selected={selectedOption === opcion.id}
-              disabled={disabled}
+              disabled={answered}
               onClick={() => onSelect(opcion.id)}
               className={cn(
-                'flex min-h-12 w-full items-start gap-3 rounded-lg border px-4 py-3 text-left text-sm transition-colors md:text-base',
+                'flex min-h-14 w-full items-center gap-4 rounded-xl border-2 px-4 py-3.5 text-left transition-all duration-200',
                 optionStyles(opcion.id, state, selectedOption, question.opcion_correcta),
-                disabled && 'cursor-default'
+                !answered && 'active:scale-[0.99]',
+                answered && 'cursor-default'
               )}
             >
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs font-semibold">
+              <span
+                className={cn(
+                  'flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border-2 text-sm font-bold',
+                  selectedOption === opcion.id && !answered && 'border-primary bg-primary text-primary-foreground',
+                  answered && opcion.id === question.opcion_correcta && 'border-green-500 bg-green-500 text-white',
+                  answered && selectedOption === opcion.id && opcion.id !== question.opcion_correcta && 'border-red-400 bg-red-400 text-white'
+                )}
+              >
                 {opcion.id}
               </span>
-              <span className="flex-1 pt-0.5">
+              <span className="flex-1 font-medium">
                 <MathRenderer content={opcion.texto} />
               </span>
             </button>
@@ -90,16 +115,25 @@ export function QuestionCard({
       {showExplanation && answered && (
         <div
           className={cn(
-            'rounded-lg border p-4 text-sm',
+            'flex gap-3 rounded-xl border-2 p-4 md:p-5',
             state === 'correct'
-              ? 'border-green-200 bg-green-50 dark:border-green-900 dark:bg-green-950'
-              : 'border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950'
+              ? 'border-green-200 bg-green-50/80'
+              : 'border-amber-200 bg-amber-50/80'
           )}
         >
-          <p className="mb-2 font-medium">
-            {state === 'correct' ? '¡Correcto!' : 'Incorrecto — repasa esto:'}
-          </p>
-          <MathRenderer content={question.explicacion} />
+          {state === 'correct' ? (
+            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
+          ) : (
+            <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
+          )}
+          <div>
+            <p className="font-semibold text-foreground">
+              {state === 'correct' ? '¡Excelente!' : 'Casi — repasa esto:'}
+            </p>
+            <div className="mt-2 text-sm text-muted-foreground">
+              <MathRenderer content={question.explicacion} />
+            </div>
+          </div>
         </div>
       )}
     </article>
