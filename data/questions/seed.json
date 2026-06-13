@@ -1,0 +1,77 @@
+[
+  {
+    "universidad": "UNAM",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Resuelve la ecuación cuadrática $x^2 - 5x + 6 = 0$.",
+    "opciones": [
+      { "id": "A", "texto": "$x = 2$ y $x = 3$" },
+      { "id": "B", "texto": "$x = -2$ y $x = -3$" },
+      { "id": "C", "texto": "$x = 1$ y $x = 6$" },
+      { "id": "D", "texto": "$x = -1$ y $x = -6$" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Factorizando: $(x-2)(x-3)=0$, por lo tanto $x=2$ o $x=3$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "materia": "fisica",
+    "tema": "cinematica",
+    "pregunta": "Un auto recorre $100\\,\\text{m}$ en $5\\,\\text{s}$ con velocidad constante. ¿Cuál es su velocidad?",
+    "opciones": [
+      { "id": "A", "texto": "$10\\,\\text{m/s}$" },
+      { "id": "B", "texto": "$20\\,\\text{m/s}$" },
+      { "id": "C", "texto": "$50\\,\\text{m/s}$" },
+      { "id": "D", "texto": "$500\\,\\text{m/s}$" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Con MRU: $v = d/t = 100/5 = 20\\,\\text{m/s}$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "quimica",
+    "tema": "general",
+    "pregunta": "¿Cuál es el símbolo químico del oxígeno?",
+    "opciones": [
+      { "id": "A", "texto": "Ox" },
+      { "id": "B", "texto": "O" },
+      { "id": "C", "texto": "Og" },
+      { "id": "D", "texto": "Om" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El oxígeno es un no metal del grupo 16 y su símbolo oficial es O.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "biologia",
+    "tema": "celula",
+    "pregunta": "¿Qué organelo celular produce la mayor parte del ATP en células eucariotas?",
+    "opciones": [
+      { "id": "A", "texto": "Núcleo" },
+      { "id": "B", "texto": "Mitocondria" },
+      { "id": "C", "texto": "Ribosoma" },
+      { "id": "D", "texto": "Lisosoma" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La mitocondria realiza la respiración celular y sintetiza ATP.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "materia": "espanol",
+    "tema": "gramatica",
+    "pregunta": "En la oración \"María estudió toda la noche\", ¿cuál es el sujeto?",
+    "opciones": [
+      { "id": "A", "texto": "estudió" },
+      { "id": "B", "texto": "María" },
+      { "id": "C", "texto": "toda la noche" },
+      { "id": "D", "texto": "noche" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El sujeto es quien realiza la acción del verbo: María.",
+    "dificultad": "easy"
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "universidad": "IPN",
+    "materia": "espanol",
+    "tema": "redaccion",
+    "pregunta": "Identifica el vicio del lenguaje (vicio de dicción) que se comete en la siguiente frase de uso común: \"Salió para afuera de la oficina a buscar sus documentos\".",
+    "opciones": [
+      { "id": "A", "texto": "Anfibología" },
+      { "id": "B", "texto": "Pleonasmo o redundancia" },
+      { "id": "C", "texto": "Cacofonía" },
+      { "id": "D", "texto": "Solecismo" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El término \"salió\" implica por sí mismo un movimiento hacia el exterior, por lo que añadir \"para afuera\" repite innecesariamente la misma idea, incurriendo en un pleonasmo.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "espanol",
+    "tema": "redaccion",
+    "pregunta": "¿Cuál de las siguientes palabras está escrita con la grafía correcta para referirse a la acción de poner fin a una sesión o asamblea?",
+    "opciones": [
+      { "id": "A", "texto": "Clauzuración" },
+      { "id": "B", "texto": "Clausura" },
+      { "id": "C", "texto": "Clausurá" },
+      { "id": "D", "texto": "Clausurra" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La palabra \"clausura\" se escribe con la letra 's' en su segunda sílaba y no lleva acento ortográfico debido a que es una palabra llana terminada en vocal.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Determina el conjunto solución para la siguiente desigualdad lineal de primer grado: $$3x - 5 \\ge 2x + 4$$",
+    "opciones": [
+      { "id": "A", "texto": "$x \\ge 9$" },
+      { "id": "B", "texto": "$x \\le 9$" },
+      { "id": "C", "texto": "$x \\ge 1$" },
+      { "id": "D", "texto": "$x \\ge -9$" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Restamos $2x$ en ambos lados: $3x - 2x - 5 \\ge 4 \\implies x - 5 \\ge 4$. Sumando $5$ en ambos miembros se obtiene de manera directa $x \\ge 9$. El sentido de la desigualdad no cambia porque no multiplicamos ni dividimos por negativos.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "matematicas",
+    "tema": "aritmetica",
+    "pregunta": "Un tanque de agua con capacidad de $120 \\text{ litros}$ se encuentra lleno hasta sus $\\frac{2}{3}$ partes. Si se extraen $30 \\text{ litros}$ para riego, ¿qué fracción del total del tanque queda con agua?",
+    "opciones": [
+      { "id": "A", "texto": "$\\frac{5}{12}$" },
+      { "id": "B", "texto": "$\\frac{1}{2}$" },
+      { "id": "C", "texto": "$\\frac{7}{12}$" },
+      { "id": "D", "texto": "$\\frac{1}{4}$" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Las $\\frac{2}{3}$ partes de $120$ equivalen a $80 \\text{ litros}$. Al extraer $30 \\text{ litros}$, quedan $80 - 30 = 50 \\text{ litros}$ en el tanque. La relación residual es $\\frac{50}{120} = \\frac{5}{12}$.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Encuentra el valor numérico de la expresión algebráica $3a^2 - 2ab + b^2$ cuando se asignan los valores $a = 2$ y $b = -3$.",
+    "opciones": [
+      { "id": "A", "texto": "$33$" },
+      { "id": "B", "texto": "$9$" },
+      { "id": "C", "texto": "$21$" },
+      { "id": "D", "texto": "$15$" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Sustituyendo: $3(2)^2 - 2(2)(-3) + (-3)^2 = 3(4) - (-12) + 9 = 12 + 12 + 9 = 33$. Un error frecuente es omitir que el producto de los signos negativos en $-2ab$ se convierte en positivo.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "matematicas",
+    "tema": "geometria",
+    "pregunta": "Calcula la medida del diámetro de una circunferencia cuya área superficial es exactamente de $16\\pi \\text{ cm}^2$.",
+    "opciones": [
+      { "id": "A", "texto": "$4 \\text{ cm}$" },
+      { "id": "B", "texto": "$8 \\text{ cm}$" },
+      { "id": "C", "texto": "$16 \\text{ cm}$" },
+      { "id": "D", "texto": "$2 \\text{ cm}$" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "A partir de la fórmula del área $A = \\pi r^2$, igualamos: $16\\pi = \\pi r^2 \\implies r^2 = 16 \\implies r = 4 \\text{ cm}$. Dado que el problema solicita explícitamente el diámetro ($d = 2r$), multiplicamos por dos para obtener $8 \\text{ cm}$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "matematicas",
+    "tema": "trigonometria",
+    "pregunta": "¿Cuál es el valor equivalente en radianes para un ángulo geométrico de $120^{\\circ}$?",
+    "opciones": [
+      { "id": "A", "texto": "$\\frac{\\pi}{3} \\text{ rad}$" },
+      { "id": "B", "texto": "$\\frac{2\\pi}{3} \\text{ rad}$" },
+      { "id": "C", "texto": "$\\frac{3\\pi}{4} \\text{ rad}$" },
+      { "id": "D", "texto": "$\\frac{5\\pi}{6} \\text{ rad}$" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Para convertir grados a radianes multiplicamos por el factor $\\frac{\\pi}{180^{\\circ}}$: $120^{\\circ} \\cdot \\frac{\\pi}{180^{\\circ}} = \\frac{120\\pi}{180} = \\frac{2\\pi}{3} \\text{ rad}$ al simplificar por 60.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Determina las raíces (soluciones) de la ecuación de segundo grado por factorización: $$x^2 - 7x + 10 = 0$$",
+    "opciones": [
+      { "id": "A", "texto": "$x = 2, x = 5$" },
+      { "id": "B", "texto": "$x = -2, x = -5$" },
+      { "id": "C", "texto": "$x = 1, x = 10$" },
+      { "id": "D", "texto": "$x = -1, x = -10$" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Buscamos dos números que multiplicados den $10$ y sumados den $-7$, los cuales son $-2$ y $-5$. La forma factorizada es $(x-2)(x-5)=0$. Al despejar e igualar a cero, las raíces cambian de signo: $x=2, x=5$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "matematicas",
+    "tema": "geometria_analitica",
+    "pregunta": "Calcula la pendiente ($m$) de la recta que cruza por los puntos coordenados $A(1, 3)$ y $B(4, 9)$ del plano cartesiano.",
+    "opciones": [
+      { "id": "A", "texto": "$m = 2$" },
+      { "id": "B", "texto": "$m = 3$" },
+      { "id": "C", "texto": "$m = \\frac{1}{2}$" },
+      { "id": "D", "texto": "$m = -2$" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Aplicamos la fórmula analítica $m = \\frac{y_2 - y_1}{x_2 - x_1}$. Sustituyendo los valores numéricos correspondientes: $m = \\frac{9 - 3}{4 - 1} = \\frac{6}{3} = 2$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "matematicas",
+    "tema": "estadistica",
+    "pregunta": "¿Cuál es la probabilidad teórica de obtener un número par al lanzar un dado convencional no cargado de seis caras?",
+    "opciones": [
+      { "id": "A", "texto": "$\\frac{1}{6}$" },
+      { "id": "B", "texto": "$\\frac{1}{2}$" },
+      { "id": "C", "texto": "$\\frac{1}{3}$" },
+      { "id": "D", "texto": "$\\frac{2}{3}$" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El espacio muestral del dado tiene 6 casos posibles. Los casos favorables correspondientes a números pares son tres (2, 4 y 6). Dividiendo los casos favorables entre los posibles obtenemos $\\frac{3}{6} = \\frac{1}{2}$.",
+    "dificultad": "easy"
+  }
+]

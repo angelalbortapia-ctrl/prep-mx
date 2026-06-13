@@ -1,0 +1,71 @@
+{
+  "universidad": "UNAM",
+  "area": "Área 1 — Ciencias Físico-Matemáticas e Ingenierías",
+  "materia": "Matemáticas",
+  "temas": [
+    {
+      "tema": "Cálculo Diferencial e Integral",
+      "subtemas": [
+        "Reglas de derivación (potencia, producto, cociente)",
+        "Regla de la cadena",
+        "Interpretación geométrica de la derivada",
+        "Integrales inmediatas",
+        "Métodos de integración",
+        "Teorema fundamental del cálculo"
+      ],
+      "prioridad": "alta"
+    },
+    {
+      "tema": "Geometría Analítica",
+      "subtemas": [
+        "Distancia entre dos puntos",
+        "Punto medio",
+        "Pendiente de la recta",
+        "Ecuaciones de la recta (general, pendiente-ordenada)",
+        "Circunferencia, parábola, elipse e hipérbola"
+      ],
+      "prioridad": "alta"
+    },
+    {
+      "tema": "Álgebra y Funciones",
+      "subtemas": [
+        "Operaciones con polinomios",
+        "Factorización",
+        "Ecuaciones de primer y segundo grado",
+        "Sistemas de ecuaciones",
+        "Dominio y rango de funciones",
+        "Funciones exponenciales y logarítmicas"
+      ],
+      "prioridad": "alta"
+    },
+    {
+      "tema": "Límites y Continuidad",
+      "subtemas": [
+        "Cálculo de límites",
+        "Límites laterales",
+        "Indeterminaciones",
+        "Continuidad en un punto"
+      ],
+      "prioridad": "media"
+    },
+    {
+      "tema": "Trigonometría",
+      "subtemas": [
+        "Razones trigonométricas",
+        "Identidades trigonométricas fundamentales",
+        "Ley de senos y cosenos",
+        "Funciones trigonométricas"
+      ],
+      "prioridad": "media"
+    },
+    {
+      "tema": "Estadística y Probabilidad",
+      "subtemas": [
+        "Medidas de tendencia central (media, mediana, moda)",
+        "Probabilidad básica",
+        "Eventos independientes y dependientes"
+      ],
+      "prioridad": "baja"
+    }
+  ]
+}

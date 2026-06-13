@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { serverSupabaseOptions } from './server-options';
 
 export function createServerSupabaseClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -6,5 +7,5 @@ export function createServerSupabaseClient() {
   if (!url || !key) {
     throw new Error('Supabase no configurado. Agrega variables en .env.local');
   }
-  return createClient(url, key);
+  return createClient(url, key, serverSupabaseOptions());
 }

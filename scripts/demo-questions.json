@@ -1,0 +1,152 @@
+[
+  {
+    "universidad": "UNAM",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Resuelve la ecuación $$x^2 - 5x + 6 = 0$$. ¿Cuál es el conjunto solución?",
+    "opciones": [
+      { "id": "A", "texto": "{2, 3}" },
+      { "id": "B", "texto": "{-2, -3}" },
+      { "id": "C", "texto": "{1, 6}" },
+      { "id": "D", "texto": "{-1, -6}" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Factorizando: $(x-2)(x-3)=0$, entonces $x=2$ o $x=3$. El conjunto solución es {2, 3}.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "materia": "fisica",
+    "tema": "cinematica",
+    "pregunta": "Un auto recorre $120\\ \\text{km}$ en $2\\ \\text{h}$. ¿Cuál es su velocidad promedio?",
+    "opciones": [
+      { "id": "A", "texto": "40 km/h" },
+      { "id": "B", "texto": "60 km/h" },
+      { "id": "C", "texto": "80 km/h" },
+      { "id": "D", "texto": "120 km/h" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Velocidad promedio = distancia / tiempo = $120/2 = 60\\ \\text{km/h}$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "materia": "quimica",
+    "tema": "estequiometria",
+    "pregunta": "¿Cuántos moles de $H_2O$ se forman al reaccionar completamente $2\\ \\text{mol}$ de $H_2$ con $O_2$? (Reacción: $2H_2 + O_2 \\rightarrow 2H_2O$)",
+    "opciones": [
+      { "id": "A", "texto": "1 mol" },
+      { "id": "B", "texto": "2 mol" },
+      { "id": "C", "texto": "3 mol" },
+      { "id": "D", "texto": "4 mol" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Por la estequiometría, $2\\ \\text{mol}$ de $H_2$ producen $2\\ \\text{mol}$ de $H_2O$.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "materia": "matematicas",
+    "tema": "geometria",
+    "pregunta": "¿Cuál es el área de un triángulo con base $8$ cm y altura $5$ cm?",
+    "opciones": [
+      { "id": "A", "texto": "$20\\ \\text{cm}^2$" },
+      { "id": "B", "texto": "$40\\ \\text{cm}^2$" },
+      { "id": "C", "texto": "$13\\ \\text{cm}^2$" },
+      { "id": "D", "texto": "$80\\ \\text{cm}^2$" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Área = $\\frac{b \\cdot h}{2} = \\frac{8 \\cdot 5}{2} = 20\\ \\text{cm}^2$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "materia": "matematicas",
+    "tema": "razonamiento",
+    "pregunta": "Si todos los gatos son mamíferos y algunos mamíferos vuelan, ¿cuál conclusión es válida?",
+    "opciones": [
+      { "id": "A", "texto": "Todos los gatos vuelan" },
+      { "id": "B", "texto": "Ningún gato vuela necesariamente" },
+      { "id": "C", "texto": "Todos los mamíferos son gatos" },
+      { "id": "D", "texto": "Algunos gatos no son mamíferos" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los gatos son mamíferos, pero volar no se deduce de la premisa.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "materia": "fisica",
+    "tema": "dinamica",
+    "pregunta": "Un cuerpo de $2\\ \\text{kg}$ acelera a $3\\ \\text{m/s}^2$. ¿Fuerza neta?",
+    "opciones": [
+      { "id": "A", "texto": "$5\\ \\text{N}$" },
+      { "id": "B", "texto": "$6\\ \\text{N}$" },
+      { "id": "C", "texto": "$1.5\\ \\text{N}$" },
+      { "id": "D", "texto": "$9\\ \\text{N}$" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Segunda ley de Newton: $F = ma = 2 \\times 3 = 6\\ \\text{N}$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "materia": "quimica",
+    "tema": "tabla_periodica",
+    "pregunta": "¿Cuál elemento tiene número atómico $11$?",
+    "opciones": [
+      { "id": "A", "texto": "Magnesio" },
+      { "id": "B", "texto": "Sodio" },
+      { "id": "C", "texto": "Neón" },
+      { "id": "D", "texto": "Aluminio" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El sodio (Na) tiene $Z = 11$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "materia": "historia",
+    "tema": "historia_mexico",
+    "pregunta": "¿En qué año inició la Revolución Mexicana?",
+    "opciones": [
+      { "id": "A", "texto": "1810" },
+      { "id": "B", "texto": "1910" },
+      { "id": "C", "texto": "1929" },
+      { "id": "D", "texto": "1857" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La Revolución Mexicana comenzó en 1910.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "materia": "literatura",
+    "tema": "genero_literario",
+    "pregunta": "¿Qué obra es considerada una novela del Realismo por Benito Pérez Galdós?",
+    "opciones": [
+      { "id": "A", "texto": "Fortunata y Jacinta" },
+      { "id": "B", "texto": "El Quijote" },
+      { "id": "C", "texto": "La Odisea" },
+      { "id": "D", "texto": "Cien años de soledad" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Fortunata y Jacinta es una novela realista de Galdós.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "materia": "biologia",
+    "tema": "celula",
+    "pregunta": "¿Dónde ocurre la respiración celular aeróbica en eucariotas?",
+    "opciones": [
+      { "id": "A", "texto": "Núcleo" },
+      { "id": "B", "texto": "Mitocondria" },
+      { "id": "C", "texto": "Ribosoma" },
+      { "id": "D", "texto": "Lisosoma" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La respiración celular aeróbica ocurre principalmente en mitocondrias.",
+    "dificultad": "easy"
+  }
+]

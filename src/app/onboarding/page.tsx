@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,23 +12,58 @@ const steps = ['Universidad', 'Área', 'Fecha de examen'];
 
 export default function OnboardingPage() {
   const router = useRouter();
+  const { user, isLoaded } = useUser();
   const [step, setStep] = useState(0);
   const [universidad, setUniversidad] = useState<Universidad | ''>('');
   const [area, setArea] = useState('');
   const [examDate, setExamDate] = useState('');
   const [name, setName] = useState('');
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
 
-  function finish() {
+  useEffect(() => {
+    if (isLoaded && !user) {
+      router.replace('/sign-in');
+    }
+  }, [isLoaded, user, router]);
+
+  async function finish() {
+    if (!user) return;
+
+    setSaving(true);
+    setError('');
+
     const profile = {
-      fullName: name || 'Alumno PrepMX',
+      fullName: name || user.firstName || 'Alumno PrepMX',
       universidad,
       area,
       examDate,
       examTarget: `${universidad}_${area}`,
       onboardingComplete: true,
     };
-    localStorage.setItem('prepmx-profile', JSON.stringify(profile));
-    router.push('/dashboard');
+
+    try {
+      const res = await fetch('/api/onboarding/complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(profile),
+      });
+      if (!res.ok) throw new Error('No se pudo guardar el perfil');
+
+      localStorage.setItem('prepmx-profile', JSON.stringify(profile));
+      window.location.href = '/dashboard';
+    } catch {
+      setError('Algo falló al guardar. Intenta otra vez.');
+      setSaving(false);
+    }
+  }
+
+  if (!isLoaded || !user) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-mesh">
+        <p className="text-sm text-muted-foreground">Cargando…</p>
+      </div>
+    );
   }
 
   return (
@@ -87,9 +123,16 @@ export default function OnboardingPage() {
             </div>
           )}
 
+          {error && <p className="text-sm text-destructive">{error}</p>}
+
           <div className="flex gap-2 pt-2">
             {step > 0 && (
-              <Button variant="outline" className="h-11 flex-1" onClick={() => setStep((s) => s - 1)}>
+              <Button
+                variant="outline"
+                className="h-11 flex-1"
+                disabled={saving}
+                onClick={() => setStep((s) => s - 1)}
+              >
                 Atrás
               </Button>
             )}
@@ -102,8 +145,8 @@ export default function OnboardingPage() {
                 Siguiente
               </Button>
             ) : (
-              <Button className="h-11 flex-1" disabled={!examDate} onClick={finish}>
-                Crear mi plan
+              <Button className="h-11 flex-1" disabled={!examDate || saving} onClick={finish}>
+                {saving ? 'Guardando…' : 'Crear mi plan'}
               </Button>
             )}
           </div>

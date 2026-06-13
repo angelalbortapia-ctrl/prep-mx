@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle2, Circle } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Circle, Clock } from 'lucide-react';
 import {
   getProjectStats,
   projectPhases,
@@ -59,6 +59,8 @@ export default function ProyectoTimelinePage() {
                 <li key={task.id} className="flex items-start gap-3 px-4 py-3 text-sm">
                   {task.status === 'completado' ? (
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
+                  ) : task.status === 'en_progreso' ? (
+                    <Clock className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
                   ) : (
                     <Circle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground/40" />
                   )}

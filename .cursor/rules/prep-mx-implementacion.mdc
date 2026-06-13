@@ -1,0 +1,32 @@
+---
+description: Guía de implementación PrepMX — seguir el curso en /admin lección por lección
+alwaysApply: true
+---
+
+# PrepMX — Modo curso de implementación
+
+El usuario está construyendo PrepMX siguiendo el **curso guiado** en `/admin` → pestaña **Mi curso**.
+
+## Reglas para el agente
+
+1. **Una lección a la vez.** Pregunta o infiere en qué lección está antes de implementar features futuras (Stripe, IA, etc.).
+2. **No saltar dependencias.** Orden: Supabase → Clerk → preguntas → deploy → exam submit → SM-2 → IA → diagnóstico → plan → Stripe → LFPD.
+3. **Explicar en español simple** (estilo “para dummies”): qué haces, por qué, y cómo verificar que funcionó.
+4. **Reutilizar código existente** — no reescribir `src/lib/sm2.ts`, componentes en `src/components/exam/`, ni migración `supabase/migrations/001_initial.sql`.
+5. **Secrets** — nunca hardcodear keys; usar `.env.local` (ver `.env.example`).
+6. **Al terminar una lección**, indicar cómo verificar (URL, tabla Supabase, test manual) y sugerir marcar checklist en `/admin`.
+
+## Stack del proyecto
+
+Next.js 14 App Router, TypeScript, Tailwind, Supabase, Clerk (pendiente), OpenAI (pendiente), Stripe (pendiente).
+
+## Comandos útiles
+
+```bash
+export PATH="$HOME/.local/node/bin:$PATH"
+npm run dev:clean   # borra .next y arranca dev
+```
+
+## Cuando el usuario pegue un prompt de lección
+
+Implementa **solo el alcance de esa lección**. Si falta una dependencia (ej. Supabase sin conectar), dilo claro y guía el paso previo.

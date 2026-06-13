@@ -52,3 +52,6 @@ supabase/.temp/
 ios/
 android/
 .capacitor/
+
+# clerk configuration (can include secrets)
+/.clerk/

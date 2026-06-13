@@ -1,0 +1,785 @@
+[
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "geometria",
+    "pregunta": "Determina el valor del radio de una esfera si se sabe que su volumen numérico es de $36\\pi \\text{ cm}^3$.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$3 \\text{ cm}$"
+      },
+      {
+        "id": "B",
+        "texto": "$6 \\text{ cm}$"
+      },
+      {
+        "id": "C",
+        "texto": "$9 \\text{ cm}$"
+      },
+      {
+        "id": "D",
+        "texto": "$4.5 \\text{ cm}$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La fórmula para el volumen de una esfera es $V = \\frac{4}{3}\\pi r^3$. Sustituyendo los datos: $36\\pi = \\frac{4}{3}\\pi r^3$. Simplificando $\\pi$ en ambos lados: $36 = \\frac{4}{3}r^3 \\implies r^3 = \\frac{36 \\times 3}{4} = 27$. Extrayendo raíz cúbica: $r = \\sqrt[3]{27} = 3 \\text{ cm}$.",
+    "dificultad": "hard"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "fisica",
+    "tema": "mecanica",
+    "pregunta": "Un cuerpo de $4 \\text{ kg}$ se desplaza con una velocidad constante de $6 \\text{ m/s}$. ¿Cuál es la magnitud de su cantidad de movimiento (momento lineal)?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$24 \\text{ kg}\\cdot\\text{m/s}$"
+      },
+      {
+        "id": "B",
+        "texto": "$1.5 \\text{ kg}\\cdot\\text{m/s}$"
+      },
+      {
+        "id": "C",
+        "texto": "$72 \\text{ kg}\\cdot\\text{m/s}$"
+      },
+      {
+        "id": "D",
+        "texto": "$12 \\text{ kg}\\cdot\\text{m/s}$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La cantidad de movimiento se define mediante el producto de la masa por la velocidad ($p = m \\cdot v$). Sustituyendo los valores directos: $p = 4 \\text{ kg} \\times 6 \\text{ m/s} = 24 \\text{ kg}\\cdot\\text{m/s}$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "fisica",
+    "tema": "termodinamica_basica",
+    "pregunta": "De acuerdo con las leyes de la termodinámica, el proceso en el cual el sistema no intercambia calor con su entorno ($Q = 0$) recibe el nombre de:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Proceso isotérmico"
+      },
+      {
+        "id": "B",
+        "texto": "Proceso adiabático"
+      },
+      {
+        "id": "C",
+        "texto": "Proceso isobárico"
+      },
+      {
+        "id": "D",
+        "texto": "Proceso isocórico"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Un proceso adiabático ocurre sin transferencia de calor entre el sistema y sus alrededores. Isotérmico implica temperatura constante, isobárico presión constante e isocórico volumen constante.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "fisica",
+    "tema": "ondas",
+    "pregunta": "¿Cómo se define la distancia lineal comprendida entre dos crestas o dos valles consecutivos de una onda periódica longitudinal o transversal?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Amplitud"
+      },
+      {
+        "id": "B",
+        "texto": "Longitud de onda"
+      },
+      {
+        "id": "C",
+        "texto": "Frecuencia"
+      },
+      {
+        "id": "D",
+        "texto": "Periodo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La longitud de onda (representada por $\\lambda$) es el espacio físico que separa dos puntos equivalentes consecutivos del ciclo. La amplitud mide la altura máxima respecto al eje de equilibrio.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "fisica",
+    "tema": "mecanica",
+    "pregunta": "Calcula el trabajo mecánico realizado por una fuerza constante de $50 \\text{ N}$ que desplaza un bloque una distancia de $4 \\text{ m}$ en su misma dirección y sentido.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$200 \\text{ J}$"
+      },
+      {
+        "id": "B",
+        "texto": "$12.5 \\text{ J}$"
+      },
+      {
+        "id": "C",
+        "texto": "$250 \\text{ J}$"
+      },
+      {
+        "id": "D",
+        "texto": "$0 \\text{ J}$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "El trabajo mecánico básico se calcula multiplicando la fuerza por la distancia colineal ($W = F \\cdot d$). Al sustituir los datos correspondientes: $W = 50 \\text{ N} \\times 4 \\text{ m} = 200 \\text{ J}$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "fisica",
+    "tema": "mecanica",
+    "pregunta": "La propiedad física de los fluidos que mide la resistencia interna que presentan sus capas moleculares a fluir o deslizarse se denomina:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Densidad"
+      },
+      {
+        "id": "B",
+        "texto": "Viscosidad"
+      },
+      {
+        "id": "C",
+        "texto": "Capilaridad"
+      },
+      {
+        "id": "D",
+        "texto": "Tensión superficial"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La viscosidad determina la fricción interna de un fluido en movimiento (ej. la miel tiene mayor viscosidad que el agua). La densidad relaciona de forma exclusiva la masa por unidad de volumen.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "fisica",
+    "tema": "termodinamica_basica",
+    "pregunta": "Una escala de temperatura absoluta empleada en el Sistema Internacional es el Kelvin. ¿A cuántos Kelvin ($K$) equivalen exactamente $27^{\\circ}\\text{C}$?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$300 \\text{ K}$"
+      },
+      {
+        "id": "B",
+        "texto": "$-246 \\text{ K}$"
+      },
+      {
+        "id": "C",
+        "texto": "$273 \\text{ K}$"
+      },
+      {
+        "id": "D",
+        "texto": "$80.6 \\text{ K}$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Para convertir grados Celsius a Kelvin se utiliza la relación matemática directa $K = {^{\\circ}\\text{C}} + 273.15$. Redondeando con fines prácticos de examen: $27 + 273 = 300 \\text{ K}$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "fisica",
+    "tema": "mecanica",
+    "pregunta": "Un elevador hidráulico basa su funcionamiento operativo en el Principio de Pascal. Si el émbolo menor posee un área de $2 \\text{ cm}^2$ y se le aplica una fuerza de $20 \\text{ N}$, ¿qué fuerza se genera en el émbolo mayor de $20 \\text{ cm}^2$?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$200 \\text{ N}$"
+      },
+      {
+        "id": "B",
+        "texto": "$2 \\text{ N}$"
+      },
+      {
+        "id": "C",
+        "texto": "$400 \\text{ N}$"
+      },
+      {
+        "id": "D",
+        "texto": "$20 \\text{ N}$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "El principio establece que la presión se transmite íntegramente: $\\frac{F_1}{A_1} = \\frac{F_2}{A_2}$. Sustituyendo: $\\frac{20}{2} = \\frac{F_2}{20} \\implies 10 = \\frac{F_2}{20} \\implies F_2 = 200 \\text{ N}$. Como el área se multiplicó por 10, la fuerza también aumenta diez veces.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "fisica",
+    "tema": "ondas",
+    "pregunta": "Fenómeno acústico que consiste en el cambio aparente de la frecuencia de una onda debido al movimiento relativo entre la fuente emisora y el observador:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Efecto Doppler"
+      },
+      {
+        "id": "B",
+        "texto": "Resonancia magnética"
+      },
+      {
+        "id": "C",
+        "texto": "Eco sonoro"
+      },
+      {
+        "id": "D",
+        "texto": "Refracción acústica"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "El Efecto Doppler explica por qué percibimos el sonido de la sirena de una ambulancia más agudo cuando se aproxima y más grave conforme se aleja de nuestra posición.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "quimica",
+    "tema": "general",
+    "pregunta": "¿Cuál de las siguientes opciones describe correctamente las propiedades de los protones de acuerdo con los modelos atómicos clásicos?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Partículas subatómicas sin carga eléctrica localizadas fuera del núcleo."
+      },
+      {
+        "id": "B",
+        "texto": "Partículas con carga eléctrica positiva localizadas en el núcleo atómico."
+      },
+      {
+        "id": "C",
+        "texto": "Partículas con carga eléctrica negativa que orbitan alrededor del núcleo."
+      },
+      {
+        "id": "D",
+        "texto": "Iones gaseosos de alta reactividad química."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los protones poseen carga positiva ($+1$) y se ubican compactamente en el núcleo atómico junto con los neutrones (neutros). Los electrones (negativos) se sitúan en la periferia u orbitales.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "quimica",
+    "tema": "general",
+    "pregunta": "¿Qué tipo de enlace se forma cuando dos átomos de elementos no metálicos con electronegatividades similares comparten de manera equitativa sus electrones de valencia?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Enlace iónico"
+      },
+      {
+        "id": "B",
+        "texto": "Enlace covalente no polar (puro)"
+      },
+      {
+        "id": "C",
+        "texto": "Enlace metálico"
+      },
+      {
+        "id": "D",
+        "texto": "Enlace covalente polar"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Al compartir electrones entre átomos idénticos o de electronegatividad muy cercana (ej. $O_2$, $H_2$), no se generan dipolos marcados, por lo cual el enlace covalente se clasifica como no polar.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "quimica",
+    "tema": "estequiometria",
+    "pregunta": "De acuerdo con la ley de conservación de la masa de Lavoisier, selecciona los coeficientes estequiométricos que balancean correctamente la ecuación: $$a\\text{Al} + b\\text{HCl} \\rightarrow c\\text{AlCl}_3 + d\\text{H}_2$$",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$2, 6, 2, 3$"
+      },
+      {
+        "id": "B",
+        "texto": "$1, 3, 1, 1$"
+      },
+      {
+        "id": "C",
+        "texto": "$2, 3, 2, 3$"
+      },
+      {
+        "id": "D",
+        "texto": "$1, 6, 1, 3$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Sustituyendo los coeficientes de la opción A: $2\\text{Al} + 6\\text{HCl} \\rightarrow 2\\text{AlCl}_3 + 3\\text{H}_2$. Contabilizando átomos en reactivos y productos: Al ($2=2$), H ($6=6$), Cl ($6=6$). La ecuación queda perfectamente balanceada.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "quimica",
+    "tema": "general",
+    "pregunta": "De acuerdo con la teoría ondulatoria y la configuración electrónica, ¿cuántos electrones de valencia posee un átomo neutro de Oxígeno ($Z = 8$)?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$2$ electrones"
+      },
+      {
+        "id": "B",
+        "texto": "$6$ electrones"
+      },
+      {
+        "id": "C",
+        "texto": "$8$ electrones"
+      },
+      {
+        "id": "D",
+        "texto": "$4$ electrones"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La configuración electrónica del oxígeno es $1s^2 2s^2 2p^4$. El último nivel de energía principal es el $2$, el cual aloja un total de $2 + 4 = 6$ electrones. Estos corresponden a sus electrones de valencia.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "quimica",
+    "tema": "general",
+    "pregunta": "Las sustancias puras que no pueden descomponerse en entidades químicas más simples mediante métodos químicos ordinarios se clasifican como:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Compuestos"
+      },
+      {
+        "id": "B",
+        "texto": "Elementos"
+      },
+      {
+        "id": "C",
+        "texto": "Mezclas homogéneas"
+      },
+      {
+        "id": "D",
+        "texto": "Soluciones saturadas"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los elementos químicos (constituidos por átomos del mismo tipo) representan el nivel fundamental de sustancia pura indivisible por vías químicas. Los compuestos sí se descomponen en elementos.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "quimica",
+    "tema": "general",
+    "pregunta": "Identifica cuál de las siguientes opciones constituye un fenómeno de naturaleza puramente química.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "La evaporación del agua líquida por calentamiento."
+      },
+      {
+        "id": "B",
+        "texto": "La oxidación de un clavo de hierro expuesto a la intemperie."
+      },
+      {
+        "id": "C",
+        "texto": "La trituración mecánica de una roca de cuarzo."
+      },
+      {
+        "id": "D",
+        "texto": "La fusión de una barra de cera sólida."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La oxidación altera la estructura interna de la materia, transformando el hierro elemental en óxido de hierro (nueva sustancia). Los cambios de estado físico e integridades mecánicas son fenómenos físicos.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "biologia",
+    "tema": "celula",
+    "pregunta": "¿Qué nombre recibe el proceso metabólico autótrofo mediante el cual los cloroplastos capturan energía lumínica para sintetizar glucosa a partir de $CO_2$ y $H_2O$?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Glucólisis anaerobia"
+      },
+      {
+        "id": "B",
+        "texto": "Fotosíntesis"
+      },
+      {
+        "id": "C",
+        "texto": "Ciclo de Krebs"
+      },
+      {
+        "id": "D",
+        "texto": "Fermentación láctica"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La fotosíntesis es el proceso anabólico crucial mediante el cual plantas, algas y cianobacterias convierten materia inorgánica en materia orgánica rica en energía química utilizando la luz solar.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "biologia",
+    "tema": "sistemas_del_uerpo",
+    "pregunta": "¿Cuál de los siguientes órganos del sistema urinario humano cumple la función principal de filtrar la sangre para remover desechos metabólicos y producir orina?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Vejiga"
+      },
+      {
+        "id": "B",
+        "texto": "Riñones"
+      },
+      {
+        "id": "C",
+        "texto": "Uréteres"
+      },
+      {
+        "id": "D",
+        "texto": "Uretra"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los riñones contienen millones de nefronas encargadas de la filtración glomerular, reabsorción y secreción tubular. La vejiga solo almacena el fluido y los uréteres actúan como conductos.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "biologia",
+    "tema": "celula",
+    "pregunta": "La molécula orgánica considerada la \"moneda energética\" universal de las células, encargada de almacenar y transferir energía para las funciones metabólicas, es:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "ADN"
+      },
+      {
+        "id": "B",
+        "texto": "ATP (Trifosfato de adenosina)"
+      },
+      {
+        "id": "C",
+        "texto": "ARN mensajero"
+      },
+      {
+        "id": "D",
+        "texto": "Hemoglobina"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El ATP almacena energía química en sus enlaces de alta energía entre los grupos fosfato. Al romperse por hidrólisis (convirtiéndose en ADP), libera la energía necesaria para el trabajo celular.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "biologia",
+    "tema": "sistemas_del_cuerpo",
+    "pregunta": "¿Qué componente celular de la sangre humana carece de núcleo y contiene la proteína hemoglobina, especializada en el transporte de oxígeno gaseoso?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Leucocitos (glóbulos blancos)"
+      },
+      {
+        "id": "B",
+        "texto": "Eritrocitos (glóbulos rojos)"
+      },
+      {
+        "id": "C",
+        "texto": "Plaquetas (trombocitos)"
+      },
+      {
+        "id": "D",
+        "texto": "Linfocitos T"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los eritrocitos maduros pierden su núcleo para maximizar el espacio citoplasmático destinado a la hemoglobina, encargada de fijar y transportar el oxígeno hacia los tejidos corporales.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "historia",
+    "tema": "mexico",
+    "pregunta": "¿Qué corporación político-militar gobernó dictatorialmente a México durante más de tres décadas (1876-1911), impulsando la modernización material y las vías férreas a costa del orden civil social?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "El Imperio de Maximiliano"
+      },
+      {
+        "id": "B",
+        "texto": "El Porfiriato"
+      },
+      {
+        "id": "C",
+        "texto": "El Maximato"
+      },
+      {
+        "id": "D",
+        "texto": "El gobierno de Santa Anna"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El Porfiriato, encabezado por el general Porfirio Díaz, se rigió bajo el lema de \"Orden y Progreso\", estabilizando la economía e infraestructura pero agudizando la desigualdad agraria.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "historia",
+    "tema": "universal",
+    "pregunta": "¿Qué tratado de paz internacional firmado en 1919 puso fin formal a las hostilidades estatales de la Primera Guerra Mundial, imponiendo severas sanciones económicas a Alemania?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Tratado de Utrecht"
+      },
+      {
+        "id": "B",
+        "texto": "Tratado de Versalles"
+      },
+      {
+        "id": "C",
+        "texto": "Pacto de Varsovia"
+      },
+      {
+        "id": "D",
+        "texto": "Tratado de Tordesillas"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El Tratado de Versalles impuso fuertes indemnizaciones, pérdidas territoriales y restricciones militares a Alemania, generando un descontento social que propició el posterior ascenso del nazismo.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "historia",
+    "tema": "mexico",
+    "pregunta": "¿Qué presidente mexicano decretó la nacionalización de la industria petrolera nacional el 18 de marzo de 1938, expropiando los bienes de las empresas extranjeras corporativas?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Plutarco Elías Calles"
+      },
+      {
+        "id": "B",
+        "texto": "Lázaro Cárdenas del Río"
+      },
+      {
+        "id": "C",
+        "texto": "Adolfo López Mateos"
+      },
+      {
+        "id": "D",
+        "texto": "Manuel Ávila Camacho"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Lázaro Cárdenas aplicó el artículo 27 de la Constitución para consolidar la soberanía energética del país sobre los hidrocarburos ante los desacatos de las compañías petroleras extranjeras.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "historia",
+    "tema": "universal",
+    "pregunta": "El movimiento cultural, intelectual y filosófico surgido en Europa occidental durante los siglos XIV y XV que colocó al ser humano como centro de reflexión (*antropocentrismo*) se denominó:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Escolástica medieval"
+      },
+      {
+        "id": "B",
+        "texto": "Humanismo renacentista"
+      },
+      {
+        "id": "C",
+        "texto": "Ilustración racional"
+      },
+      {
+        "id": "D",
+        "texto": "Positivismo sociológico"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El Humanismo rescató los valores estéticos y filosóficos de la tradición grecolatina clásica, marcando el fin de la cosmovisión teocéntrica propia de la Edad Media.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "literatura",
+    "tema": "comprension_lectora",
+    "pregunta": "Lee con atención el enunciado: \"El persistente científico trabajaba diariamente sin descanso en su laboratorio, buscando la cura definitiva\". ¿Cuál es el núcleo del sujeto en la oración anterior?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Persistente"
+      },
+      {
+        "id": "B",
+        "texto": "Científico"
+      },
+      {
+        "id": "C",
+        "texto": "Trabajaba"
+      },
+      {
+        "id": "D",
+        "texto": "Laboratorio"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El sujeto de la oración es \"El persistente científico\". La palabra central (sustantivo) que ejecuta la acción principal corresponde a \"científico\", fungiendo como núcleo del sujeto.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "literatura",
+    "tema": "figuras_literarias",
+    "pregunta": "Identifica qué figura retórica literaria se está empleando de forma clara en la siguiente expresión poética: \"Tus cabellos son hilos de oro puro que coronan tu frente\".",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Símil (Comparación)"
+      },
+      {
+        "id": "B",
+        "texto": "Metáfora"
+      },
+      {
+        "id": "C",
+        "texto": "Hipérbole"
+      },
+      {
+        "id": "D",
+        "texto": "Prosopopeya"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Es una metáfora porque establece una identificación directa de identidad entre un elemento real (cabellos) y uno imaginario (hilos de oro) sin utilizar nexos comparativos como la palabra \"como\".",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "literatura",
+    "tema": "comprension_lectora",
+    "pregunta": "El elemento formal del texto dramático que consiste en las indicaciones escritas por el autor para orientar a los actores sobre sus movimientos, gestos y vestuario en el escenario recibe el nombre de:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Diálogos"
+      },
+      {
+        "id": "B",
+        "texto": "Acotaciones"
+      },
+      {
+        "id": "C",
+        "texto": "Monólogos"
+      },
+      {
+        "id": "D",
+        "texto": "Apartes"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Las acotaciones aparecen por lo general entre paréntesis o letras cursivas dentro del guion teatral, sirviendo exclusivamente como instrucciones de montaje escénico sin ser pronunciadas por los personajes.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "espanol",
+    "tema": "gramatica",
+    "pregunta": "Selecciona la opción que contenga una palabra que presente un error de ortografía respecto al uso correcto de las grafías grafemáticas.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "El joven decidió absorber todos los conocimientos posibles."
+      },
+      {
+        "id": "B",
+        "texto": "La producción textil tuvo una notable expansión comercial."
+      },
+      {
+        "id": "C",
+        "texto": "Es necesario deshechar los residuos tóxicos de inmediato."
+      },
+      {
+        "id": "D",
+        "texto": "El testigo tuvo que comparecer ante el juez penal."
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "La palabra correcta es \"desechar\" (derivada de echar, sin \"h\" intermedia). Escribirla como \"deshechar\" constituye un error ortográfico severo derivado de la confusión con el participio \"hecho\".",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "espanol",
+    "tema": "redaccion",
+    "pregunta": "En el enunciado \"Estudió minuciosamente durante varios meses, ________ no logró obtener los resultados requeridos en el examen inicial\", ¿qué nexo adversativo lógico completa con total coherencia gramatical la idea?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "porque"
+      },
+      {
+        "id": "B",
+        "texto": "sin embargo"
+      },
+      {
+        "id": "C",
+        "texto": "por lo tanto"
+      },
+      {
+        "id": "D",
+        "texto": "además"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La oración plantea una oposición o contrariedad entre el esfuerzo realizado y el resultado final. El conector idóneo es un nexo adversativo restrictivo como \"sin embargo\" o \"pero\".",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "espanol",
+    "tema": "gramatica",
+    "pregunta": "Identifica la función de la lengua que predomina claramente en un texto cuyo enunciado central dicta: \"¡Cierra la ventana inmediatamente y pon atención a las indicaciones de seguridad!\".",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Función referencial o informativa"
+      },
+      {
+        "id": "B",
+        "texto": "Función apelativa o conativa"
+      },
+      {
+        "id": "C",
+        "texto": "Función poética o estética"
+      },
+      {
+        "id": "D",
+        "texto": "Función metalingüística"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La función apelativa busca influir u ordenar una conducta o respuesta directa por parte del receptor del mensaje, siendo sumamente común en imperativos, reglamentos y discursos persuasivos.",
+    "dificultad": "easy"
+  }
+]

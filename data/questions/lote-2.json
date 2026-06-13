@@ -1,0 +1,1166 @@
+[
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "arte",
+    "tema": "historia_del_arte",
+    "pregunta": "¿Qué artista del Renacimiento italiano es el autor del célebre fresco 'La escuela de Atenas', ubicado en las estancias del Vaticano?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Leonardo da Vinci"
+      },
+      {
+        "id": "B",
+        "texto": "Miguel Ángel Buonarroti"
+      },
+      {
+        "id": "C",
+        "texto": "Rafael Sanzio"
+      },
+      {
+        "id": "D",
+        "texto": "Donatello"
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "Rafael Sanzio pintó esta obra cumbre entre 1509 y 1511, representando a los más grandes filósofos de la antigüedad con la técnica de la perspectiva lineal. Un error común es atribuirla a Miguel Ángel debido a su contemporaneidad en el Vaticano.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "arte",
+    "tema": "muralismo_mexicano",
+    "pregunta": "¿Cuál de los siguientes pintores integra la triada fundamental del muralismo mexicano y es autor de la obra 'El hombre en llamas' en el Hospicio Cabañas?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Diego Rivera"
+      },
+      {
+        "id": "B",
+        "texto": "José Clemente Orozco"
+      },
+      {
+        "id": "C",
+        "texto": "David Alfaro Siqueiros"
+      },
+      {
+        "id": "D",
+        "texto": "Rufino Tamayo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "José Clemente Orozco realizó esta majestuosa pintura mural en la cúpula del Hospicio Cabañas en Guadalajara, caracterizada por su fuerte expresionismo y crítica social.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "arte",
+    "tema": "movimientos_artisticos",
+    "pregunta": "Estilo artístico surgido en Europa en el siglo XVII, caracterizado por el uso dramático del claroscuro, la ornamentación excesiva y la búsqueda del movimiento de las formas:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Renacimiento"
+      },
+      {
+        "id": "B",
+        "texto": "Barroco"
+      },
+      {
+        "id": "C",
+        "texto": "Neoclasicismo"
+      },
+      {
+        "id": "D",
+        "texto": "Impresionismo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El Barroco rompe con el equilibrio y simetría del Renacimiento para apostar por la emotividad, el contraste lumínico extremo (tenebrismo) y líneas curvas dinámicas.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "arte",
+    "tema": "movimientos_artisticos",
+    "pregunta": "¿Qué movimiento pictórico de finales del siglo XIX priorizaba la captura de la luz natural sobre los objetos mediante pinceladas sueltas, teniendo a Claude Monet como su máximo referente?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Realismo"
+      },
+      {
+        "id": "B",
+        "texto": "Impresionismo"
+      },
+      {
+        "id": "C",
+        "texto": "Expresionismo"
+      },
+      {
+        "id": "D",
+        "texto": "Surrealismo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El Impresionismo nació en Francia a partir del cuadro 'Impresión, sol naciente' de Monet. Buscaba registrar la vibración lumínica instantánea en lugar de contornos definidos.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "arte",
+    "tema": "tecnicas",
+    "pregunta": "La técnica pictórica consistente en aplicar pigmentos diluidos en agua sobre una capa de argamasa de cal y arena todavía húmeda se denomina:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Óleo"
+      },
+      {
+        "id": "B",
+        "texto": "Acuarela"
+      },
+      {
+        "id": "C",
+        "texto": "Fresco"
+      },
+      {
+        "id": "D",
+        "texto": "Temple"
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "La pintura al fresco requiere aplicarse sobre el muro húmedo para que el pigmento se integre químicamente a la pared al secar. El óleo usa aglutinantes grasos y la acuarela se aplica sobre papel.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "arte",
+    "tema": "movimientos_artisticos",
+    "pregunta": "¿A qué corriente vanguardista pertenece el artista Salvador Dalí, cuyas obras exploran el mundo del inconsciente y las teorías del psicoanálisis freudiano?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Cubismo"
+      },
+      {
+        "id": "B",
+        "texto": "Surrealismo"
+      },
+      {
+        "id": "C",
+        "texto": "Futurismo"
+      },
+      {
+        "id": "D",
+        "texto": "Dadaísmo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El Surrealismo buscaba liberar los impulsos creativos del subconsciente por encima del control racional, plasmando escenas oníricas y lógicamente imposibles.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "arte",
+    "tema": "historia_del_arte",
+    "pregunta": "¿Cuál es la característica principal de la arquitectura gótica medieval que permitió construir catedrales significativamente más altas y luminosas que las románicas?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "El uso exclusivo de vigas de madera reforzada."
+      },
+      {
+        "id": "B",
+        "texto": "El arco de medio punto y los muros gruesos sin ventanas."
+      },
+      {
+        "id": "C",
+        "texto": "El arco apuntado (ojival) y las bóvedas de crucería apoyadas en arbotantes."
+      },
+      {
+        "id": "D",
+        "texto": "La sustitución de la piedra por ladrillo cocido industrial."
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "El arco ojival y los arbotantes góticos distribuyeron las cargas de forma eficiente hacia el exterior, permitiendo liberar los muros de su función de carga e integrar grandes vitrales coloridos.",
+    "dificultad": "hard"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "arte",
+    "tema": "arte_mexicano",
+    "pregunta": "¿Quién fue el grabador e ilustrador mexicano creador de 'La Catrina' (originalmente llamada 'La Calavera Garbancera'), icono del Día de Muertos?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "José Guadalupe Posada"
+      },
+      {
+        "id": "B",
+        "texto": "Dr. Atl"
+      },
+      {
+        "id": "C",
+        "texto": "Francisco Toledo"
+      },
+      {
+        "id": "D",
+        "texto": "Saturnino Herrán"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "José Guadalupe Posada realizó célebres grabados en metal con esqueletos para satirizar las condiciones sociales del Porfiriato y a quienes pretendían aparentar un estilo de vida europeo.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "literatura",
+    "tema": "arte_y_literatura",
+    "pregunta": "La descripción detallada y expresiva de una obra de arte visual (como una pintura o escultura) contenida dentro de un texto literario se conoce formalmente como:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Metáfora"
+      },
+      {
+        "id": "B",
+        "texto": "Écfrasis"
+      },
+      {
+        "id": "C",
+        "texto": "Epíteto"
+      },
+      {
+        "id": "D",
+        "texto": "Alegoría"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La écfrasis es un recurso literario clásico que consiste en traducir con palabras la experiencia visual de un objeto plástico, conectando de forma directa la literatura con las artes visuales.",
+    "dificultad": "hard"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "literatura",
+    "tema": "critica_basica",
+    "pregunta": "¿Qué movimiento literario y artístico hispanoamericano, liderado por el poeta Rubén Darío, se caracterizó por la búsqueda de la belleza formal, el exotismo y el uso constante del símbolo del cisne?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Romanticismo"
+      },
+      {
+        "id": "B",
+        "texto": "Modernismo"
+      },
+      {
+        "id": "C",
+        "texto": "Realismo"
+      },
+      {
+        "id": "D",
+        "texto": "Ultraísmo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El Modernismo (fines del siglo XIX) renovó el lenguaje poético en español mediante el preciosismo y la musicalidad. El Realismo se concentraba en la crítica social objetiva.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "literatura",
+    "tema": "arte_y_literatura",
+    "pregunta": "Los poemas visuales de las vanguardias del siglo XX donde las palabras se organizan tipográficamente para dibujar la silueta del objeto del que trata el texto reciben el nombre de:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Sonetos"
+      },
+      {
+        "id": "B",
+        "texto": "Caligramas"
+      },
+      {
+        "id": "C",
+        "texto": "Haikus"
+      },
+      {
+        "id": "D",
+        "texto": "Romances"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Introducidos célebremente por Guillaume Apollinaire, los caligramas fusionan la poesía lírica con el diseño gráfico y espacial propio de las vanguardias estéticas.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "historia",
+    "tema": "contexto_historico_del_arte",
+    "pregunta": "¿Qué gran acontecimiento de la historia europea en el siglo XV facilitó la difusión masiva de tratados artísticos y textos humanistas clásicos de la antigüedad?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "La caída del Imperio Romano de Occidente"
+      },
+      {
+        "id": "B",
+        "texto": "La invención de la imprenta de tipos móviles por Johannes Gutenberg"
+      },
+      {
+        "id": "C",
+        "texto": "El descubrimiento europeo de América"
+      },
+      {
+        "id": "D",
+        "texto": "La Guerra de los Cien Años"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Hacia 1440, la imprenta de Gutenberg revolucionó la transmisión cultural, permitiendo que las ideas del humanismo renacentista y las teorías arquitectónicas se multiplicaran velozmente por todo el continente.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "historia",
+    "tema": "contexto_historico_del_arte",
+    "pregunta": "¿Qué rey de Francia, conocido como el 'Rey Sol', impulsó la construcción del fastuoso Palacio de Versalles como máximo símbolo del arte absolutista y el Barroco cortesano?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Luis XVI"
+      },
+      {
+        "id": "B",
+        "texto": "Felipe II"
+      },
+      {
+        "id": "C",
+        "texto": "Luis XIV"
+      },
+      {
+        "id": "D",
+        "texto": "Carlos V"
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "Luis XIV centralizó el poder político e instrumentalizó las artes y la arquitectura monumental de Versalles para consolidar su hegemonía y someter simbólicamente a la nobleza francesa.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "matematicas",
+    "tema": "proporcion",
+    "pregunta": "La proporción matemática basada en una relación asimétrica constante presente en la naturaleza y utilizada en el arte desde la antigüedad para lograr composiciones armónicas se conoce como:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Teorema de Pitágoras"
+      },
+      {
+        "id": "B",
+        "texto": "Razón áurea (Número de oro)"
+      },
+      {
+        "id": "C",
+        "texto": "Regla de tres compuesta"
+      },
+      {
+        "id": "D",
+        "texto": "Identidad trigonométrica"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La razón áurea, representada por la letra griega $phi approx 1.618$, define proporciones consideradas estéticamente perfectas, empleadas en el Partenón, obras de Da Vinci y el diseño visual actual.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area5",
+    "materia": "matematicas",
+    "tema": "geometria_visual",
+    "pregunta": "¿Cuántas caras, vértices y aristas posee un hexaedro regular (cubo) de acuerdo con los teoremas de la geometría espacial?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "6 caras, 6 vértices y 12 aristas"
+      },
+      {
+        "id": "B",
+        "texto": "6 caras, 8 vértices y 12 aristas"
+      },
+      {
+        "id": "C",
+        "texto": "8 caras, 6 vértices y 12 aristas"
+      },
+      {
+        "id": "D",
+        "texto": "6 caras, 12 vértices y 8 aristas"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Un cubo consta de 6 caras cuadradas. Posee 8 esquinas o vértices y un total de 12 segmentos lineales o aristas que unen dichos vértices, cumpliendo con la fórmula de Euler ($C + V = A + 2$).",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "matematicas",
+    "tema": "porcentajes",
+    "pregunta": "Un artículo de papelería tiene un precio de venta de $$800$ antes de impuestos. Si se le aplica el Impuesto al Valor Agregado (IVA) del $16\\%$, ¿cuál es el costo final que pagará el cliente?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$$928$"
+      },
+      {
+        "id": "B",
+        "texto": "$$816$"
+      },
+      {
+        "id": "C",
+        "texto": "$$816.16$"
+      },
+      {
+        "id": "D",
+        "texto": "$$960$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Para calcular el costo final se multiplica el precio original por $1.16$, o bien se calcula el $16\\%$ de $800$ ($800 \times 0.16 = 128$) y se suma al precio original ($800 + 128 = 928$).",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "matematicas",
+    "tema": "interes",
+    "pregunta": "Calcula el interés simple que produce un capital inicial de $$10,000$ invertido a una tasa de interés del $5\\%$ anual durante un periodo total de $3$ años.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$$1,500$"
+      },
+      {
+        "id": "B",
+        "texto": "$$500$"
+      },
+      {
+        "id": "C",
+        "texto": "$$11,500$"
+      },
+      {
+        "id": "D",
+        "texto": "$$1,576.25$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La fórmula del interés simple es $I = C cdot i cdot t$. Sustituyendo los datos: $I = 10000 \times 0.05 \times 3 = 500 \times 3 = 1500$. El monto final sería $$11,500$, pero la pregunta pide únicamente el interés generado.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "matematicas",
+    "tema": "funciones",
+    "pregunta": "En un modelo lineal de costos de producción representado por la función $C(x) = 25x + 1500$, ¿qué concepto microeconómico representa el término constante $1500$?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Costo variable unitario"
+      },
+      {
+        "id": "B",
+        "texto": "Costos fijos totales"
+      },
+      {
+        "id": "C",
+        "texto": "Margen de ganancia"
+      },
+      {
+        "id": "D",
+        "texto": "Punto de equilibrio"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "En la función de costo total, $25x$ representa los costos variables que dependen del volumen de producción $x$, mientras que $1500$ es independiente de la cantidad producida, representando los costos fijos (renta, salarios base, etc.).",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "matematicas",
+    "tema": "estadistica",
+    "pregunta": "Si un portafolio de inversión registró los siguientes rendimientos mensuales durante el primer cuatrimestre: $4\\%$, $6\\%$, $-2\\%$, y $8\\%$, ¿cuál es el promedio (media aritmética) de su rendimiento?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$4\\%$"
+      },
+      {
+        "id": "B",
+        "texto": "$5\\%$"
+      },
+      {
+        "id": "C",
+        "texto": "$16\\%$"
+      },
+      {
+        "id": "D",
+        "texto": "$4.5\\%$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Se suman todos los valores numéricos cuidando los signos: $4 + 6 + (-2) + 8 = 16$. Posteriormente se divide la suma entre el número total de observaciones ($4$): $16 / 4 = 4\\%$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "matematicas",
+    "tema": "funciones",
+    "pregunta": "Determina el punto de equilibrio en unidades ($x$) dadas la ecuación de ingresos $I(x) = 50x$ y la ecuación de costos $C(x) = 30x + 400$.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$x = 20$"
+      },
+      {
+        "id": "B",
+        "texto": "$x = 40$"
+      },
+      {
+        "id": "C",
+        "texto": "$x = 5$"
+      },
+      {
+        "id": "D",
+        "texto": "$x = 10$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "El punto de equilibrio se alcanza cuando los ingresos igualan a los costos: $I(x) = C(x) implies 50x = 30x + 400$. Restando $30x$ en ambos miembros: $20x = 400 implies x = 400/20 = 20$ unidades.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "matematicas",
+    "tema": "porcentajes",
+    "pregunta": "Debido a la inflación, el precio de un insumo empresarial aumentó de $$50$ a $$65$. ¿Cuál fue el porcentaje exacto de incremento sobre el precio original?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$15\\%$"
+      },
+      {
+        "id": "B",
+        "texto": "$30\\%$"
+      },
+      {
+        "id": "C",
+        "texto": "$23\\%$"
+      },
+      {
+        "id": "D",
+        "texto": "$130\\%$"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La diferencia absoluta de precios es de $$15$ ($65 - 50 = 15$). Para obtener el porcentaje se calcula la relación respecto al valor inicial: $\frac{15}{50} = 0.30$, multiplicado por 100 equivale al $30\\%$. Un error común es pensar que el aumento es del $15\\%$ solo por la resta.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "economia",
+    "tema": "oferta_demanda",
+    "pregunta": "De acuerdo con la ley de la demanda en el mercado de bienes y servicios, si el precio de un producto normal se incrementa significativamente, ceteris paribus:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "La cantidad demandada del bien disminuye."
+      },
+      {
+        "id": "B",
+        "texto": "La cantidad demandada del bien aumenta."
+      },
+      {
+        "id": "C",
+        "texto": "La curva de oferta se desplaza a la izquierda."
+      },
+      {
+        "id": "D",
+        "texto": "El precio de equilibrio baja de inmediato."
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La ley de la demanda establece una relación inversa entre el precio y la cantidad demandada. Al subir el precio, los consumidores reducen su volumen de compra debido al efecto sustitución e ingreso.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "economia",
+    "tema": "pib",
+    "pregunta": "El indicador macroeconómico que mide el valor monetario total de los bienes y servicios finales producidos dentro de las fronteras de un país en un periodo determinado es el:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Índice Nacional de Precios al Consumidor (INPC)"
+      },
+      {
+        "id": "B",
+        "texto": "Producto Interno Bruto (PIB)"
+      },
+      {
+        "id": "C",
+        "texto": "Balance de Pagos"
+      },
+      {
+        "id": "D",
+        "texto": "Presupuesto de Egresos de la Federación"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El PIB es el indicador clave de la actividad económica interna. El INPC mide la inflación y la balanza de pagos registra transacciones internacionales.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "economia",
+    "tema": "inflacion",
+    "pregunta": "Fenómeno económico caracterizado por el aumento generalizado y sostenido de los precios de los bienes y servicios existentes en el mercado, provocando la pérdida del poder adquisitivo de la moneda:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Deflación"
+      },
+      {
+        "id": "B",
+        "texto": "Devaluación"
+      },
+      {
+        "id": "C",
+        "texto": "Inflación"
+      },
+      {
+        "id": "D",
+        "texto": "Especulación"
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "La inflación erosiona el valor del dinero a lo largo del tiempo, de modo que se requieren más unidades monetarias para adquirir la misma canasta básica de consumo.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "economia",
+    "tema": "conceptos_basicos",
+    "pregunta": "La escasez de recursos frente a las necesidades humanas ilimitadas obliga a los agentes económicos a elegir, renunciando a una opción alternativa. El valor de la mejor opción perdida se denomina:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Costo de oportunidad"
+      },
+      {
+        "id": "B",
+        "texto": "Costo hundido"
+      },
+      {
+        "id": "C",
+        "texto": "Costo contable"
+      },
+      {
+        "id": "D",
+        "texto": "Utilidad marginal"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "El costo de oportunidad representa el rendimiento o beneficio del que se prescinde al tomar una decisión económica específica sobre el destino de recursos limitados.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "economia",
+    "tema": "conceptos_basicos",
+    "pregunta": "¿Qué institución autónoma del Estado mexicano tiene el mandato constitucional exclusivo de preservar el valor de la moneda nacional, controlando la política monetaria y la inflación?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Secretaría de Hacienda y Crédito Público (SHCP)"
+      },
+      {
+        "id": "B",
+        "texto": "Banco de México (Banxico)"
+      },
+      {
+        "id": "C",
+        "texto": "Comisión Nacional Bancaria y de Valores (CNBV)"
+      },
+      {
+        "id": "D",
+        "texto": "Bolsa Mexicana de Valores (BMV)"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Banxico es el banco central de México y goza de autonomía para regular la emisión de billetes y regular las tasas de interés de referencia de forma independiente al poder ejecutivo (SHCP).",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "geografia",
+    "tema": "economia_y_recursos",
+    "pregunta": "¿Qué región geográfica del territorio mexicano concentra la mayor extracción y producción pesquera e industrial de hidrocarburos (petróleo y gas natural)?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "La península de Baja California"
+      },
+      {
+        "id": "B",
+        "texto": "La llanura costera del Golfo de México y la plataforma de Campeche"
+      },
+      {
+        "id": "C",
+        "texto": "La Sierra Madre Occidental"
+      },
+      {
+        "id": "D",
+        "texto": "La cuenca del río Lerma-Santiago"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La zona del Golfo de México y la Sonda de Campeche albergan los yacimientos marinos e industriales de crudo más prolíficos del país (ej. el complejo Cantarell).",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "geografia",
+    "tema": "economia_y_recursos",
+    "pregunta": "¿Cuál de los siguientes tratados internacionales regula el libre flujo comercial y los aranceles entre México, Estados Unidos y Canadá desde su modernización en 2020?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "TLCAN"
+      },
+      {
+        "id": "B",
+        "texto": "T-MEC"
+      },
+      {
+        "id": "C",
+        "texto": "Mercosur"
+      },
+      {
+        "id": "D",
+        "texto": "Tratado de Transpacífico (CPTPP)"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El T-MEC sustituyó al antiguo TLCAN tras un largo proceso de renegociación, actualizando reglas de origen laborales, digitales y automotrices entre los tres socios norteamericanos.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "historia",
+    "tema": "mexico_economico",
+    "pregunta": "¿Qué presidente de México impulsó el proceso de privatización bancaria y la firma original del Tratado de Libre Comercio de América del Norte (TLCAN) a inicios de la década de 1990?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "José López Portillo"
+      },
+      {
+        "id": "B",
+        "texto": "Carlos Salinas de Gortari"
+      },
+      {
+        "id": "C",
+        "texto": "Ernesto Zedillo Ponce de León"
+      },
+      {
+        "id": "D",
+        "texto": "Vicente Fox Quesada"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La administración de Carlos Salinas de Gortari (1988-1994) implementó políticas neoliberales profundas, privatizando empresas estatales y abriendo la economía mexicana a los mercados globales.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area6",
+    "materia": "historia",
+    "tema": "mexico_economico",
+    "pregunta": "¿Qué decreto económico de gran trascendencia histórica emitió el presidente Lázaro Cárdenas del Río el 18 de marzo de 1938?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "La nacionalización de los ferrocarriles"
+      },
+      {
+        "id": "B",
+        "texto": "La Expropiación Petrolera"
+      },
+      {
+        "id": "C",
+        "texto": "La creación del Banco de México"
+      },
+      {
+        "id": "D",
+        "texto": "El decreto del salario mínimo universal"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Lázaro Cárdenas decretó la expropiación de los activos de compañías petroleras extranjeras que se negaban a acatar fallos laborales locales, fundando posteriormente la empresa pública Pemex.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "aritmetica",
+    "pregunta": "Determina el Máximo Común Divisor (MCD) del siguiente conjunto de números enteros: $24, 36, 60$.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$6$"
+      },
+      {
+        "id": "B",
+        "texto": "$12$"
+      },
+      {
+        "id": "C",
+        "texto": "$18$"
+      },
+      {
+        "id": "D",
+        "texto": "$360$"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El MCD es el mayor entero que divide exactamente a todos los números del conjunto. Descomponiendo en factores primos comunes: $24 = 2^3 cdot 3$, $36 = 2^2 cdot 3^2$, $60 = 2^2 cdot 3 cdot 5$. Multiplicando los factores comunes con su menor exponente: $2^2 cdot 3 = 4 cdot 3 = 12$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Desarrolla el siguiente binomio al cubo aplicando los productos notables algebraicos: $(2x - 3)^3$.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$8x^3 - 27$"
+      },
+      {
+        "id": "B",
+        "texto": "$8x^3 - 12x^2 + 18x - 27$"
+      },
+      {
+        "id": "C",
+        "texto": "$8x^3 - 36x^2 + 54x - 27$"
+      },
+      {
+        "id": "D",
+        "texto": "$2x^3 - 36x^2 + 54x - 9$"
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "La regla indica: $(a-b)^3 = a^3 - 3a^2b + 3ab^2 - b^3$. Sustituyendo $a=2x$ y $b=3$: $(2x)^3 - 3(2x)^2(3) + 3(2x)(3)^2 - (3)^3 = 8x^3 - 3(4x^2)(3) + 3(2x)(9) - 27 = 8x^3 - 36x^2 + 54x - 27$. Un error común es elevar solo los extremos ($8x^3-27$).",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Simplifica la siguiente expresión fraccionaria mediante factorización algebraica de trinomios:$$\frac{x^2 - x - 6}{x^2 - 4x + 3}$$",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$\frac{x+2}{x-1}$"
+      },
+      {
+        "id": "B",
+        "texto": "$\frac{x-2}{x-1}$"
+      },
+      {
+        "id": "C",
+        "texto": "$\frac{x-3}{x-1}$"
+      },
+      {
+        "id": "D",
+        "texto": "$\frac{x+2}{x+1}$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Factorizando numerador y denominador: $x^2 - x - 6 = (x-3)(x+2)$ y $x^2 - 4x + 3 = (x-3)(x-1)$. Al reescribir la fracción, el factor común $(x-3)$ se cancela, quedando la expresión simplificada como $\frac{x+2}{x-1}$.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Resuelve la siguiente ecuación de primer grado y halla el valor de $x$:$$3(x - 2) - 2(2x + 1) = 4$$",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$x = -12$"
+      },
+      {
+        "id": "B",
+        "texto": "$x = -4$"
+      },
+      {
+        "id": "C",
+        "texto": "$x = -8$"
+      },
+      {
+        "id": "D",
+        "texto": "$x = 12$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Primero distribuimos los términos multiplicativos: $3x - 6 - 4x - 2 = 4$. Agrupando términos semejantes: $-x - 8 = 4$. Despejando: $-x = 4 + 8 implies -x = 12 implies x = -12$. Cuidado con los signos al distribuir el $-2$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "geometria",
+    "pregunta": "¿Cuál es la suma total de los ángulos interiores de cualquier polígono convexo regular de $6$ lados (un hexágono)?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$360^{circ}$"
+      },
+      {
+        "id": "B",
+        "texto": "$540^{circ}$"
+      },
+      {
+        "id": "C",
+        "texto": "$720^{circ}$"
+      },
+      {
+        "id": "D",
+        "texto": "$180^{circ}$"
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "La fórmula para calcular la suma de los ángulos internos de un polígono es $S = 180^{circ}(n - 2)$, donde $n$ representa el número de lados. Para un hexágono ($n=6$): $S = 180^{circ}(6 - 2) = 180^{circ}(4) = 720^{circ}$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "trigonometria",
+    "pregunta": "Un triángulo rectángulo posee un cateto opuesto de $3 \text{ cm}$ y una hipotenusa de $6 \text{ cm}$ con respecto a un ángulo agudo $alpha$. Calcula la medida exacta del ángulo $alpha$.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$45^{circ}$"
+      },
+      {
+        "id": "B",
+        "texto": "$30^{circ}$"
+      },
+      {
+        "id": "C",
+        "texto": "$60^{circ}$"
+      },
+      {
+        "id": "D",
+        "texto": "$90^{circ}$"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Aplicando la razón trigonométrica del seno: $sin(alpha) = \frac{\text{cateto opuesto}}{\text{hipotenusa}} = \frac{3}{6} = 0.5$. El ángulo cuyo seno vale $0.5$ corresponde de forma exacta a un ángulo notable de $30^{circ}$.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "geometria",
+    "pregunta": "Calcula el área total de un triángulo equilátero cuyos lados miden uniformemente $4 \text{ cm}$ de longitud.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$8 \text{ cm}^2$"
+      },
+      {
+        "id": "B",
+        "texto": "$4sqrt{3} \text{ cm}^2$"
+      },
+      {
+        "id": "C",
+        "texto": "$8sqrt{3} \text{ cm}^2$"
+      },
+      {
+        "id": "D",
+        "texto": "$16 \text{ cm}^2$"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El área de un triángulo equilátero en función de su lado $l$ se calcula con la fórmula $A = \frac{sqrt{3}}{4}l^2$. Sustituyendo $l=4$: $A = \frac{sqrt{3}}{4}(16) = 4sqrt{3} \text{ cm}^2$. Alternativamente, por Pitágoras la altura es $2sqrt{3}$, dando el mismo resultado.",
+    "dificultad": "hard"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Resuelve la siguiente ecuación exponencial para encontrar el valor de la variable $x$:$$2^{3x - 1} = 32$$",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$x = 2$"
+      },
+      {
+        "id": "B",
+        "texto": "$x = 3$"
+      },
+      {
+        "id": "C",
+        "texto": "$x = 1$"
+      },
+      {
+        "id": "D",
+        "texto": "$x = 4$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Expresamos el número $32$ en base $2$: $32 = 2^5$. Al igualar las bases, podemos igualar directamente los exponentes de la ecuación: $3x - 1 = 5 implies 3x = 6 implies x = 2$.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "aritmetica",
+    "pregunta": "¿Cuál es el resultado de resolver la siguiente operación combinada con fracciones?\n$$\frac{3}{4} div left( \frac{1}{2} + \frac{1}{4} \right)$$",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$1$"
+      },
+      {
+        "id": "B",
+        "texto": "$\frac{9}{16}$"
+      },
+      {
+        "id": "C",
+        "texto": "$\frac{3}{2}$"
+      },
+      {
+        "id": "D",
+        "texto": "$\frac{4}{3}$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Siguiendo la jerarquía de operaciones, resolvemos primero el paréntesis: $\frac{1}{2} + \frac{1}{4} = \frac{2}{4} + \frac{1}{4} = \frac{3}{4}$. Posteriormente realizamos la división: $\frac{3}{4} div \frac{3}{4} = 1$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "geometria",
+    "pregunta": "Determina el perímetro de un rectángulo si se sabe que su área total es de $48 \text{ cm}^2$ y su base mide $8 \text{ cm}$.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$6 \text{ cm}$"
+      },
+      {
+        "id": "B",
+        "texto": "$14 \text{ cm}$"
+      },
+      {
+        "id": "C",
+        "texto": "$28 \text{ cm}$"
+      },
+      {
+        "id": "D",
+        "texto": "$24 \text{ cm}$"
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "A partir de la fórmula del área ($A = b cdot h$), despejamos la altura: $h = A/b = 48/8 = 6 \text{ cm}$. El perímetro se calcula sumando todos los lados: $P = 2b + 2h = 2(8) + 2(6) = 16 + 12 = 28 \text{ cm}$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "trigonometria",
+    "pregunta": "A partir de la identidad trigonométrica fundamental $sin^2(\theta) + cos^2(\theta) = 1$, si sabemos que $sin(\theta) = \frac{3}{5}$, calcula el valor de $cos^2(\theta)$.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$\frac{4}{5}$"
+      },
+      {
+        "id": "B",
+        "texto": "$\frac{16}{25}$"
+      },
+      {
+        "id": "C",
+        "texto": "$\frac{2}{5}$"
+      },
+      {
+        "id": "D",
+        "texto": "$\frac{9}{25}$"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Sustituyendo el valor del seno en la identidad: $\\left(\\frac{3}{5}\\right)^2 + \\cos^2(\\theta) = 1 \\implies \\frac{9}{25} + \\cos^2(\\theta) = 1$. Despejando: $\\cos^2(\\theta) = 1 - \\frac{9}{25} = \\frac{16}{25}$. Notar que piden el coseno al cuadrado, no lineal.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "IPN",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "¿Cuál es la solución para el sistema homólogo de desigualdades lineales $2x - 4 < 8$?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "$x < 6$"
+      },
+      {
+        "id": "B",
+        "texto": "$x > 6$"
+      },
+      {
+        "id": "C",
+        "texto": "$x < 2$"
+      },
+      {
+        "id": "D",
+        "texto": "$x > 2$"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Resolvemos de manera análoga a una ecuación: $2x < 8 + 4 \\implies 2x < 12$. Al dividir entre un número positivo, el sentido de la desigualdad se mantiene intacto: $x < 12/2 \\implies x < 6$.",
+    "dificultad": "easy"
+  }
+]

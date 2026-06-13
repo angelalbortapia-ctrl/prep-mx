@@ -1,0 +1,2522 @@
+[
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Determina los valores de x que satisfacen la ecuación cuadrática x \n2\n +4x−12=0.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "x=−6, x=2"
+      },
+      {
+        "id": "B",
+        "texto": "x=6, x=−2"
+      },
+      {
+        "id": "C",
+        "texto": "x=−4, x=3"
+      },
+      {
+        "id": "D",
+        "texto": "x=4, x=−3"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Al factorizar el trinomio se buscan dos números que multiplicados den −12 y sumados den 4, los cuales son 6 y −2. La forma factorizada es (x+6)(x−2)=0. Al igualar cada factor a cero y despejar, obtenemos x=−6 y x=2.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Simplifica la siguiente expresión algebraica aplicando las leyes de los exponentes:\n\n4x \n4\n y \n−3\n \n(2x \n3\n y \n−2\n ) \n3\n \n​\n \n",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "2x \n5\n y \n−3\n "
+      },
+      {
+        "id": "B",
+        "texto": " \ny \n3\n \n2x \n5\n \n​\n "
+      },
+      {
+        "id": "C",
+        "texto": " \ny \n9\n \n2x \n9\n \n​\n "
+      },
+      {
+        "id": "D",
+        "texto": "2x \n5\n y \n3\n "
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Primero se eleva el numerador al cubo: (2x \n3\n y \n−2\n ) \n3\n =8x \n9\n y \n−6\n . Luego se divide entre el denominador:  \n4x \n4\n y \n−3\n \n8x \n9\n y \n−6\n \n​\n =2x \n9−4\n y \n−6−(−3)\n =2x \n5\n y \n−3\n . Expresándolo con exponentes positivos queda  \ny \n3\n \n2x \n5\n \n​\n .",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "¿Cuál es el valor de x que satisface el siguiente sistema de ecuaciones lineales?\n$$\begin{cases} 2x + 3y = 12 \\ 3x - y = 7 end{cases}$$",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "x=2"
+      },
+      {
+        "id": "B",
+        "texto": "x=3"
+      },
+      {
+        "id": "C",
+        "texto": "x=1"
+      },
+      {
+        "id": "D",
+        "texto": "x=4"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Multiplicando la segunda ecuación por 3 obtenemos 9x−3y=21. Sumando esta ecuación con la primera: (2x+3y)+(9x−3y)=12+21⟹11x=33⟹x=3. Sustituyendo en la segunda ecuación se comprueba que y=2.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "matematicas",
+    "tema": "geometria_analitica",
+    "pregunta": "Determina la ecuación general de la recta que pasa por el punto P(2,−3) y es perpendicular a la recta cuya ecuación es y= \n2\n1\n​\n x+4.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "2x+y−1=0"
+      },
+      {
+        "id": "B",
+        "texto": "x−2y−8=0"
+      },
+      {
+        "id": "C",
+        "texto": "2x−y−7=0"
+      },
+      {
+        "id": "D",
+        "texto": "2x+y−7=0"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La pendiente de la recta dada es m \n1\n​\n = \n2\n1\n​\n . Al ser perpendicular, su pendiente recíproca y opuesta es m \n2\n​\n =−2. Usando la ecuación punto-pendiente: y−(−3)=−2(x−2)⟹y+3=−2x+4⟹2x+y−1=0.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "matematicas",
+    "tema": "geometria_analitica",
+    "pregunta": "Identifica el centro C(h,k) y el radio r de la circunferencia representada por la ecuación general x \n2\n +y \n2\n −6x+8y=0.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "C(3,−4), r=5"
+      },
+      {
+        "id": "B",
+        "texto": "C(−3,4), r=5"
+      },
+      {
+        "id": "C",
+        "texto": "C(3,−4), r=25"
+      },
+      {
+        "id": "D",
+        "texto": "C(−3,4), r=25"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Completando cuadrados perfectos: (x \n2\n −6x+9)+(y \n2\n +8y+16)=9+16⟹(x−3) \n2\n +(y+4) \n2\n =25. Por lo tanto, el centro está en (3,−4) y el radio es  \n25\n\n​\n =5.",
+    "dificultad": "hard"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "matematicas",
+    "tema": "trigonometria",
+    "pregunta": "Si cos(θ)= \n5\n4\n​\n  y el ángulo θ se localiza en el cuarto cuadrante, calcula el valor de tan(θ).",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": " \n4\n3\n​\n "
+      },
+      {
+        "id": "B",
+        "texto": "− \n4\n3\n​\n "
+      },
+      {
+        "id": "C",
+        "texto": "− \n5\n3\n​\n "
+      },
+      {
+        "id": "D",
+        "texto": " \n3\n4\n​\n "
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Por el teorema de Pitágoras, el cateto opuesto es  \n5 \n2\n −4 \n2\n \n\n​\n =3. En el cuarto cuadrante, el seno y la tangente son negativos, mientras que el coseno es positivo. Por lo tanto, tan(θ)= \ncateto adyacente\ncateto opuesto\n​\n =− \n4\n3\n​\n .",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "matematicas",
+    "tema": "limites",
+    "pregunta": "Calcula el límite de la función cuando x tiende a 3:\n\nx→3\nlim\n​\n  \nx−3\nx \n2\n −9\n​\n \n",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "0"
+      },
+      {
+        "id": "B",
+        "texto": "3"
+      },
+      {
+        "id": "C",
+        "texto": "6"
+      },
+      {
+        "id": "D",
+        "texto": "No existe"
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "La sustitución directa produce una indeterminación de la forma  \n0\n0\n​\n . Factorizando la diferencia de cuadrados en el numerador obtenemos  \nx−3\n(x−3)(x+3)\n​\n . Al simplificar la expresión queda lim \nx→3\n​\n (x+3)=3+3=6.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "matematicas",
+    "tema": "calculo_basico",
+    "pregunta": "Obtén la primera derivada de la función f(x)=3x \n4\n −5x \n2\n +2x−7 con respecto a x.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "f \n′\n (x)=12x \n3\n −10x+2"
+      },
+      {
+        "id": "B",
+        "texto": "f \n′\n (x)=12x \n3\n −5x+2"
+      },
+      {
+        "id": "C",
+        "texto": "f \n′\n (x)=7x \n3\n −7x+2"
+      },
+      {
+        "id": "D",
+        "texto": "f \n′\n (x)=12x \n4\n −10x \n2\n +2x"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Utilizando la regla de la potencia para derivadas  \ndx\nd\n​\n (x \nn\n )=nx \nn−1\n , calculamos término por término:  \ndx\nd\n​\n (3x \n4\n )=12x \n3\n ,  \ndx\nd\n​\n (−5x \n2\n )=−10x, y  \ndx\nd\n​\n (2x)=2. La derivada de la constante −7 es 0.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "matematicas",
+    "tema": "calculo_basico",
+    "pregunta": "Determina el valor de la integral definida:\n\n∫ \n1\n2\n​\n (3x \n2\n −2x)\n,dx\n",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "4"
+      },
+      {
+        "id": "B",
+        "texto": "3"
+      },
+      {
+        "id": "C",
+        "texto": "5"
+      },
+      {
+        "id": "D",
+        "texto": "2"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La antiderivada de 3x \n2\n −2x es x \n3\n −x \n2\n . Evaluando en los límites mediante el Teorema Fundamental del Cálculo: [(2) \n3\n −(2) \n2\n ]−[(1) \n3\n −(1) \n2\n ]=[8−4]−[1−1]=4−0=4.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "matematicas",
+    "tema": "calculo_basico",
+    "pregunta": "Encuentra la pendiente de la recta tangente a la curva y=x \n3\n −2x+1 en el punto donde x=2.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "10"
+      },
+      {
+        "id": "B",
+        "texto": "5"
+      },
+      {
+        "id": "C",
+        "texto": "12"
+      },
+      {
+        "id": "D",
+        "texto": "6"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La pendiente de la recta tangente es igual al valor de la derivada en dicho punto. La derivada es y \n′\n =3x \n2\n −2. Evaluando en x=2: y \n′\n (2)=3(2) \n2\n −2=3(4)−2=10.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "fisica",
+    "tema": "cinematica",
+    "pregunta": "Un automóvil se desplaza en línea recta con una aceleración constante de 2 m/s \n2\n . Si parte del reposo, ¿qué distancia recorre al cabo de 5 segundos?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "10 m"
+      },
+      {
+        "id": "B",
+        "texto": "25 m"
+      },
+      {
+        "id": "C",
+        "texto": "50 m"
+      },
+      {
+        "id": "D",
+        "texto": "12.5 m"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Utilizando la fórmula de MRUA para la distancia partiendo del reposo (v \n0\n​\n =0): d= \n2\n1\n​\n at \n2\n . Sustituyendo los valores: d= \n2\n1\n​\n (2 m/s \n2\n )(5 s) \n2\n =25 m.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "fisica",
+    "tema": "dinamica",
+    "pregunta": "Un bloque de 10 kg se encuentra sobre una superficie horizontal lisa. Si se le aplica una fuerza neta constante de 30 N, ¿cuál es la magnitud de la aceleración experimentada por el bloque?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "3 m/s \n2\n "
+      },
+      {
+        "id": "B",
+        "texto": "0.33 m/s \n2\n "
+      },
+      {
+        "id": "C",
+        "texto": "300 m/s \n2\n "
+      },
+      {
+        "id": "D",
+        "texto": "9.8 m/s \n2\n "
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "De acuerdo con la Segunda Ley de Newton, F=ma. Despejando la aceleración se obtiene a= \nm\nF\n​\n . Al sustituir los valores proporcionados: a= \n10 kg\n30 N\n​\n =3 m/s \n2\n .",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "fisica",
+    "tema": "energia",
+    "pregunta": "Un objeto de 2 kg es lanzado verticalmente hacia arriba con una velocidad inicial de 10 m/s. Despreciando la fricción con el aire y considerando g=10 m/s \n2\n , ¿cuál es la altura máxima que alcanza?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "10 m"
+      },
+      {
+        "id": "B",
+        "texto": "5 m"
+      },
+      {
+        "id": "C",
+        "texto": "20 m"
+      },
+      {
+        "id": "D",
+        "texto": "2.5 m"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Por la ley de la conservación de la energía, la energía cinética inicial se convierte por completo en energía potencial en el punto de altura máxima:  \n2\n1\n​\n mv \n2\n =mgh. Despejando la altura obtenemos h= \n2g\nv \n2\n \n​\n = \n2(10)\n10 \n2\n \n​\n = \n20\n100\n​\n =5 m.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "fisica",
+    "tema": "electricidad_basica",
+    "pregunta": "Tres resistencias de 6\nΩ cada una se conectan en paralelo a una fuente de voltaje de 12 V. ¿Cuál es la intensidad de corriente total suministrada por la fuente?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "2 A"
+      },
+      {
+        "id": "B",
+        "texto": "6 A"
+      },
+      {
+        "id": "C",
+        "texto": "18 A"
+      },
+      {
+        "id": "D",
+        "texto": "0.5 A"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Para resistencias iguales en paralelo, la resistencia equivalente se calcula dividiendo el valor de una resistencia entre el número total de ellas: R \neq\n​\n = \n3\n6Ω\n​\n =2\nΩ. Aplicando la Ley de Ohm: I= \nR \neq\n​\n \nV\n​\n = \n2Ω\n12 V\n​\n =6 A.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "fisica",
+    "tema": "electricidad_basica",
+    "pregunta": "De acuerdo con la Ley de Coulomb, si la distancia entre dos cargas eléctricas puntuales se duplica sin alterar sus magnitudes, la fuerza electrostática entre ellas:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Se reduce a la mitad"
+      },
+      {
+        "id": "B",
+        "texto": "Se cuadruplica"
+      },
+      {
+        "id": "C",
+        "texto": "Se reduce a la cuarta parte"
+      },
+      {
+        "id": "D",
+        "texto": "Permanece constante"
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "La Ley de Coulomb establece que la fuerza es inversamente proporcional al cuadrado de la distancia (F∝ \nr \n2\n \n1\n​\n ). Si la distancia se duplica (2r), el denominador se convierte en (2r) \n2\n =4r \n2\n , por lo que la fuerza disminuye a la cuarta parte.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "fisica",
+    "tema": "dinamica",
+    "pregunta": "¿Cuál es la masa de un astronauta en la Luna si en la Tierra pesa 784 N? (Considere la aceleración de la gravedad terrestre como g=9.8 m/s \n2\n ).",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "80 kg"
+      },
+      {
+        "id": "B",
+        "texto": "13.3 kg"
+      },
+      {
+        "id": "C",
+        "texto": "784 kg"
+      },
+      {
+        "id": "D",
+        "texto": "130.6 kg"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La masa es una propiedad intrínseca que no cambia con la gravedad del lugar. Primero calculamos la masa en la Tierra usando m= \ng\nP\n​\n = \n9.8\n784\n​\n =80 kg. Esta masa permanece idéntica en la Luna; lo que cambia es su peso.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "quimica",
+    "tema": "tabla_periodica",
+    "pregunta": "¿Cuál de los siguientes elementos químicos posee la mayor electronegatividad de acuerdo con su posición en la tabla periódica?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Flúor (F)"
+      },
+      {
+        "id": "B",
+        "texto": "Oxígeno (O)"
+      },
+      {
+        "id": "C",
+        "texto": "Francio (Fr)"
+      },
+      {
+        "id": "D",
+        "texto": "Cloro (Cl)"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La electronegatividad aumenta de izquierda a derecha en los periodos y de abajo hacia arriba en los grupos de la tabla periódica. Al situarse en la esquina superior derecha (excluyendo gases nobles), el flúor es el elemento más electronegativo.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "quimica",
+    "tema": "enlaces",
+    "pregunta": "El enlace químico caracterizado por la transferencia completa de electrones de un átomo metálico a uno no metálico, generando una atracción electrostática entre iones, se conoce como:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Enlace covalente polar"
+      },
+      {
+        "id": "B",
+        "texto": "Enlace iónico"
+      },
+      {
+        "id": "C",
+        "texto": "Enlace metálico"
+      },
+      {
+        "id": "D",
+        "texto": "Enlace covalente no polar"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El enlace iónico se fundamenta en la transferencia de electrones debido a una gran diferencia de electronegatividad, lo que origina cationes y aniones que se atraen mutuamente. Los enlaces covalentes comparten electrones.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "quimica",
+    "tema": "estequiometria",
+    "pregunta": "De acuerdo con la ecuación química balanceada 2H \n2\n​\n +O \n2\n​\n →2H \n2\n​\n O, ¿cuántos moles de agua (H \n2\n​\n O) se producirán a partir de la reacción completa de 6 moles de gas hidrógeno (H \n2\n​\n ) con suficiente oxígeno?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "3 moles"
+      },
+      {
+        "id": "B",
+        "texto": "6 moles"
+      },
+      {
+        "id": "C",
+        "texto": "12 moles"
+      },
+      {
+        "id": "D",
+        "texto": "4 moles"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La relación estequiométrica entre el H \n2\n​\n  y el H \n2\n​\n O es de 2:2 (o 1:1). Por tanto, la cantidad de moles de agua producidos es numéricamente igual a la cantidad de moles de hidrógeno que reaccionan, es decir, 6 moles.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "quimica",
+    "tema": "reacciones",
+    "pregunta": "¿Qué tipo de reacción química representa la ecuación CaCO \n3\n​\n  \nΔ\n\n​\n CaO+CO \n2\n​\n ?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Síntesis"
+      },
+      {
+        "id": "B",
+        "texto": "Descomposición"
+      },
+      {
+        "id": "C",
+        "texto": "Sustitución simple"
+      },
+      {
+        "id": "D",
+        "texto": "Doble sustitución"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Es una reacción de descomposición porque un solo reactivo (CaCO \n3\n​\n ), mediante la aplicación de calor (indicado por el símbolo Δ), se desglosa para formar dos o más sustancias distintas (CaO y CO \n2\n​\n ).",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "quimica",
+    "tema": "estequiometria",
+    "pregunta": "Calcula la masa molar del dióxido de carbono (CO \n2\n​\n ) considerando las siguientes masas atómicas: C=12 g/mol, O=16 g/mol.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "28 g/mol"
+      },
+      {
+        "id": "B",
+        "texto": "44 g/mol"
+      },
+      {
+        "id": "C",
+        "texto": "32 g/mol"
+      },
+      {
+        "id": "D",
+        "texto": "56 g/mol"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La masa molar del CO \n2\n​\n  se obtiene sumando la masa de un átomo de carbono y dos átomos de oxígeno: 12+(2×16)=12+32=44 g/mol.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "razonamiento_logico",
+    "tema": "patrones",
+    "pregunta": "Determina el número que continúa lógicamente en la siguiente serie numérica: 2,5,11,23,47,…",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "95"
+      },
+      {
+        "id": "B",
+        "texto": "94"
+      },
+      {
+        "id": "C",
+        "texto": "71"
+      },
+      {
+        "id": "D",
+        "texto": "96"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "El patrón consiste en multiplicar el término actual por 2 y sumarle 1 para obtener el término siguiente: 2(2)+1=5, 5(2)+1=11, 11(2)+1=23, 23(2)+1=47. Siguiendo la regla: 47(2)+1=94+1=95.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "razonamiento_logico",
+    "tema": "logica",
+    "pregunta": "Si afirmamos que 'Todos los ingenieros utilizan matemáticas' y sabemos que 'Rodrigo utiliza matemáticas', ¿cuál de las siguientes conclusiones es lógicamente válida?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Rodrigo es obligatoriamente ingeniero."
+      },
+      {
+        "id": "B",
+        "texto": "Rodrigo podría ser ingeniero, pero no es seguro."
+      },
+      {
+        "id": "C",
+        "texto": "Rodrigo no es ingeniero."
+      },
+      {
+        "id": "D",
+        "texto": "Nadie que no sea ingeniero utiliza matemáticas."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Incurrir en que Rodrigo es ingeniero es una falacia de afirmación del consecuente. El conjunto de personas que usan matemáticas incluye a los ingenieros, pero también puede incluir a otros profesionales. Por ende, Rodrigo podría o no ser ingeniero.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "espanol",
+    "tema": "comprension",
+    "pregunta": "Identifica cuál de las siguientes opciones presenta una redacción con total coherencia y cohesión sintáctica.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Hubieron muchos problemas para ingresar al edificio porque las llaves se perdieron."
+      },
+      {
+        "id": "B",
+        "texto": "Hubo muchos problemas para ingresar al edificio porque las llaves se perdieron."
+      },
+      {
+        "id": "C",
+        "texto": "Hubo muchos problemas para ingresar al edificio por el motivo de que cuyas llaves se perdieron."
+      },
+      {
+        "id": "D",
+        "texto": "Hubieron problemas bastantes al ingresar al edificio debido a la pérdida de llaves."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El verbo 'haber' cuando denota existencia es impersonal y se emplea únicamente en tercera persona del singular ('hubo'). El uso de 'hubieron' para referirse a un objeto plural es un error gramatical común.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area1",
+    "materia": "espanol",
+    "tema": "sintaxis_basica",
+    "pregunta": "En la oración 'La valiente ingeniera revisó minuciosamente los planos estructurales ayer', ¿cuál es la función sintáctica de la palabra 'minuciosamente'?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Objeto directo"
+      },
+      {
+        "id": "B",
+        "texto": "Complemento circunstancial de modo"
+      },
+      {
+        "id": "C",
+        "texto": "Adjetivo calificativo"
+      },
+      {
+        "id": "D",
+        "texto": "Complemento circunstancial de tiempo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La palabra 'minuciosamente' funciona como un adverbio que modifica al verbo 'revisó', respondiendo a la pregunta ¿cómo realizó la revisión? Por lo tanto, funge como complemento circunstancial de modo.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "biologia",
+    "tema": "celula",
+    "pregunta": "¿Qué organelo celular se encarga de realizar la respiración celular y la consiguiente síntesis de moléculas de ATP?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Cloroplasto"
+      },
+      {
+        "id": "B",
+        "texto": "Mitocondria"
+      },
+      {
+        "id": "C",
+        "texto": "Aparato de Golgi"
+      },
+      {
+        "id": "D",
+        "texto": "Ribosoma"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La mitocondria es la central energética de las células eucariotas, sitio donde ocurre el ciclo de Krebs y la cadena de transporte de electrones para formar ATP. Los cloroplastos hacen fotosíntesis.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "biologia",
+    "tema": "celula",
+    "pregunta": "¿Cuál es la principal diferencia estructural entre una célula procarionte y una célula eucarionte?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "La célula procarionte no posee membrana plasmática."
+      },
+      {
+        "id": "B",
+        "texto": "La célula procarionte carece de un núcleo definido por una membrana nuclear."
+      },
+      {
+        "id": "C",
+        "texto": "La célula eucarionte no contiene material genético (ADN)."
+      },
+      {
+        "id": "D",
+        "texto": "Solo las células procariontes efectúan la síntesis proteica."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El término procarionte significa literalmente 'antes del núcleo'. Su material genético está disperso en el citoplasma (nucleoide), a diferencia de las eucariontes que resguardan su ADN dentro de un núcleo verdadero.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "biologia",
+    "tema": "genetica",
+    "pregunta": "Si se cruzan dos plantas de chícharos heterocigotas para el color de la semilla (Aa, donde A es amarilla y a es verde), ¿cuál es la probabilidad genotípica de obtener individuos homocigotos recesivos (aa) según las leyes de Mendel?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "25\n"
+      },
+      {
+        "id": "B",
+        "texto": "50\n"
+      },
+      {
+        "id": "C",
+        "texto": "75\n"
+      },
+      {
+        "id": "D",
+        "texto": "100\n"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Al realizar la cruza Aa×Aa mediante un cuadro de Punnett, se obtienen los genotipos: 25\n AA, 50\n Aa y 25\n aa. Por lo tanto, la probabilidad para el homocigoto recesivo es de 1/4, equivalente al 25\n.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "biologia",
+    "tema": "ecosistemas",
+    "pregunta": "Dentro de una cadena trófica, los organismos que transforman la materia orgánica muerta en compuestos inorgánicos simples utilizables por los productores se denominan:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Consumidores primarios"
+      },
+      {
+        "id": "B",
+        "texto": "Descomponedores"
+      },
+      {
+        "id": "C",
+        "texto": "Consumidores secundarios"
+      },
+      {
+        "id": "D",
+        "texto": "Productores autótrofos"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los descomponedores (como bacterias y hongos) degradan los residuos de plantas y animales muertos, reincorporando nutrientes minerales esenciales al suelo para reiniciar el ciclo biogeoquímico.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "biologia",
+    "tema": "anatomia_basica",
+    "pregunta": "¿Qué hormona producida por las células beta del páncreas facilita la entrada de glucosa a las células corporales, disminuyendo sus niveles en la sangre?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Glucagón"
+      },
+      {
+        "id": "B",
+        "texto": "Insulina"
+      },
+      {
+        "id": "C",
+        "texto": "Adrenalina"
+      },
+      {
+        "id": "D",
+        "texto": "Tiroxina"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La insulina tiene un efecto hipoglucemiante al permitir que los tejidos absorban glucosa. Su contraparte es el glucagón, que eleva los niveles plasmáticos de glucosa promoviendo la glucogenólisis hepática.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "biologia",
+    "tema": "evolucion",
+    "pregunta": "La teoría evolutiva que integra la selección natural propuesta por Charles Darwin con las leyes de la herencia mendeliana y las mutaciones genéticas se conoce como:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Lamarckismo"
+      },
+      {
+        "id": "B",
+        "texto": "Teoría Sintética o Neodarwinismo"
+      },
+      {
+        "id": "C",
+        "texto": "Generación espontánea"
+      },
+      {
+        "id": "D",
+        "texto": "Fijismo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La Teoría Sintética de la Evolución explica los cambios poblacionales a partir de frecuencias alélicas, fusionando el mecanismo darwiniano de selección con los hallazgos genéticos modernos desarrollados en el siglo XX.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "biologia",
+    "tema": "celula",
+    "pregunta": "Proceso de división celular que da como resultado cuatro células hijas haploides (n), genéticamente distintas a la célula madre, vital para la formación de gametos:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Mitosis"
+      },
+      {
+        "id": "B",
+        "texto": "Meiosis"
+      },
+      {
+        "id": "C",
+        "texto": "Bipartición"
+      },
+      {
+        "id": "D",
+        "texto": "Fisión binaria"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La meiosis consta de dos divisiones sucesivas que reducen a la mitad la dotación cromosómica, generando variabilidad genética por recombinación cromosómica durante la profase I.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "biologia",
+    "tema": "celula",
+    "pregunta": "¿Cuál de las siguientes biomoléculas cumple la función primordial de actuar como reserva de energía a largo plazo y conformar la estructura lipídica de las membranas celulares?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Carbohidratos"
+      },
+      {
+        "id": "B",
+        "texto": "Lípidos"
+      },
+      {
+        "id": "C",
+        "texto": "Proteínas"
+      },
+      {
+        "id": "D",
+        "texto": "Ácidos nucleicos"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los lípidos (grasas y aceites) almacenan más energía por gramo que los carbohidratos y forman bicapas fosfolipídicas celulares. Los carbohidratos proveen energía de disponibilidad inmediata.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "biologia",
+    "tema": "anatomia_basica",
+    "pregunta": "¿En qué órgano del aparato digestivo humano se lleva a cabo la mayor parte de la absorción de los nutrientes digeridos?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Estómago"
+      },
+      {
+        "id": "B",
+        "texto": "Intestino delgado"
+      },
+      {
+        "id": "C",
+        "texto": "Intestino grueso"
+      },
+      {
+        "id": "D",
+        "texto": "Esófago"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Gracias a las vellosidades y microvellosidades que expanden su superficie interna, el intestino delgado absorbe de manera sumamente eficiente aminoácidos, monosacáridos y ácidos grasos hacia el torrente sanguíneo.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "biologia",
+    "tema": "celula",
+    "pregunta": "¿Qué tipo de transporte celular consume energía metabólica (ATP) para movilizar solutos en contra de su gradiente de concentración?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Difusión facilitada"
+      },
+      {
+        "id": "B",
+        "texto": "Transporte activo"
+      },
+      {
+        "id": "C",
+        "texto": "Ósmosis"
+      },
+      {
+        "id": "D",
+        "texto": "Difusión simple"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El transporte activo requiere el gasto de ATP debido a que desplaza sustancias desde una zona de menor concentración hacia otra de mayor concentración (ej. la bomba sodio-potasio).",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "quimica",
+    "tema": "organica_intro",
+    "pregunta": "Identifica el grupo funcional característico que define a los alcoholes en la química orgánica.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "−COOH (Carboxilo)"
+      },
+      {
+        "id": "B",
+        "texto": "−OH (Hidroxilo)"
+      },
+      {
+        "id": "C",
+        "texto": "−CHO (Formilo)"
+      },
+      {
+        "id": "D",
+        "texto": "−CO− (Carbonilo)"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El grupo funcional hidroxilo (−OH) enlazado a un carbono saturado define a la familia de los alcoholes. Por otro lado, −COOH es de ácidos carboxílicos y −CHO identifica aldehídos.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "quimica",
+    "tema": "acido_base",
+    "pregunta": "Si una solución acuosa presenta una concentración de iones hidrógeno [H \n+\n ]=1×10 \n−3\n  M, ¿cuál es su pH y qué tipo de sustancia es?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "pH=3, sustancia ácida"
+      },
+      {
+        "id": "B",
+        "texto": "pH=3, sustancia básica"
+      },
+      {
+        "id": "C",
+        "texto": "pH=11, sustancia básica"
+      },
+      {
+        "id": "D",
+        "texto": "pH=7, sustancia neutra"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "El pH se define como −log[H \n+\n ]. En este caso, −log(1×10 \n−3\n )=3. Dado que un pH menor a 7 corresponde a condiciones ácidas, la solución es de naturaleza ácida.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "quimica",
+    "tema": "soluciones",
+    "pregunta": "Calcula la molaridad (M) de una solución preparada al disolver 2 moles de soluto en un volumen total de 500 mL de disolución.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "0.25 M"
+      },
+      {
+        "id": "B",
+        "texto": "4.0 M"
+      },
+      {
+        "id": "C",
+        "texto": "1.0 M"
+      },
+      {
+        "id": "D",
+        "texto": "0.004 M"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La molaridad es la cantidad de moles por litro de disolución: M= \nV(L)\nn\n​\n . Al convertir 500 mL a litros obtenemos 0.5 L. Por lo tanto, M= \n0.5 L\n2 moles\n​\n =4.0 mol/L.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "quimica",
+    "tema": "organica_intro",
+    "pregunta": "¿Cuál es el nombre IUPAC del hidrocarburo lineal insaturado que posee la fórmula molecular C \n3\n​\n H \n6\n​\n ?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Propano"
+      },
+      {
+        "id": "B",
+        "texto": "Propeno"
+      },
+      {
+        "id": "C",
+        "texto": "Propino"
+      },
+      {
+        "id": "D",
+        "texto": "Buteno"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La fórmula se ajusta a la forma general de los alquenos (C \nn\n​\n H \n2n\n​\n ), indicando la presencia de un doble enlace. Al tener tres átomos de carbono (n=3), el prefijo correspondiente es 'prop-', por lo que el nombre es propeno.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "quimica",
+    "tema": "acido_base",
+    "pregunta": "Según la teoría de Brønsted-Lowry, una sustancia química actúa como una base si posee la propiedad de:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Donar un par de electrones solitarios."
+      },
+      {
+        "id": "B",
+        "texto": "Aceptar protones (H \n+\n ) en solución."
+      },
+      {
+        "id": "C",
+        "texto": "Liberar iones hidróxido (OH \n−\n ) de forma exclusiva."
+      },
+      {
+        "id": "D",
+        "texto": "Donar protones (H \n+\n ) a otra entidad."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Brønsted-Lowry postula que los ácidos ceden protones (H \n+\n ) y las bases reciben dichos protones. La donación de pares electrónicos pertenece a la definición propuesta por Lewis.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "quimica",
+    "tema": "soluciones",
+    "pregunta": "¿Qué ocurre con la solubilidad de la mayoría de los gases en agua cuando se incrementa significativamente la temperatura del sistema?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Aumenta proporcionalmente."
+      },
+      {
+        "id": "B",
+        "texto": "Disminuye."
+      },
+      {
+        "id": "C",
+        "texto": "Permanece sin alteración alguna."
+      },
+      {
+        "id": "D",
+        "texto": "Se duplica de manera inmediata."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Al calentar un líquido, la energía cinética de las moléculas de gas disueltas aumenta, facilitando que rompan las fuerzas intermoleculares con el solvente y escapen de la solución, disminuyendo así su solubilidad.",
+    "dificultad": "hard"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "fisica",
+    "tema": "biologia_fisica_aplicada",
+    "pregunta": "El mecanismo biofísico de transporte pasivo mediante el cual el agua se desplaza a través de una membrana semipermeable a favor de su gradiente de potencial se denomina:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Ósmosis"
+      },
+      {
+        "id": "B",
+        "texto": "Diálisis"
+      },
+      {
+        "id": "C",
+        "texto": "Presión hidrostática"
+      },
+      {
+        "id": "D",
+        "texto": "Plasmólisis"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La ósmosis es el paso exclusivo de solvente (agua) a través de una membrana semipermeable desde un medio hipotónico hacia un medio hipertónico con el fin de equilibrar concentraciones solutas.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "fisica",
+    "tema": "optica_basica",
+    "pregunta": "Fenómeno óptico que consiste en el cambio de dirección y velocidad que experimenta un rayo luminoso al pasar de un medio transparente a otro con diferente índice de refracción:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Reflexión"
+      },
+      {
+        "id": "B",
+        "texto": "Refracción"
+      },
+      {
+        "id": "C",
+        "texto": "Difracción"
+      },
+      {
+        "id": "D",
+        "texto": "Interferencia"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La refracción explica por qué los objetos parecen quebrarse al sumergirse parcialmente en agua, debido a la variación de la velocidad de la luz al cambiar de medio de propagación.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "fisica",
+    "tema": "optica_basica",
+    "pregunta": "¿Qué tipo de lente se requiere para corregir el defecto visual de la miopía, el cual provoca que las imágenes se enfoquen antes de llegar a la retina?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Lente convergente"
+      },
+      {
+        "id": "B",
+        "texto": "Lente divergente"
+      },
+      {
+        "id": "C",
+        "texto": "Lente cilíndrica"
+      },
+      {
+        "id": "D",
+        "texto": "Espejo plano"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La miopía acorta la distancia focal efectiva del ojo. Una lente divergente (o cóncava) es capaz de separar los rayos incidentes para retrasar el punto de enfoque exacto sobre la superficie de la retina.",
+    "dificultad": "hard"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "fisica",
+    "tema": "biologia_fisica_aplicada",
+    "pregunta": "¿Qué propiedad del agua, debida a la elevada cohesión entre sus moléculas por puentes de hidrógeno, permite que ciertos insectos caminen sobre su superficie sin hundirse?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Viscosidad"
+      },
+      {
+        "id": "B",
+        "texto": "Tensión superficial"
+      },
+      {
+        "id": "C",
+        "texto": "Densidad anómala"
+      },
+      {
+        "id": "D",
+        "texto": "Capacidad calorífica"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La tensión superficial actúa como una especie de película elástica en la interfaz líquida, generada porque las moléculas superficiales sufren fuerzas netas dirigidas de manera interna.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "matematicas",
+    "tema": "estadistica",
+    "pregunta": "Encuentra la mediana del siguiente conjunto de calificaciones médicas obtenidas por un grupo de alumnos: 8,6,9,10,7.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "8"
+      },
+      {
+        "id": "B",
+        "texto": "9"
+      },
+      {
+        "id": "C",
+        "texto": "7.5"
+      },
+      {
+        "id": "D",
+        "texto": "8.2"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Primero se ordenan los datos de menor a mayor: 6,7,8,9,10. Dado que la cantidad de términos es impar (5), la mediana equivale exactamente al elemento del centro, el cual corresponde a 8.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "matematicas",
+    "tema": "proporciones",
+    "pregunta": "Para preparar una solución desinfectante, se mezclan 30 mL de cloro por cada 120 mL de agua purificada. ¿Qué cantidad de cloro se requiere para una mezcla que contiene 480 mL de agua?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "90 mL"
+      },
+      {
+        "id": "B",
+        "texto": "120 mL"
+      },
+      {
+        "id": "C",
+        "texto": "150 mL"
+      },
+      {
+        "id": "D",
+        "texto": "60 mL"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Se establece una proporción directa:  \n120\n30\n​\n = \n480\nx\n​\n . Despejando x: x= \n120\n30×480\n​\n . Como 480 es el cuádruple de 120, basta multiplicar 30 por 4 para obtener 120 mL.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "matematicas",
+    "tema": "estadistica",
+    "pregunta": "Un genetista analiza las mutaciones de 4 muestras individuales. Si los valores obtenidos son 4,4,4,4, ¿cuál es el valor numérico de la varianza del conjunto?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "4"
+      },
+      {
+        "id": "B",
+        "texto": "2"
+      },
+      {
+        "id": "C",
+        "texto": "0"
+      },
+      {
+        "id": "D",
+        "texto": "1"
+      }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "La varianza mide el nivel de dispersión con respecto a la media. Como todos los datos son idénticos, la media es 4 y la desviación de cada punto respecto a ella es nula, resultando una varianza igual a 0.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "razonamiento_logico",
+    "tema": "logica",
+    "pregunta": "Si todo portador del alelo 'X' desarrolla una inmunidad específica y se corrobora que Luis no desarrolló dicha inmunidad, se concluye lógicamente que:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Luis tiene el alelo 'X' en sus células."
+      },
+      {
+        "id": "B",
+        "texto": "Luis no posee el alelo 'X'."
+      },
+      {
+        "id": "C",
+        "texto": "Luis heredó el alelo de su madre únicamente."
+      },
+      {
+        "id": "D",
+        "texto": "El alelo 'X' mutó espontáneamente."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Por la regla lógica del 'Modus Tollens' (P⟹Q, y se constata ¬Q), la negación del consecuente implica de forma obligatoria la negación del antecedente: Luis no posee el alelo.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area2",
+    "materia": "razonamiento_logico",
+    "tema": "logica",
+    "pregunta": "Identifica cuál es el enunciado que contradice directamente la afirmación: 'Todas las bacterias del cultivo son resistentes a la ampicilina'.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Ninguna bacteria del cultivo es resistente a la ampicilina."
+      },
+      {
+        "id": "B",
+        "texto": "Al menos una bacteria del cultivo no es resistente a la ampicilina."
+      },
+      {
+        "id": "C",
+        "texto": "Todas las bacterias son sensibles a otros antibióticos."
+      },
+      {
+        "id": "D",
+        "texto": "La mayoría de las bacterias mueren con el fármaco."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La negación formal de un enunciado universal afirmativo ('Todo A es B') es un enunciado particular negativo ('Algún A no es B'). No se requiere negar a la totalidad, basta hallar una sola excepción.",
+    "dificultad": "hard"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "historia",
+    "tema": "revolucion_mexicana",
+    "pregunta": "¿Qué documento promulgado por Emiliano Zapata en 1911 exigía la devolución de tierras a los pueblos indígenas y campesinos bajo el lema 'Tierra y Libertad'?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Plan de San Luis"
+      },
+      {
+        "id": "B",
+        "texto": "Plan de Ayala"
+      },
+      {
+        "id": "C",
+        "texto": "Plan de Guadalupe"
+      },
+      {
+        "id": "D",
+        "texto": "Tratados de Teoloyucan"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El Plan de Ayala fue la bandera agraria zapatista que desconocía al gobierno de Francisco I. Madero por no cumplir de forma inmediata con el reparto agrario estipulado.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "historia",
+    "tema": "mexico_contemporaneo",
+    "pregunta": "El modelo económico implementado en México entre 1940 y 1970, caracterizado por un crecimiento industrial acelerado y estabilidad de precios, se conoció históricamente como:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Desarrollo Compartido"
+      },
+      {
+        "id": "B",
+        "texto": "Desarrollo Estabilizador (Milagro Mexicano)"
+      },
+      {
+        "id": "C",
+        "texto": "Neoliberalismo"
+      },
+      {
+        "id": "D",
+        "texto": "Porfiriato"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El Desarrollo Estabilizador abarcó los sexenios de Ruiz Cortines, López Mateos y Díaz Ordaz, logrando tasas elevadas de crecimiento económico y paridad cambiaria fija.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "historia",
+    "tema": "mexico_prehispanico",
+    "pregunta": "¿Qué cultura del periodo preclásico mesoamericano es considerada la 'cultura madre' debido al desarrollo del primer sistema de escritura y las esculturas de cabezas colosales?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Cultura Maya"
+      },
+      {
+        "id": "B",
+        "texto": "Cultura Olmeca"
+      },
+      {
+        "id": "C",
+        "texto": "Cultura Mexica"
+      },
+      {
+        "id": "D",
+        "texto": "Cultura Zapoteca"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los olmecas se asentaron en la región del Golfo (Tabasco y Veracruz) durante el Preclásico, influyendo de manera trascendental en la religión, arte y planeación urbana de civilizaciones posteriores.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "historia",
+    "tema": "revolucion_mexicana",
+    "pregunta": "¿Quién es el presidente de México que promulgó la Constitución Política de los Estados Unidos Mexicanos el 5 de febrero de 1917 en Querétaro?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Venustiano Carranza"
+      },
+      {
+        "id": "B",
+        "texto": "Álvaro Obregón"
+      },
+      {
+        "id": "C",
+        "texto": "Porfirio Díaz"
+      },
+      {
+        "id": "D",
+        "texto": "Plutarco Elías Calles"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Venustiano Carranza, como líder del Ejército Constitucionalista, convocó al Congreso Constituyente de Querétaro para reformar la Carta Magna de 1857, dando origen al texto vigente.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "historia",
+    "tema": "mexico_contemporaneo",
+    "pregunta": "¿Qué acontecimiento internacional aceleró el ingreso de México a la Segunda Guerra Mundial en 1942 durante la gestión de Manuel Ávila Camacho?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "El ataque japonés a Pearl Harbor"
+      },
+      {
+        "id": "B",
+        "texto": "El hundimiento de los buques petroleros Potrero del Llano y Faja de Oro"
+      },
+      {
+        "id": "C",
+        "texto": "La interceptación del telegrama Zimmermann"
+      },
+      {
+        "id": "D",
+        "texto": "La invasión alemana a Polonia"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Tras el ataque de submarinos alemanes a barcos petroleros nacionales en el Golfo de México, el gobierno declaró el estado de guerra, derivando en el envío posterior del Escuadrón 201.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "historia",
+    "tema": "mexico_contemporaneo",
+    "pregunta": "Periodo político mexicano (1928-1934) caracterizado por la influencia dominante de Plutarco Elías Calles sobre tres presidentes interinos tras el asesinato de Álvaro Obregón:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "El Cardenismo"
+      },
+      {
+        "id": "B",
+        "texto": "El Maximato"
+      },
+      {
+        "id": "C",
+        "texto": "La Decena Trágica"
+      },
+      {
+        "id": "D",
+        "texto": "El Porfiriato"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Se llamó Maximato porque Calles ostentaba el título de 'Jefe Máximo de la Revolución', ejerciendo el control político real detrás de Emilio Portes Gil, Pascual Ortiz Rubio y Abelardo L. Rodríguez.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "geografia",
+    "tema": "mexico_fisico",
+    "pregunta": "La cadena montañosa que recorre la porción occidental del territorio mexicano, extendiéndose desde Sonora hasta el Eje Neovolcánico, recibe el nombre de:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Sierra Madre Oriental"
+      },
+      {
+        "id": "B",
+        "texto": "Sierra Madre Occidental"
+      },
+      {
+        "id": "C",
+        "texto": "Sierra Madre del Sur"
+      },
+      {
+        "id": "D",
+        "texto": "Sierra de Baja California"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La Sierra Madre Occidental corre paralela a la costa del Océano Pacífico, mientras que la Oriental se sitúa adyacente a la vertiente del Golfo de México.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "geografia",
+    "tema": "demografia",
+    "pregunta": "De acuerdo con los datos demográficos oficiales del INEGI, ¿cuál es la entidad federativa con la mayor densidad de población en toda la República Mexicana?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Estado de México"
+      },
+      {
+        "id": "B",
+        "texto": "Ciudad de México"
+      },
+      {
+        "id": "C",
+        "texto": "Veracruz"
+      },
+      {
+        "id": "D",
+        "texto": "Jalisco"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Aunque el Estado de México posee la mayor población absoluta, la Ciudad de México concentra la mayor densidad poblacional (habitantes por kilómetro cuadrado) debido a su limitada extensión territorial.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "geografia",
+    "tema": "clima",
+    "pregunta": "¿Qué factor geográfico explica por qué la Ciudad de México registra temperaturas templadas a pesar de ubicarse en una latitud netamente tropical?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "La cercanía con las costas del Pacífico."
+      },
+      {
+        "id": "B",
+        "texto": "La altitud sobre el nivel del mar."
+      },
+      {
+        "id": "C",
+        "texto": "La influencia de la corriente del Golfo."
+      },
+      {
+        "id": "D",
+        "texto": "El fenómeno meteorológico de El Niño."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La altitud modifica el clima de forma vertical; a mayor elevación disminuyen la temperatura y la presión. La CDMX está a más de 2,200 metros de altura, mitigando las características del clima cálido tropical.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "geografia",
+    "tema": "mexico_politico",
+    "pregunta": "¿Con qué países comparte fronteras internacionales de manera formal la República Mexicana en su límite geográfico meridional?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Guatemala y Belice"
+      },
+      {
+        "id": "B",
+        "texto": "Guatemala y Honduras"
+      },
+      {
+        "id": "C",
+        "texto": "El Salvador y Belice"
+      },
+      {
+        "id": "D",
+        "texto": "Cuba y Bahamas"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "México colinda al sur y sureste de manera terrestre con Guatemala y Belice. Honduras y El Salvador se localizan más al sur en el istmo centroamericano.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "geografia",
+    "tema": "demografia",
+    "pregunta": "Fenómeno socioeconómico caracterizado por el desplazamiento masivo de personas desde comunidades rurales hacia los centros urbanos en busca de mejores oportunidades laborales:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Migración internacional"
+      },
+      {
+        "id": "B",
+        "texto": "Éxodo rural (urbanización)"
+      },
+      {
+        "id": "C",
+        "texto": "Transición demográfica"
+      },
+      {
+        "id": "D",
+        "texto": "Globalización económica"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El éxodo rural transforma la distribución demográfica de las naciones, concentrando los servicios e infraestructura en megaciudades y despoblando sectores de producción agrícola primaria.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "filosofia",
+    "tema": "etica",
+    "pregunta": "La postura ética que determina que la bondad o maldad de una acción reside exclusivamente en las consecuencias útiles que esta genera para el mayor número de personas se denomina:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Deontología kantiana"
+      },
+      {
+        "id": "B",
+        "texto": "Utilitarismo"
+      },
+      {
+        "id": "C",
+        "texto": "Hedonismo"
+      },
+      {
+        "id": "D",
+        "texto": "Eudemonismo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Propuesto por Bentham y Stuart Mill, el utilitarismo se rige por el principio de maximización del bienestar colectivo. Kant defiende el cumplimiento del deber por sí mismo, sin reparar en consecuencias.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "filosofia",
+    "tema": "logica",
+    "pregunta": "¿Qué tipo de falacia informal se comete al intentar descalificar un argumento atacando directamente las características personales de quien lo enuncia en vez de refutar sus ideas?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Falacia ad baculum"
+      },
+      {
+        "id": "B",
+        "texto": "Falacia ad hominem"
+      },
+      {
+        "id": "C",
+        "texto": "Falacia ad populum"
+      },
+      {
+        "id": "D",
+        "texto": "Falacia ad ignorantiam"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Ad hominem significa textualmente 'contra el hombre'. Busca minar la credibilidad de una tesis mediante el insulto o señalamiento personal al emisor.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "filosofia",
+    "tema": "corrientes_filosoficas_basicas",
+    "pregunta": "Corriente filosófica de la antigua Grecia que postula que la felicidad se alcanza mediante el control de las pasiones y la aceptación del destino con imperturbabilidad (ataraxia):",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Sofismo"
+      },
+      {
+        "id": "B",
+        "texto": "Estoicismo"
+      },
+      {
+        "id": "C",
+        "texto": "Escepticismo"
+      },
+      {
+        "id": "D",
+        "texto": "Platonismo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El estoicismo, fundado por Zenón de Citio y seguido por pensadores como Séneca y Marco Aurelio, aboga por vivir conforme a la razón natural y ejercer el dominio propio sobre las emociones destructivas.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "filosofia",
+    "tema": "corrientes_filosoficas_basicas",
+    "pregunta": "¿Qué pensador contractualista afirmó que el ser humano en estado de naturaleza vive en una guerra de todos contra todos, por lo que requiere un Estado absoluto ('Leviatán')?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "John Locke"
+      },
+      {
+        "id": "B",
+        "texto": "Thomas Hobbes"
+      },
+      {
+        "id": "C",
+        "texto": "Jean-Jacques Rousseau"
+      },
+      {
+        "id": "D",
+        "texto": "Karl Marx"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Hobbes acuñó la frase 'el hombre es el lobo del hombre'. Argumentaba que ante el temor a una muerte violenta, los individuos ceden sus derechos soberanos a un monarca absoluto a cambio de paz y orden.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "literatura",
+    "tema": "autores_mexicanos",
+    "pregunta": "¿Quién es el autor de la célebre novela 'Pedro Páramo' (1955), obra cumbre de la literatura mexicana inscrita dentro del realismo mágico?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Carlos Fuentes"
+      },
+      {
+        "id": "B",
+        "texto": "Juan Rulfo"
+      },
+      {
+        "id": "C",
+        "texto": "Octavio Paz"
+      },
+      {
+        "id": "D",
+        "texto": "Jorge Luis Borges"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Juan Rulfo escribió únicamente dos libros de ficción fundamentales: el compendio de cuentos 'El Llano en llamas' y la novela 'Pedro Páramo', retratando el viaje de Juan Preciado al pueblo fantasma de Comala.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "literatura",
+    "tema": "generos",
+    "pregunta": "El género literario cuya finalidad esencial es la representación formal de un conflicto humano ante un público por medio del diálogo directo de los personajes se denomina:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Género lírico"
+      },
+      {
+        "id": "B",
+        "texto": "Género dramático"
+      },
+      {
+        "id": "C",
+        "texto": "Género épico"
+      },
+      {
+        "id": "D",
+        "texto": "Ensayo literario"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El género dramático engloba las obras escritas para el teatro (tragedia, comedia, drama). No posee un narrador omnisciente de base; la acción avanza mediante el diálogo directo de los actores.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "literatura",
+    "tema": "comprension_de_texto",
+    "pregunta": "Lee el fragmento: 'Juventud, divino tesoro, / ¡ya te vas para no volver! / Cuando quiero llorar, no lloro... / y a veces lloro sin querer...'. ¿Qué figura retórica resalta en los versos al contraponer ideas opuestas de forma armónica?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Metáfora"
+      },
+      {
+        "id": "B",
+        "texto": "Antítesis"
+      },
+      {
+        "id": "C",
+        "texto": "Hipérbole"
+      },
+      {
+        "id": "D",
+        "texto": "Onomatopeya"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La antítesis consiste en la contraposición de frases o conceptos con significados contrarios ('querer llorar, no lloro' vs 'lloro sin querer') para dar mayor fuerza expresiva al poema de Rubén Darío.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "matematicas",
+    "tema": "basico_aplicado_a_sociales",
+    "pregunta": "Un analista político observa que la intención de voto por un partido político decrece de manera lineal. Si en enero tenía el 40\n y en marzo el 34\n, ¿cuál será el porcentaje estimado para junio del mismo año?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "28\n"
+      },
+      {
+        "id": "B",
+        "texto": "25\n"
+      },
+      {
+        "id": "C",
+        "texto": "31\n"
+      },
+      {
+        "id": "D",
+        "texto": "22\n"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La disminución lineal es constante. De enero a marzo (dos meses) cayó 6\n, lo que indica un ritmo de descenso de 3\n por mes. De marzo a junio transcurren tres meses, perdiendo 3×3\n. Por lo tanto, 34\n.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area3",
+    "materia": "matematicas",
+    "tema": "basico_aplicado_a_sociales",
+    "pregunta": "En una encuesta sobre problemáticas urbanas, 3 de cada 10 ciudadanos manifestaron que el principal inconveniente es el alumbrado público. Si la muestra total constó de 2,500 encuestados, ¿cuántos eligieron dicha opción?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "250 personas"
+      },
+      {
+        "id": "B",
+        "texto": "750 personas"
+      },
+      {
+        "id": "C",
+        "texto": "300 personas"
+      },
+      {
+        "id": "D",
+        "texto": "1,000 personas"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El problema se resuelve multiplicando el total por la fracción representativa: 2500× \n10\n3\n​\n =250×3=750.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "literatura",
+    "tema": "narrativa",
+    "pregunta": "¿A qué corriente estética e histórica pertenece la magistral novela 'El ingenioso hidalgo don Quijote de la Mancha' de Miguel de Cervantes Saavedra, publicada a inicios del siglo XVII?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Renacimiento"
+      },
+      {
+        "id": "B",
+        "texto": "Barroco / Siglo de Oro"
+      },
+      {
+        "id": "C",
+        "texto": "Romanticismo"
+      },
+      {
+        "id": "D",
+        "texto": "Realismo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La obra de Cervantes se sitúa en la transición y esplendor del Barroco español. Desmitifica los ideales caballerescos renacentistas mediante la ironía y el desengaño característicos de la época.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "literatura",
+    "tema": "poesia",
+    "pregunta": "¿Qué ilustre escritora novohispana de la época colonial redactó las célebres redondillas que inician con el verso 'Hombres necios que acusáis a la mujer sin razón'?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Rosario Castellanos"
+      },
+      {
+        "id": "B",
+        "texto": "Sor Juana Inés de la Cruz"
+      },
+      {
+        "id": "C",
+        "texto": "Elena Poniatowska"
+      },
+      {
+        "id": "D",
+        "texto": "Gabriela Mistral"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Sor Juana Inés de la Cruz, apodada 'La Décima Musa', fue la máxima exponente del Barroco literario en la Nueva España, destacando por su aguda lírica y prosa crítica.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "literatura",
+    "tema": "teatro",
+    "pregunta": "¿Cuál de las siguientes tragedias de William Shakespeare presenta el conflicto humano de la ambición desmedida por el poder político, alentada por profecías y la complicidad conyugal?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Romeo y Julieta"
+      },
+      {
+        "id": "B",
+        "texto": "Macbeth"
+      },
+      {
+        "id": "C",
+        "texto": "Hamlet"
+      },
+      {
+        "id": "D",
+        "texto": "Otelo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "En 'Macbeth', el protagonista asesina al rey Duncan para usurpar el trono escocés impulsado por la ambición personal y las maquinaciones de Lady Macbeth. 'Otelo' aborda los celos e 'Hamlet' la venganza.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "literatura",
+    "tema": "autores_mexicanos",
+    "pregunta": "¿Cuál de las siguientes obras le valió la obtención del Premio Nobel de Literatura en 1990 al escritor y ensayista mexicano Octavio Paz?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Aura"
+      },
+      {
+        "id": "B",
+        "texto": "El laberinto de la soledad"
+      },
+      {
+        "id": "C",
+        "texto": "La región más transparente"
+      },
+      {
+        "id": "D",
+        "texto": "Los de abajo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "'El laberinto de la soledad' es una obra ensayística fundamental en la que Octavio Paz desmenuza la identidad, psicología, mitos y traumas históricos del ser mexicano.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "literatura",
+    "tema": "narrativa",
+    "pregunta": "Movimiento literario decimonónico que buscaba retratar la realidad de la sociedad de manera objetiva, casi científica, influyendo en la descripción rigurosa de los ambientes miserables:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Romanticismo"
+      },
+      {
+        "id": "B",
+        "texto": "Naturalismo"
+      },
+      {
+        "id": "C",
+        "texto": "Vanguardismo"
+      },
+      {
+        "id": "D",
+        "texto": "Modernismo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El Naturalismo, encabezado por Émile Zola, es una derivación extrema del Realismo que expone cómo el entorno socioeconómico y la herencia biológica determinan de forma absoluta el destino humano.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "literatura",
+    "tema": "poesia",
+    "pregunta": "¿Cuál es la métrica y rima características de un soneto clásico literario?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Catorce versos endecasílabos distribuidos en dos cuartetos y dos tercetos."
+      },
+      {
+        "id": "B",
+        "texto": "Diez versos octosílabos con rima libre."
+      },
+      {
+        "id": "C",
+        "texto": "Cuatro estrofas de cinco versos alejandrinos sin rima consonante."
+      },
+      {
+        "id": "D",
+        "texto": "Catorce versos octosílabos en estructura continua."
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "El soneto es una estructura estrófica fija surgida en Italia y adoptada en España, compuesta por 14 versos de 11 sílabas métricas estructurados en dos cuartetos iniciales y dos tercetos finales.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "literatura",
+    "tema": "autores_clasicos",
+    "pregunta": "La epopeya griega atribuida a Homero que narra el accidentado regreso del héroe Odiseo a su reino de Ítaca tras la finalización de la Guerra de Troya es:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "La Ilíada"
+      },
+      {
+        "id": "B",
+        "texto": "La Odisea"
+      },
+      {
+        "id": "C",
+        "texto": "La Eneida"
+      },
+      {
+        "id": "D",
+        "texto": "Edipo Rey"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "'La Odisea' detalla las peripecias de Odiseo (Ulises) combatiendo a monstruos y deidades durante diez años. 'La Ilíada' aborda el último año del sitio de Troya y la cólera de Aquiles.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "literatura",
+    "tema": "autores_mexicanos",
+    "pregunta": "¿Qué novela corta de Carlos Fuentes recurre a la narrativa en segunda persona para sumergir al lector en una atmósfera gótica situada en el centro histórico de la Ciudad de México?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Pedro Páramo"
+      },
+      {
+        "id": "B",
+        "texto": "Aura"
+      },
+      {
+        "id": "C",
+        "texto": "Las batallas en el desierto"
+      },
+      {
+        "id": "D",
+        "texto": "La muerte de Artemio Cruz"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "'Aura' (1962) narra la experiencia del historiador Felipe Montero dentro de una sombría casona, utilizando una inusual perspectiva en segunda persona del singular ('Tú lees ese anuncio...').",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "historia",
+    "tema": "universal",
+    "pregunta": "¿Qué proceso social e ideológico europeo del siglo XVIII colocó a la razón humana como la vía primordial para combatir la ignorancia y el absolutismo monárquico?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "El Renacimiento"
+      },
+      {
+        "id": "B",
+        "texto": "La Ilustración (Siglo de las Luces)"
+      },
+      {
+        "id": "C",
+        "texto": "La Reforma Protestante"
+      },
+      {
+        "id": "D",
+        "texto": "La Revolución Industrial"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La Ilustración propugnaba por el racionalismo, el progreso científico y los derechos ciudadanos individuales, sentando los cimientos intelectuales de la Revolución Francesa y las independencias americanas.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "historia",
+    "tema": "mexico",
+    "pregunta": "Periodo de la historia mexicana de mediados del siglo XIX marcado por la promulgación de leyes civiles orientadas a separar formalmente los asuntos del Estado de los de la Iglesia Católica:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "La Colonia"
+      },
+      {
+        "id": "B",
+        "texto": "La Reforma"
+      },
+      {
+        "id": "C",
+        "texto": "El virreinato"
+      },
+      {
+        "id": "D",
+        "texto": "La Consumación"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Encabezada por liberales como Benito Juárez y Melchor Ocampo, la Reforma instauró el registro civil, secularizó bienes eclesiásticos y garantizó la libertad de cultos en México.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "historia",
+    "tema": "universal",
+    "pregunta": "¿Cuál de los siguientes bloques militares se enfrentó durante los años de la Primera Guerra Mundial (1914-1918)?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Los Aliados y el Eje"
+      },
+      {
+        "id": "B",
+        "texto": "La Triple Entente y las Potencias Centrales"
+      },
+      {
+        "id": "C",
+        "texto": "La OTAN y el Pacto de Varsovia"
+      },
+      {
+        "id": "D",
+        "texto": "Capitalistas y Comunistas"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "En la Gran Guerra chocaron la Triple Entente (Francia, Reino Unido, Rusia, etc.) contra las Potencias Centrales (Alemania, Austria-Hungría e Imperio Otomano). Aliados vs Eje corresponde al segundo conflicto mundial.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "historia",
+    "tema": "mexico",
+    "pregunta": "¿Qué caudillo insurgente proclamó la consumación de la Independencia de México el 27 de septiembre de 1821 al ingresar triunfante a la capital con el Ejército Trigarante?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Miguel Hidalgo"
+      },
+      {
+        "id": "B",
+        "texto": "Agustín de Iturbide"
+      },
+      {
+        "id": "C",
+        "texto": "José María Morelos"
+      },
+      {
+        "id": "D",
+        "texto": "Guadalupe Victoria"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Tras pactar con Vicente Guerrero en el Plan de Iguala, Agustín de Iturbide unificó las fuerzas militares insurgentes y realistas bajo la bandera trigarante, consolidando el fin del dominio español.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "filosofia",
+    "tema": "epistemologia_basica",
+    "pregunta": "La postura epistemológica racionalista formulada por René Descartes postula que la fuente fidedigna del conocimiento humano radica en:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "La experiencia sensorial y empírica."
+      },
+      {
+        "id": "B",
+        "texto": "El uso puro de la razón y el intelecto."
+      },
+      {
+        "id": "C",
+        "texto": "La fe en las revelaciones divinas."
+      },
+      {
+        "id": "D",
+        "texto": "La duda absoluta e insuperable."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El racionalismo sostiene que los sentidos engañan y que solo por medio de la deducción mental y las ideas innatas se alcanza la certeza científica. El empirismo apoya a la experiencia sensible.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "filosofia",
+    "tema": "moral",
+    "pregunta": "De acuerdo con el imperativo categórico de Immanuel Kant, una máxima de conducta adquiere validez moral y ética genuina únicamente si:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Conduce al placer inmediato del individuo."
+      },
+      {
+        "id": "B",
+        "texto": "Puede desearse que se convierta en una ley universal."
+      },
+      {
+        "id": "C",
+        "texto": "Evita el castigo de las leyes civiles vigentes."
+      },
+      {
+        "id": "D",
+        "texto": "Se adecua a las costumbres de una sociedad particular."
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El imperativo categórico kantiano ordena: 'Obra de tal modo que la máxima de tu acción pueda convertirse por tu voluntad en ley universal', fundamentando una ética formal y desinteresada.",
+    "dificultad": "hard"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "filosofia",
+    "tema": "argumentacion",
+    "pregunta": "En un diálogo argumentativo, un supuesto de carácter implícito que no se enuncia explícitamente pero resulta indispensable para deducir la conclusión se denomina:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Premisa tácita o entimema"
+      },
+      {
+        "id": "B",
+        "texto": "Falacia formal"
+      },
+      {
+        "id": "C",
+        "texto": "Conclusión fáctica"
+      },
+      {
+        "id": "D",
+        "texto": "Silogismo categórico"
+      }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Un entimema es un silogismo al que le falta una de las premisas por considerarse obvia o sobreentendida por los hablantes involucrados en la conversación.",
+    "dificultad": "hard"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "filosofia",
+    "tema": "epistemologia_basica",
+    "pregunta": "Corriente de la epistemología moderna que asume que la mente humana es como una hoja en blanco ('tabula rasa') que se llena exclusivamente de ideas mediante la percepción de los sentidos:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Racionalismo"
+      },
+      {
+        "id": "B",
+        "texto": "Empirismo"
+      },
+      {
+        "id": "C",
+        "texto": "Idealismo"
+      },
+      {
+        "id": "D",
+        "texto": "Escepticismo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El empirismo, defendido por filósofos ingleses como John Locke y David Hume, sostiene que no existen las ideas innatas y que todo saber emana de la experiencia fáctica del mundo exterior.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "arte",
+    "tema": "movimientos_artisticos",
+    "pregunta": "Movimiento pictórico de vanguardia surgido a inicios del siglo XX, liderado por Pablo Picasso, enfocado en romper con la perspectiva tradicional fragmentando los objetos en formas geométricas:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Impresionismo"
+      },
+      {
+        "id": "B",
+        "texto": "Cubismo"
+      },
+      {
+        "id": "C",
+        "texto": "Surrealismo"
+      },
+      {
+        "id": "D",
+        "texto": "Expresionismo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El cubismo descompone las figuras bidimensionalmente para mostrar múltiples ángulos del objeto al mismo tiempo, alejándose de la mímesis o imitación fiel de la naturaleza.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "arte",
+    "tema": "arte_mexicano",
+    "pregunta": "¿Qué corriente artística nacional de carácter social y educativo, impulsada tras la Revolución Mexicana, plasmó pasajes históricos en muros de recintos estatales?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Barroco novohispano"
+      },
+      {
+        "id": "B",
+        "texto": "Muralismo mexicano"
+      },
+      {
+        "id": "C",
+        "texto": "Ruptura"
+      },
+      {
+        "id": "D",
+        "texto": "Neoclasicismo"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Encabezado por Rivera, Orozco y Siqueiros, el Muralismo nació bajo el auspicio de José Vasconcelos para narrar la historia e identidad patria a un pueblo mayoritariamente analfabeto.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "espanol",
+    "tema": "ortografia",
+    "pregunta": "Selecciona la palabra cuya acentuación gráfica (tilde) es del todo correcta según las normas generales dictadas por la RAE.",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Exámen"
+      },
+      {
+        "id": "B",
+        "texto": "Examen"
+      },
+      {
+        "id": "C",
+        "texto": "Ágilmente"
+      },
+      {
+        "id": "D",
+        "texto": "Fue"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "'Examen' es una palabra llana terminada en 'n', por lo tanto, no se acentúa de forma escrita. 'Exámen' es un error ortográfico muy habitual en los estudiantes.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UNAM",
+    "area": "area4",
+    "materia": "espanol",
+    "tema": "semantica",
+    "pregunta": "Dos o más palabras que poseen una pronunciación y grafía idénticas o sumamente similares pero cuyos significados estructurales resultan totalmente ajenos se denominan:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Sinónimos"
+      },
+      {
+        "id": "B",
+        "texto": "Homónimos"
+      },
+      {
+        "id": "C",
+        "texto": "Antónimos"
+      },
+      {
+        "id": "D",
+        "texto": "Hiperónimos"
+      }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los homónimos abarcan vocablos homófonos (igual sonido) u homógrafos (igual escritura, ej: banco de sentarse y banco de dinero). Los sinónimos son términos con significación análoga.",
+    "dificultad": "easy"
+  }
+]

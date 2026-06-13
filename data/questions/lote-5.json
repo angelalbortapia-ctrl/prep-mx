@@ -1,0 +1,497 @@
+[
+  {
+    "universidad": "UAM",
+    "materia": "matematicas",
+    "tema": "calculo_basico",
+    "pregunta": "Determina la pendiente de la recta tangente a la curva descrita por la función $f(x) = 2x^2 - 4x + 1$ en el punto exacto donde $x = 3$.",
+    "opciones": [
+      { "id": "A", "texto": "$8$" },
+      { "id": "B", "texto": "$4$" },
+      { "id": "C", "texto": "$7$" },
+      { "id": "D", "texto": "$12$" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La pendiente de la recta tangente se obtiene mediante la primera derivada de la función: $f'(x) = 4x - 4$. Evaluando en el punto propuesto $x = 3$, calculamos: $f'(3) = 4(3) - 4 = 12 - 4 = 8$.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "matematicas",
+    "tema": "geometria_analitica",
+    "pregunta": "¿Cuál es la ecuación de la circunferencia con centro en el origen de coordenadas $C(0,0)$ y que posee un radio igual a $5$?",
+    "opciones": [
+      { "id": "A", "texto": "$x^2 + y^2 = 5$" },
+      { "id": "B", "texto": "$x^2 + y^2 = 25$" },
+      { "id": "C", "texto": "$x^2 - y^2 = 25$" },
+      { "id": "D", "texto": "$x + y = 25$" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La ecuación canónica de una circunferencia con centro en el origen es $x^2 + y^2 = r^2$. Al sustituir el valor del radio dado ($r = 5$), elevamos al cuadrado para obtener $x^2 + y^2 = 25$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "matematicas",
+    "tema": "algebra",
+    "pregunta": "Simplifica la siguiente expresión matemática combinada aplicando de forma estricta las leyes de los radicales: $$\\sqrt{50} + \\sqrt{18}$$",
+    "opciones": [
+      { "id": "A", "texto": "$8\\sqrt{2}$" },
+      { "id": "B", "texto": "$2\\sqrt{17}$" },
+      { "id": "C", "texto": "$\\sqrt{68}$" },
+      { "id": "D", "texto": "$15\\sqrt{2}$" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Descomponemos los radicandos en factores que contengan cuadrados perfectos: $\\sqrt{50} = \\sqrt{25 \\times 2} = 5\\sqrt{2}$ y $\\sqrt{18} = \\sqrt{9 \\times 2} = 3\\sqrt{2}$. Sumando ambos términos semejantes obtenidos: $5\\sqrt{2} + 3\\sqrt{2} = 8\\sqrt{2}$.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "fisica",
+    "tema": "mecanica",
+    "pregunta": "Un cuerpo de $5 \\text{ kg}$ se eleva a una altura vertical de $4 \\text{ metros}$ sobre el suelo. Calcula su energía potencial gravitatoria considerando $g = 10 \\text{ m/s}^2$.",
+    "opciones": [
+      { "id": "A", "texto": "$200 \\text{ J}$" },
+      { "id": "B", "texto": "$20 \\text{ J}$" },
+      { "id": "C", "texto": "$50 \\text{ J}$" },
+      { "id": "D", "texto": "$100 \\text{ J}$" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "La energía potencial gravitatoria se calcula empleando la fórmula directa $E_p = mgh$. Al sustituir los datos numéricos provistos: $E_p = 5 \\text{ kg} \\times 10 \\text{ m/s}^2 \\times 4 \\text{ m} = 200 \\text{ J}$.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "fisica",
+    "tema": "hidrodinamica",
+    "pregunta": "De acuerdo con el Principio de Arquímedes, todo cuerpo sumergido por completo en un fluido experimenta una fuerza de empuje vertical hacia arriba que es equivalente a:",
+    "opciones": [
+      { "id": "A", "texto": "El peso total del cuerpo sumergido." },
+      { "id": "B", "texto": "El peso del volumen del fluido desalojado por el cuerpo." },
+      { "id": "C", "texto": "La masa absoluta del fluido circundante." },
+      { "id": "D", "texto": "La presión hidrostática ejercida en el fondo." }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El principio de Arquímedes demuestra que el empuje hidrostático depende directamente de la densidad del fluido, el volumen desalojado y la gravedad ($E = \\rho \\cdot V \\cdot g$), lo cual equivale al peso del fluido desplazado.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "fisica",
+    "tema": "termodinamica",
+    "pregunta": "¿Mediante qué mecanismo físico de transferencia de calor se propaga la energía térmica a través de un sólido conductor debido al choque molecular directo?",
+    "opciones": [
+      { "id": "A", "texto": "Convección" },
+      { "id": "B", "texto": "Conducción" },
+      { "id": "C", "texto": "Radiación" },
+      { "id": "D", "texto": "Sublimación" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La conducción es el transporte de calor en sólidos sin transferencia de materia. La convección ocurre de forma exclusiva en fluidos por movimiento de masas y la radiación emplea ondas electromagnéticas.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "fisica",
+    "tema": "cinematica",
+    "pregunta": "Un proyectil se lanza con un ángulo de $45^{\\circ}$ respecto a la horizontal. Si se desprecia la fricción del aire, ¿qué tipo de trayectoria describe el objeto?",
+    "opciones": [
+      { "id": "A", "texto": "Trayectoria rectilínea uniforme" },
+      { "id": "B", "texto": "Trayectoria parabólica" },
+      { "id": "C", "texto": "Trayectoria elíptica cerrada" },
+      { "id": "D", "texto": "Trayectoria hiperbólica" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El movimiento de proyectiles (tiro parabólico) combina un movimiento horizontal a velocidad constante (MRU) y un movimiento vertical bajo la aceleración de la gravedad constante (MRUA), resultando en una curva parabólica.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "fisica",
+    "tema": "mecanica",
+    "pregunta": "Identifica cuál de las siguientes magnitudes físicas se clasifica propiamente como una magnitud de carácter vectorial de acuerdo con sus propiedades.",
+    "opciones": [
+      { "id": "A", "texto": "La masa" },
+      { "id": "B", "texto": "La velocidad" },
+      { "id": "C", "texto": "El tiempo" },
+      { "id": "D", "texto": "La temperatura" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Las magnitudes vectoriales requieren especificar magnitud, unidad, dirección y sentido. La velocidad es vectorial, mientras que la masa, el tiempo y la temperatura quedan completamente definidos como escalares.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "fisica",
+    "tema": "optica",
+    "pregunta": "El fenómeno óptico que explica por qué una cuchara parece doblarse de forma aparente al introducirse parcialmente dentro de un vaso con agua se denomina:",
+    "opciones": [
+      { "id": "A", "texto": "Reflexión especular" },
+      { "id": "B", "texto": "Refracción" },
+      { "id": "C", "texto": "Difracción molecular" },
+      { "id": "D", "texto": "Polarización lumínica" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La refracción es el cambio de dirección que experimenta un rayo de luz al pasar de un medio transparente (aire) a otro con diferente densidad óptica e índice de refracción (agua).",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "quimica",
+    "tema": "enlaces",
+    "pregunta": "¿Qué tipo de interacción intermolecular, de naturaleza atractiva dipolo-dipolo particularmente fuerte, ocurre entre el átomo de hidrógeno de una molécula y un átomo de flúor, oxígeno o nitrógeno?",
+    "opciones": [
+      { "id": "A", "texto": "Fuerzas de dispersión de London" },
+      { "id": "B", "texto": "Puentes de hidrógeno" },
+      { "id": "C", "texto": "Enlace covalente coordinado" },
+      { "id": "D", "texto": "Atracciones ion-inducción" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los puentes de hidrógeno son interacciones intermoleculares clave que determinan propiedades físicas singulares como el elevado punto de ebullición del agua y la estabilización estructural del ADN.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "quimica",
+    "tema": "tabla_periodica",
+    "pregunta": "Los elementos químicos localizados en el grupo 18 (VIII A) de la tabla periódica, caracterizados por su nula o extremadamente baja reactividad química bajo condiciones ordinarias, se llaman:",
+    "opciones": [
+      { "id": "A", "texto": "Metales alcalinos" },
+      { "id": "B", "texto": "Gases nobles" },
+      { "id": "C", "texto": "Halógenos altamente reactivos" },
+      { "id": "D", "texto": "Metaloides de transición" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los gases nobles (He, Ne, Ar, Kr, Xe, Rn) poseen su capa de valencia completa con ocho electrones (excepto el helio con dos), cumpliendo con el octeto de estabilidad de forma natural.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "quimica",
+    "tema": "soluciones",
+    "pregunta": "¿Qué nombre técnico recibe una solución química que contiene la máxima cantidad de soluto físicamente posible que el disolvente puede disolver a una temperatura dada?",
+    "opciones": [
+      { "id": "A", "texto": "Solución diluida" },
+      { "id": "B", "texto": "Solución saturada" },
+      { "id": "C", "texto": "Solución sobresaturada" },
+      { "id": "D", "texto": "Solución insaturada" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Una solución saturada se encuentra en equilibrio dinámico. Si contiene menos soluto es insaturada y si presenta un exceso inestable (generalmente por calentamiento previo) se clasifica como sobresaturada.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "quimica",
+    "tema": "acido_base",
+    "pregunta": "De acuerdo con la escala logarítmica de pH, si se analiza una sustancia comercial y se determina que posee un valor de $\\text{pH} = 9$, la muestra se clasifica como:",
+    "opciones": [
+      { "id": "A", "texto": "Un ácido fuerte" },
+      { "id": "B", "texto": "Una sustancia básica o alcalina" },
+      { "id": "C", "texto": "Una solución neutra" },
+      { "id": "D", "texto": "Un ácido débil" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La escala de pH va de 0 a 14. Los valores inferiores a 7 denotan acidez, el valor 7 indica neutralidad exacta y los valores superiores a 7 corresponden a sustancias básicas o alcalinas.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "quimica",
+    "tema": "reacciones",
+    "pregunta": "Un cambio químico en el cual una especie atómica o iónica pierde electrones de manera explícita durante la reacción, incrementando su número de oxidación, se conoce como:",
+    "opciones": [
+      { "id": "A", "texto": "Reducción" },
+      { "id": "B", "texto": "Oxidación" },
+      { "id": "C", "texto": "Neutralización" },
+      { "id": "D", "texto": "Precipitación" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "En los procesos REDOX, la oxidación implica la pérdida neta de electrones por una especie química, mientras que la reducción es la ganancia de electrones por parte del agente oxidante.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "biologia",
+    "tema": "celula",
+    "pregunta": "¿Qué biomolécula de estructura polimérica almacena de forma primaria la información genética hereditaria en los seres vivos y dirige la síntesis de proteínas?",
+    "opciones": [
+      { "id": "A", "texto": "ARN de transferencia" },
+      { "id": "B", "texto": "ADN (Ácido desoxirribonucleico)" },
+      { "id": "C", "texto": "Glucógeno muscular" },
+      { "id": "D", "texto": "Colágeno estructural" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El ADN resguarda el código genético en secuencias específicas de nucleótidos dentro del núcleo de las células eucariotas. El ARN ejecuta la lectura y traducción de dicho código.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "biologia",
+    "tema": "evolucion",
+    "pregunta": "¿Qué naturalista británico propuso formalmente el mecanismo evolutivo de la selección natural en su obra fundamental \"El origen de las especies\" publicada en 1859?",
+    "opciones": [
+      { "id": "A", "texto": "Jean-Baptiste Lamarck" },
+      { "id": "B", "texto": "Charles Darwin" },
+      { "id": "C", "texto": "Gregor Mendel" },
+      { "id": "D", "texto": "Louis Pasteur" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Charles Darwin postuló que los organismos con variaciones adaptativas favorables para su entorno poseen mayores probabilidades de sobrevivir y reproducirse, transmitiendo dichos rasgos.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "biologia",
+    "tema": "ecologia",
+    "pregunta": "Al conjunto ordenado de factores bióticos (seres vivos) y factores abióticos (componentes físico-químicos) que interactúan dinámicamente en un área determinada se le denomina:",
+    "opciones": [
+      { "id": "A", "texto": "Población biológica" },
+      { "id": "B", "texto": "Ecosistema" },
+      { "id": "C", "texto": "Comunidad biótica" },
+      { "id": "D", "texto": "Bioma terrestre" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Un ecosistema integra la biocenosis (organismos vivos) y el biotopo (medio físico o ambiente), analizando los flujos continuos de energía y materia que se desarrollan entre ambos.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "biologia",
+    "tema": "genetica",
+    "pregunta": "¿Qué nombre técnico reciben las formas alternativas o variantes moleculares de un mismo gen que determinan características físicas específicas y se ubican en el mismo locus cromosómico?",
+    "opciones": [
+      { "id": "A", "texto": "Cromátides" },
+      { "id": "B", "texto": "Alelos" },
+      { "id": "C", "texto": "Fenotipos" },
+      { "id": "D", "texto": "Codones" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los alelos representan las distintas variantes para un gen específico (ej. alelo dominante 'A' para ojos oscuros y alelo recesivo 'a' para ojos claros). El fenotipo es la expresión física visible de dichos genes.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "biologia",
+    "tema": "celula",
+    "pregunta": "La organela celular de estructura membranosa doble que se encuentra de forma exclusiva en células vegetales y es responsable de efectuar la fase luminosa y oscura de la fotosíntesis es:",
+    "opciones": [
+      { "id": "A", "texto": "La mitocondria" },
+      { "id": "B", "texto": "El cloroplasto" },
+      { "id": "C", "texto": "El leucoplasto" },
+      { "id": "D", "texto": "La vacuola central" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Los cloroplastos contienen el pigmento clorofila capaz de absorber fotones lumínicos para activar la conversión metabólica de materia inorgánica en glucosa.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "historia",
+    "tema": "revolucion_mexicana",
+    "pregunta": "¿Qué líder militar revolucionario del norte de México promulgó el Plan de Guadalupe en 1913 para desconocer el gobierno usurpador de Victoriano Huerta?",
+    "opciones": [
+      { "id": "A", "texto": "Pancho Villa" },
+      { "id": "B", "texto": "Venustiano Carranza" },
+      { "id": "C", "texto": "Emiliano Zapata" },
+      { "id": "D", "texto": "Álvaro Obregón" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Venustiano Carranza organizó el Ejército Constitucionalista a partir del Plan de Guadalupe, buscando restablecer el orden legal constitucional fracturado por el asesinato de Francisco I. Madero.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "historia",
+    "tema": "universal",
+    "pregunta": "¿Qué violento acontecimiento histórico ocurrido en París el 14 de julio de 1789 es considerado el símbolo del inicio formal de la Revolución Francesa contra el absolutismo?",
+    "opciones": [
+      { "id": "A", "texto": "La ejecución del rey Luis XVI" },
+      { "id": "B", "texto": "La toma de la Bastilla" },
+      { "id": "C", "texto": "El golpe de Estado de Napoleón" },
+      { "id": "D", "texto": "La Declaración de los Derechos Civiles" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La toma de la fortaleza medieval de la Bastilla (cárcel real y depósito de pólvora) representó el colapso simbólico del Antiguo Régimen monárquico a manos de la Asamblea Nacional y el pueblo parisino.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "historia",
+    "tema": "mexico",
+    "pregunta": "Periodo de la historia nacional (1867-1876) que inicia tras el fusilamiento de Maximiliano de Habsburgo, caracterizado por los esfuerzos civiles de Benito Juárez y Sebastián Lerdo de Tejada por consolidar las instituciones federales:",
+    "opciones": [
+      { "id": "A", "texto": "El Porfiriato" },
+      { "id": "B", "texto": "La República Restaurada" },
+      { "id": "C", "texto": "La Guerra de Reforma" },
+      { "id": "D", "texto": "El Primer Imperio Mexicano" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La República Restaurada significó el triunfo definitivo del proyecto liberal federal sobre las intromisiones monárquicas imperiales extranjeras apoyadas por los conservadores locales.",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "historia",
+    "tema": "universal",
+    "pregunta": "El prolongado conflicto geopolítico e ideológico indirecto que enfrentó al bloque capitalista (liderado por EE. UU.) y al bloque socialista (liderado por la URSS) tras el fin de la Segunda Guerra Mundial se denominó:",
+    "opciones": [
+      { "id": "A", "texto": "La Primera Guerra Mundial" },
+      { "id": "B", "texto": "La Guerra Fría" },
+      { "id": "C", "texto": "La Guerra de los Balcanes" },
+      { "id": "D", "texto": "La Gran Depresión" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La Guerra Fría se caracterizó por la carrera armamentista nuclear, el espionaje y guerras subsidiarias (Corea, Vietnam) sin llegar a un choque bélico directo a gran escala entre ambas superpotencias.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "geografia",
+    "tema": "mexico_politico",
+    "pregunta": "¿Qué río de gran relevancia geográfica funge de manera formal como el límite fronterizo septentrional entre el territorio mexicano y los Estados Unidos de América?",
+    "opciones": [
+      { "id": "A", "texto": "Río Lerma" },
+      { "id": "B", "texto": "Río Bravo (Río Grande)" },
+      { "id": "C", "texto": "Río Usumacinta" },
+      { "id": "D", "texto": "Río Balsas" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El río Bravo delimita la mayor porción de la frontera norte de México, extendiéndose desde Ciudad Juárez hasta su desembocadura en el Golfo de México. El Usumacinta sitúa la frontera sur.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "geografia",
+    "tema": "geografia_fisica",
+    "pregunta": "El movimiento horizontal o vertical de las grandes placas tectónicas de la litosfera terrestre debido a las corrientes de convección del manto superior es la causa directa de:",
+    "opciones": [
+      { "id": "A", "texto": "Las corrientes marinas superficiales." },
+      { "id": "B", "texto": "La actividad volcánica y la ocurrencia de sismos o terremotos." },
+      { "id": "C", "texto": "El efecto de la fuerza de Coriolis atmosférica." },
+      { "id": "D", "texto": "Las fases gravitatorias lunares." }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Las interacciones en los límites convergentes, divergentes y transformantes de las placas acumulan tensiones mecánicas elásticas que al liberarse generan sismos y permiten el ascenso de magma.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "geografia",
+    "tema": "demografia",
+    "pregunta": "¿Qué concepto demográfico define de manera exacta la cantidad promedio de habitantes que residen por cada unidad de superficie territorial (kilómetro cuadrado) de una región?",
+    "opciones": [
+      { "id": "A", "texto": "Población absoluta total" },
+      { "id": "B", "texto": "Densidad de población (Población relativa)" },
+      { "id": "C", "texto": "Tasa bruta de natalidad" },
+      { "id": "D", "texto": "Índice de crecimiento migratorio" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La densidad de población relaciona estadísticamente la población total de un territorio entre su extensión geográfica en $\\text{km}^2$, evidenciando los niveles reales de concentración urbana.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "literatura",
+    "tema": "generos",
+    "pregunta": "El género literario de carácter subjetivo escrito primordialmente en verso, cuyo propósito central es la expresión íntima de emociones, sentimientos y estados de ánimo del autor, es el:",
+    "opciones": [
+      { "id": "A", "texto": "Género épico o narrativa" },
+      { "id": "B", "texto": "Género lírico" },
+      { "id": "C", "texto": "Género dramático o teatro" },
+      { "id": "D", "texto": "Ensayo formal" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El género lírico recurre a recursos retóricos y estróficos (poesía) para transmitir el mundo interno del yo lírico. El género épico narra acontecimientos objetivos exteriores.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "literatura",
+    "tema": "autores_mexicanos",
+    "pregunta": "¿Qué destacado escritor e intelectual mexicano es el autor de la celebrada novela realista de la Revolución Mexicana titulada \"Los de abajo\" (1916)?",
+    "opciones": [
+      { "id": "A", "texto": "Mariano Azuela" },
+      { "id": "B", "texto": "Juan Rulfo" },
+      { "id": "C", "texto": "Carlos Fuentes" },
+      { "id": "D", "texto": "José Emilio Pacheco" }
+    ],
+    "opcion_correcta": "A",
+    "explicacion": "Mariano Azuela, médico militar en las fuerzas de Francisco Villa, plasmó de manera cruda y realista el desencanto, dinámicas y vicisitudes del movimiento armado a través del personaje de Demetrio Macías.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "literatura",
+    "tema": "movimientos_literarios",
+    "pregunta": "Corriente estética e intelectual surgida en Europa en la primera mitad del siglo XIX que exaltaba la libertad individual, el sentimiento desbordado, el nacionalismo y la rebelión creativa frente a las normas clásicas:",
+    "opciones": [
+      { "id": "A", "texto": "Neoclasicismo ilustrado" },
+      { "id": "B", "texto": "Romanticismo" },
+      { "id": "C", "texto": "Realismo social" },
+      { "id": "D", "texto": "Vanguardismo estético" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "El Romanticismo representó una ruptura total frente al racionalismo rígido impuesto por la Ilustración neoclásica, priorizando la pasión, la subjetividad del artista y la idealización melancólica.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "filosofia",
+    "tema": "epistemologia",
+    "pregunta": "La vertiente de la filosofía moderna que postula que la experiencia fáctica captada a través de los sentidos corporales es el origen exclusivo y fundamento de validez del conocimiento humano es el:",
+    "opciones": [
+      { "id": "A", "texto": "Racionalismo cartesiano" },
+      { "id": "B", "texto": "Empirismo" },
+      { "id": "C", "texto": "Idealismo absoluto" },
+      { "id": "D", "texto": "Escepticismo radical" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "Defendido por pensadores como John Locke y David Hume, el empirismo niega la existencia de ideas innatas en la mente, afirmando que todo saber procede del contacto empírico con la realidad.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "filosofia",
+    "tema": "etica",
+    "pregunta": "¿Qué disciplina filosófica de carácter normativo tiene como objeto primordial de estudio la reflexión crítica sobre la moral, la naturaleza del deber, la virtud y la validez de los actos humanos?",
+    "opciones": [
+      { "id": "A", "texto": "Estética" },
+      { "id": "B", "texto": "Ética" },
+      { "id": "C", "texto": "Epistemología" },
+      { "id": "D", "texto": "Ontología" }
+    ],
+    "opcion_correcta": "B",
+    "explicacion": "La ética analiza filosóficamente los fundamentos de los códigos morales compartidos por las sociedades, distinguiendo racionalmente entre lo correcto y lo incorrecto con criterios universales.",
+    "dificultad": "easy"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "espanol",
+    "tema": "gramatica",
+    "pregunta": "En la oración gramatical \"Los ingenieros de la universidad diseñaron cuidadosamente un prototipo automatizado ayer\", ¿cuál es la función sintáctica del fragmento \"un prototipo automatizado\"?",
+    "opciones": [
+      { "id": "A", "texto": "Sujeto agente" },
+      { "id": "B", "texto": "Objeto indirecto" },
+      { "id": "C", "texto": "Objeto directo" },
+      { "id": "D", "texto": "Complemento circunstancial" }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "El fragmento recibe directamente la acción del verbo principal (\"¿Qué diseñaron? -> un prototipo automatizado\"). Puede sustituirse por el pronombre átono correspondiente: \"Los ingenieros lo diseñaron\".",
+    "dificultad": "medium"
+  },
+  {
+    "universidad": "UAM",
+    "materia": "espanol",
+    "tema": "ortografia",
+    "pregunta": "Selecciona la opción que presenta una palabra escrita de forma incorrecta respecto a las reglas ortográficas de las grafías en el español de México.",
+    "opciones": [
+      { "id": "A", "texto": "El director decidió prorrogar el evento académico." },
+      { "id": "B", "texto": "Su actitud benevolente cautivó a la audiencia estatal." },
+      { "id": "C", "texto": "La desición del comité jurídico fue inapelable." },
+      { "id": "D", "texto": "Es necesario concientizar sobre el cuidado ambiental." }
+    ],
+    "opcion_correcta": "C",
+    "explicacion": "La grafía correcta de la palabra es \"decisión\" (derivada del verbo decidir, la primera es con 'c' y la segunda con 's'). Escribirla como \"desición\" constituye un error ortográfico severo.",
+    "dificultad": "easy"
+  }
+]
