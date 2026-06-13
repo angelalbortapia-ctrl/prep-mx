@@ -47,4 +47,13 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
+
+  .katex * {
+    box-sizing: content-box !important;
+  }
+
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
 }
