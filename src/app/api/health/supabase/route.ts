@@ -30,6 +30,9 @@ export async function GET() {
     return NextResponse.json({
       ok: true,
       configured: true,
+      projectRef:
+        process.env.NEXT_PUBLIC_SUPABASE_URL?.match(/https:\/\/([^.]+)\.supabase\.co/)?.[1] ??
+        null,
       questionsCount: count ?? 0,
     });
   } catch (e) {

@@ -63,7 +63,52 @@
     @apply border-b border-white/60 bg-white/80 backdrop-blur-md;
   }
 
+  .uni-header-accent {
+    @apply h-1 w-full transition-colors duration-500;
+  }
+
   .exam-shell {
     @apply rounded-2xl border bg-card p-5 shadow-xl shadow-primary/5 md:p-8;
+  }
+
+  /* Variables de color por universidad (fondo sutil + acentos) */
+  .uni-theme[data-universidad='unam'] {
+    --primary: 214 85% 22%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 43 55% 58%;
+    --accent-foreground: 224 47% 11%;
+    --ring: 214 85% 22%;
+    --background: 214 35% 97%;
+  }
+
+  .uni-theme[data-universidad='ipn'] {
+    --primary: 350 82% 27%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 350 45% 45%;
+    --accent-foreground: 0 0% 100%;
+    --ring: 350 82% 27%;
+    --background: 350 30% 97%;
+  }
+
+  .uni-theme[data-universidad='uam'] {
+    --primary: 152 100% 21%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 152 45% 40%;
+    --accent-foreground: 0 0% 100%;
+    --ring: 152 100% 21%;
+    --background: 152 30% 97%;
+  }
+
+  .uni-theme[data-universidad='todas'] {
+    --primary: 224 76% 40%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+    --ring: 224 76% 40%;
+    --background: 220 33% 98%;
+  }
+
+  .uni-theme {
+    background-color: hsl(var(--background));
   }
 }

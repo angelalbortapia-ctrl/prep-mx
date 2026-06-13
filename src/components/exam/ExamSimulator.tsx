@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ProgressBar } from '@/components/exam/ProgressBar';
 import { QuestionCard } from '@/components/exam/QuestionCard';
 import { Timer } from '@/components/exam/Timer';
+import { prepareExamQuestions } from '@/lib/shuffle-question-options';
 import type { OpcionId, Question, QuestionCardState } from '@/types/question';
 
 interface ExamSimulatorProps {
@@ -22,18 +23,20 @@ export function ExamSimulator({
   durationMinutes = 15,
   sessionId = 'demo',
 }: ExamSimulatorProps) {
+  const preparedQuestions = useMemo(() => prepareExamQuestions(questions), [questions]);
+
   const [index, setIndex] = useState(0);
   const [cardState, setCardState] = useState<QuestionCardState>('idle');
   const [selectedOption, setSelectedOption] = useState<OpcionId | undefined>();
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
 
-  const current = questions[index];
+  const current = preparedQuestions[index];
   const durationSeconds = durationMinutes * 60;
 
   const sessionKey = useMemo(
-    () => `${sessionId}-${questions.map((q) => q.id).join('-')}`,
-    [sessionId, questions]
+    () => `${sessionId}-${preparedQuestions.map((q) => q.id).join('-')}`,
+    [sessionId, preparedQuestions]
   );
 
   function handleSelect(optionId: OpcionId) {
@@ -48,7 +51,7 @@ export function ExamSimulator({
   }
 
   function handleNext() {
-    if (index + 1 >= questions.length) {
+    if (index + 1 >= preparedQuestions.length) {
       setFinished(true);
       return;
     }
@@ -67,8 +70,16 @@ export function ExamSimulator({
     localStorage.removeItem(`prepmx-timer-${sessionKey}`);
   }
 
+  if (!preparedQuestions.length || !current) {
+    return (
+      <div className="exam-shell text-center text-muted-foreground">
+        No hay preguntas disponibles para este simulador.
+      </div>
+    );
+  }
+
   if (finished) {
-    const pct = Math.round((score / questions.length) * 100);
+    const pct = Math.round((score / preparedQuestions.length) * 100);
 
     return (
       <div className="exam-shell mx-auto max-w-lg space-y-6 text-center">
@@ -78,7 +89,7 @@ export function ExamSimulator({
         <div>
           <h2 className="text-2xl font-bold">Diagnóstico completado</h2>
           <p className="mt-2 text-muted-foreground">
-            Acertaste {score} de {questions.length} preguntas
+            Acertaste {score} de {preparedQuestions.length} preguntas
           </p>
         </div>
         <div className="relative mx-auto flex h-36 w-36 items-center justify-center">
@@ -128,7 +139,7 @@ export function ExamSimulator({
         />
       </div>
 
-      <ProgressBar current={index + 1} total={questions.length} />
+      <ProgressBar current={index + 1} total={preparedQuestions.length} />
 
       <QuestionCard
         question={current}
@@ -141,7 +152,7 @@ export function ExamSimulator({
       {(cardState === 'correct' || cardState === 'error') && (
         <div className="flex justify-end">
           <Button onClick={handleNext} className="h-12 min-w-36 rounded-xl shadow-md shadow-primary/20">
-            {index + 1 >= questions.length ? 'Ver resultado' : 'Siguiente →'}
+            {index + 1 >= preparedQuestions.length ? 'Ver resultado' : 'Siguiente →'}
           </Button>
         </div>
       )}

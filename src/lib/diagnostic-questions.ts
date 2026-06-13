@@ -111,11 +111,5 @@ const extraQuestions: Question[] = [
 
 export const allDemoQuestions: Question[] = [...sampleQuestions, ...extraQuestions];
 
-/** Diagnóstico gratuito SRS: 20 preguntas */
-export const freeDiagnosticQuestions: Question[] = [
-  ...allDemoQuestions,
-  ...allDemoQuestions.map((q, i) => ({
-    ...q,
-    id: `${q.id}-dup-${i}`,
-  })),
-].slice(0, 20);
+/** Diagnóstico gratuito SRS: hasta 10 preguntas demo únicas */
+export const freeDiagnosticQuestions: Question[] = allDemoQuestions;

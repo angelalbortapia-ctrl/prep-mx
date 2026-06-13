@@ -1,20 +1,19 @@
 import { notFound } from 'next/navigation';
 import { ExamSimulator } from '@/components/exam/ExamSimulator';
 import { getExamById } from '@/data/exams';
-import { freeDiagnosticQuestions, allDemoQuestions } from '@/lib/diagnostic-questions';
+import { getExamQuestions } from '@/lib/supabase/questions';
+
+export const dynamic = 'force-dynamic';
 
 interface PageProps {
   params: { examId: string };
 }
 
-export default function ExamActivePage({ params }: PageProps) {
+export default async function ExamActivePage({ params }: PageProps) {
   const exam = getExamById(params.examId);
   if (!exam) notFound();
 
-  const questions =
-    exam.totalQuestions <= 20
-      ? freeDiagnosticQuestions.slice(0, exam.totalQuestions)
-      : allDemoQuestions;
+  const questions = await getExamQuestions(exam.totalQuestions, exam.universidad);
 
   return (
     <ExamSimulator
