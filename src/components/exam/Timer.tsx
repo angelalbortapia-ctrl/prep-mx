@@ -91,8 +91,8 @@ export function Timer({ sessionId, durationSeconds, onExpire, className }: Timer
   return (
     <div
       className={cn(
-        'inline-flex items-center gap-2 rounded-xl border bg-white px-4 py-2 font-mono text-sm font-semibold tabular-nums shadow-sm',
-        isLow ? 'border-red-300 bg-red-50 text-red-600' : 'border-border text-foreground',
+        'exam-timer inline-flex items-center gap-2 rounded-[var(--radius)] border px-4 py-2 text-sm font-semibold tabular-nums shadow-sm',
+        isLow ? 'border-red-400/50 bg-red-950/40 text-red-400' : 'border-border bg-card text-foreground',
         className
       )}
       aria-live="polite"

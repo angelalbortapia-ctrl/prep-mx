@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { ExamSimulator } from '@/components/exam/ExamSimulator';
+import { ExamStartFlow } from '@/components/exam/ExamStartFlow';
 import { getExamById } from '@/data/exams';
 import { getExamQuestions } from '@/lib/supabase/questions';
 
@@ -15,12 +15,5 @@ export default async function ExamActivePage({ params }: PageProps) {
 
   const questions = await getExamQuestions(exam.totalQuestions, exam.universidad);
 
-  return (
-    <ExamSimulator
-      questions={questions}
-      title={exam.name}
-      durationMinutes={exam.durationMins}
-      sessionId={exam.id}
-    />
-  );
+  return <ExamStartFlow exam={exam} questions={questions} />;
 }

@@ -1,154 +1,206 @@
 'use client';
 
+import { useMemo, type ReactNode } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Brain, Calendar, Check, Target } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { UniversityBanner } from '@/components/marketing/UniversityBanner';
-import { pricingPlans } from '@/data/pricing';
-import { landingCopy, type LandingUniversidad } from '@/lib/university-theme';
+import { LandingBentoGrid } from '@/components/marketing/LandingBentoGrid';
+import { ProductShowcase } from '@/components/marketing/ProductShowcase';
+import { PlanOfferCards } from '@/components/marketing/PlanOfferCards';
+import {
+  UNIVERSIDAD_LANDING_CONFIG,
+  resolveLandingUniId,
+} from '@/data/universidad-landing-config';
+import { filterToUniId } from '@/lib/uni-theme-config';
+import { buildJourneyHref } from '@/lib/journey-links';
+import { statusBadgeLive, statusDotLive } from '@/lib/landing-cyber-styles';
+import {
+  landingBadge,
+  landingBody,
+  landingHeroTitle,
+  landingSectionTitle,
+} from '@/lib/landing-typography';
+import type { PlanScope, UniversidadFilter } from '@/lib/university-theme';
+import { useUniTheme } from '@/hooks/useUniTheme';
+import { cn } from '@/lib/utils';
 
-const features = [
-  {
-    icon: Calendar,
-    title: 'Plan adaptativo',
-    desc: 'Calendario personalizado según tu fecha de examen y área.',
-  },
-  {
-    icon: Target,
-    title: 'Simulacros reales',
-    desc: 'Preguntas calibradas por dificultad y temario oficial.',
-  },
-  {
-    icon: Brain,
-    title: 'Tutor con IA',
-    desc: 'Explicación inmediata en cada error, sin respuestas genéricas.',
-  },
-];
+const springTransition = { type: 'spring' as const, stiffness: 280, damping: 26 };
 
-interface LandingPageViewProps {
-  universidad: LandingUniversidad;
+interface MotionTapProps {
+  children: ReactNode;
+  className?: string;
 }
 
-export function LandingPageView({ universidad }: LandingPageViewProps) {
-  const copy = landingCopy(universidad);
-  const planIntegral = pricingPlans.find((p) => p.id === 'premium')!;
+function MotionTap({ children, className }: MotionTapProps) {
+  const prefersReducedMotion = useReducedMotion() ?? false;
+  return (
+    <motion.div
+      className={className}
+      whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 28 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+interface LandingPageViewProps {
+  universidad: UniversidadFilter;
+  plan: PlanScope;
+}
+
+export function LandingPageView({ universidad, plan }: LandingPageViewProps) {
+  const prefersReducedMotion = useReducedMotion() ?? false;
+  const { uniId, hydrated: themeHydrated } = useUniTheme();
+
+  const effectiveUniId = useMemo(() => {
+    if (universidad !== 'todas') return filterToUniId(universidad);
+    return uniId;
+  }, [universidad, uniId]);
+
+  const landingUni = useMemo(
+    () => UNIVERSIDAD_LANDING_CONFIG[resolveLandingUniId(effectiveUniId)],
+    [effectiveUniId]
+  );
+
+  const diagnosticHref = buildJourneyHref('/simulador-gratis', {
+    uni: universidad === 'todas' ? 'todas' : universidad,
+    plan,
+    extra: { freemium: 'diagnostico' },
+  });
+
+  const badgeClass = cn(
+    landingBadge,
+    'border-zinc-200 bg-zinc-50 text-zinc-700'
+  );
+
+  const ctaClass =
+    effectiveUniId === 'unam'
+      ? 'bg-[#002B49] text-[#D4AF37] hover:bg-[#001f36]'
+      : effectiveUniId === 'ipn'
+        ? 'bg-[#6A1B29] text-white hover:bg-[#52141f]'
+        : effectiveUniId === 'uam'
+          ? 'bg-[#F05454] text-white hover:bg-[#d94141]'
+          : 'bg-primary text-primary-foreground';
 
   return (
-    <>
-      <section className="mx-auto max-w-6xl px-4 pb-16 pt-6 md:px-8 md:pb-24 md:pt-8">
-        <UniversityBanner value={universidad} basePath="/" showMixto={false} />
+    <div className="relative font-sans text-zinc-900">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]"
+        aria-hidden
+      />
 
-        <div className="mt-12 grid items-center gap-12 lg:grid-cols-2">
-          <div className="space-y-6">
-            <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">
-              Entra a {copy.heroHighlight} con un plan hecho{' '}
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                para ti
-              </span>
-            </h1>
-            <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Simulacros, diagnóstico de debilidades y repaso inteligente.
-              Deja de estudiar a ciegas.
-            </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg" className="h-12 rounded-xl text-base shadow-lg shadow-primary/25">
-                <Link href={copy.simuladorHref}>
-                  Diagnóstico gratuito
-                  <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="h-12 rounded-xl border-2 bg-white/80 text-base">
-                <Link href="/precios">Ver planes</Link>
-              </Button>
-            </div>
-          </div>
+      <section className="relative mx-auto max-w-5xl px-4 pb-10 pt-6 md:pt-8">
+        <UniversityBanner value={universidad} plan={plan} basePath="/" hidePills compact />
 
-          <div className="exam-shell relative overflow-hidden">
-            <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/10 blur-2xl" />
-            <p className="text-xs font-semibold uppercase tracking-wide text-primary">Vista previa</p>
-            <p className="mt-3 text-lg font-semibold">¿Cuántos moles de H₂O se forman…?</p>
-            <div className="mt-5 space-y-2">
-              {['A) 1 mol', 'C) 3 mol', 'B) 2 mol ✓'].map((opt) => (
-                <div
-                  key={opt}
-                  className={`rounded-xl border px-4 py-3 text-sm ${
-                    opt.includes('✓')
-                      ? 'border-green-300 bg-green-50 font-medium text-green-800'
-                      : 'bg-muted/50'
-                  }`}
-                >
-                  {opt}
-                </div>
-              ))}
-            </div>
-            <p className="mt-4 text-xs text-muted-foreground">
-              Opciones mezcladas · Feedback inmediato · LaTeX
-            </p>
-          </div>
-        </div>
-      </section>
+        <motion.div
+          className="flex flex-col items-center py-8 text-center md:py-12"
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={springTransition}
+        >
+          <span className={cn(statusBadgeLive, badgeClass, 'mb-5')}>
+            <span className={statusDotLive} aria-hidden />
+            Convocatorias 2026 · Reactivos reales
+          </span>
 
-      <section className="border-t border-border/50 bg-white/50 py-16 md:py-20">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 md:grid-cols-3 md:px-8">
-          {features.map(({ icon: Icon, title, desc }) => (
-            <article
-              key={title}
-              className="rounded-2xl border bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <Icon className="h-5 w-5" />
-              </span>
-              <h2 className="mt-4 text-lg font-bold">{title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+          <h1 className={landingHeroTitle}>
+            No estudies más.{' '}
+            <span style={themeHydrated ? { color: landingUni.primary } : undefined}>Estudia mejor.</span>
+            <br className="hidden sm:block" />
+            <span className="mt-2 block text-2xl font-bold text-zinc-600 md:text-3xl">
+              El plan adaptado para la {landingUni.siglas}.
+            </span>
+          </h1>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-8 md:py-20">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold md:text-4xl">Plan integral PrepMX</h2>
-          <p className="mt-3 text-muted-foreground">
-            Todo lo que necesitas para {copy.theme.name}, con simulacros, tutor IA y repaso
-            inteligente.
+          <p className={cn('mt-5 max-w-2xl', landingBody)}>
+            Olvídate de guías infinitas y videos aburridos de dos horas. Entrena bajo presión con simulacros calibrados
+            y destruye tus puntos débiles antes de que te cuesten el lugar.
           </p>
-        </div>
 
-        <Card className="mx-auto mt-10 max-w-xl border-primary shadow-xl shadow-primary/15 ring-2 ring-primary/20">
-          <CardHeader>
-            <Badge className="w-fit">Recomendado</Badge>
-            <CardTitle className="text-2xl">{planIntegral.name}</CardTitle>
-            <CardDescription>{planIntegral.description}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-4xl font-bold">
-              ${planIntegral.price}
-              <span className="text-sm font-normal text-muted-foreground"> {planIntegral.period}</span>
-            </p>
-            <ul className="mt-6 space-y-3">
-              {planIntegral.features.map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-          <CardFooter className="flex flex-col gap-3 sm:flex-row">
-            <Button asChild className="h-12 w-full rounded-xl shadow-lg shadow-primary/20">
-              <Link href="/sign-up">
-                Empezar plan integral
-                <ArrowRight className="ml-1 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="h-12 w-full rounded-xl bg-white">
-              <Link href={copy.simuladorHref}>Probar diagnóstico gratis</Link>
-            </Button>
-          </CardFooter>
-        </Card>
+          <div className="mt-7 flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
+            <MotionTap className="w-full sm:w-auto">
+              <Button asChild size="lg" className={cn('h-12 w-full rounded-full px-6 text-sm font-bold shadow-md', ctaClass)}>
+                <Link href={diagnosticHref}>Probar Diagnóstico Gratis</Link>
+              </Button>
+            </MotionTap>
+            <MotionTap className="w-full sm:w-auto">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="h-12 w-full rounded-full border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-900 hover:bg-zinc-50"
+              >
+                <Link href="#showcase">Ver demo en vivo</Link>
+              </Button>
+            </MotionTap>
+          </div>
+        </motion.div>
       </section>
-    </>
+
+      <ProductShowcase universidad={universidad} variant="viewport" />
+
+      <section className="relative mx-auto max-w-5xl px-4 py-12">
+        <div
+          className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-[min(100%,36rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+          style={
+            themeHydrated
+              ? { backgroundColor: landingUni.accent, opacity: 0.08 }
+              : undefined
+          }
+          aria-hidden
+        />
+        <motion.div
+          className="relative z-[1] mb-8 text-center"
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={springTransition}
+        >
+          <h2 className={landingSectionTitle}>Estadísticas del concurso oficial</h2>
+          <p className="mx-auto mt-2 max-w-xl text-sm text-zinc-500">
+            Métricas reales de convocatorias recientes.
+          </p>
+        </motion.div>
+        <LandingBentoGrid universidad={universidad} className="relative z-[1]" />
+      </section>
+
+      <section
+        id="planes"
+        className="border-y border-zinc-200 bg-zinc-50 px-4 py-16 md:py-20"
+      >
+        <div className="mx-auto max-w-5xl">
+          <motion.div
+            className="mb-10 text-center"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={springTransition}
+          >
+            <h2 className={landingSectionTitle}>Invierte en tu lugar, no en más libros</h2>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-zinc-500">
+              Elige el nivel de entrenamiento para tu postulación.
+            </p>
+          </motion.div>
+          <PlanOfferCards universidad={universidad} plan={plan} basePath="/" />
+        </div>
+      </section>
+
+      <div className="mobile-sticky-cta border-t border-zinc-200 bg-white/95 font-sans backdrop-blur-md">
+        <div className="mx-auto flex max-w-5xl items-center gap-2 px-4">
+          <MotionTap className="flex-1">
+            <Button asChild className={cn('h-11 w-full font-bold shadow-lg', ctaClass)}>
+              <Link href={diagnosticHref}>Diagnóstico gratis</Link>
+            </Button>
+          </MotionTap>
+          <MotionTap>
+            <Button asChild variant="outline" className="h-11 px-4 font-semibold">
+              <Link href="#planes">Planes</Link>
+            </Button>
+          </MotionTap>
+        </div>
+      </div>
+    </div>
   );
 }

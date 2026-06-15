@@ -1,18 +1,30 @@
 'use client';
 
-import Link from 'next/link';
 import { Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { GraduationCap } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { SiteNav } from '@/components/layout/SiteNav';
+import { SiteFooter } from '@/components/layout/SiteFooter';
+import { AccessRestrictedBanner } from '@/components/system/AccessRestrictedBanner';
+import { useUniTheme } from '@/contexts/UniThemeContext';
+import { getUniVisualIdentity } from '@/lib/uni-visual-identity';
 import { cn } from '@/lib/utils';
 import {
   getUniversityTheme,
-  parseLandingUniversidad,
-  parseUniversidadFilter,
-  type LandingUniversidad,
+  parsePageUniversidad,
+  parsePlanScope,
   type UniversidadFilter,
 } from '@/lib/university-theme';
+
+function effectiveThemeKey(
+  pathname: string,
+  uni: UniversidadFilter,
+  plan: ReturnType<typeof parsePlanScope>
+): UniversidadFilter {
+  const themed = pathname === '/' || pathname === '/simulador-gratis' || pathname === '/precios';
+  if (!themed) return 'todas';
+  if (plan === 'todo' || uni === 'todas') return 'todas';
+  return uni;
+}
 
 function ShellInner({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -20,63 +32,33 @@ function ShellInner({ children }: { children: React.ReactNode }) {
 
   const isHome = pathname === '/';
   const isSimulador = pathname === '/simulador-gratis';
-  const themed = isHome || isSimulador;
+  const isPrecios = pathname === '/precios';
+  const themed = isHome || isSimulador || isPrecios;
 
-  let universidad: LandingUniversidad | UniversidadFilter = 'todas';
-  if (isHome) {
-    universidad = parseLandingUniversidad(searchParams.get('uni'));
-  } else if (isSimulador) {
-    universidad = parseUniversidadFilter(searchParams.get('uni') ?? undefined);
-  }
-
-  const theme = themed ? getUniversityTheme(universidad) : null;
+  const universidad = parsePageUniversidad(searchParams.get('uni'));
+  const plan = parsePlanScope(searchParams.get('plan'));
+  const { filterId, hydrated, uniId } = useUniTheme();
+  const themeKey = effectiveThemeKey(pathname, universidad, plan);
+  const contextKey = hydrated ? filterId : themeKey;
+  const theme = themed ? getUniversityTheme(contextKey) : null;
+  const visual = hydrated ? getUniVisualIdentity(uniId) : null;
 
   return (
     <div
-      className={cn('flex min-h-screen flex-col', themed ? 'uni-theme' : 'bg-mesh')}
-      data-universidad={themed ? universidad : undefined}
+      className={cn(
+        'flex min-h-screen flex-col font-sans transition-[background-color,color] duration-300',
+        themed && visual
+          ? cn('uni-theme', visual.skinClass, visual.pageBgClass)
+          : 'bg-mesh'
+      )}
+      data-universidad={themed ? contextKey : undefined}
     >
-      <header className="glass-header sticky top-0 z-50">
-        {theme ? <div className={cn('uni-header-accent', theme.accentBar)} aria-hidden /> : null}
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-8">
-          <Link href="/" className="flex items-center gap-2 font-bold tracking-tight">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-md shadow-primary/25">
-              <GraduationCap className="h-5 w-5" />
-            </span>
-            <span className="text-lg">PrepMX</span>
-          </Link>
-          <nav className="flex items-center gap-1 text-sm md:gap-2">
-            <Link
-              href="/precios"
-              className="rounded-lg px-3 py-2 text-muted-foreground transition-colors hover:bg-white hover:text-foreground"
-            >
-              Precios
-            </Link>
-            <Link
-              href={
-                isHome
-                  ? `/simulador-gratis?uni=${universidad === 'todas' ? 'unam' : universidad}`
-                  : '/simulador-gratis'
-              }
-              className="rounded-lg px-3 py-2 text-muted-foreground transition-colors hover:bg-white hover:text-foreground"
-            >
-              Simulador
-            </Link>
-            <Button asChild className="ml-1 h-11 rounded-xl shadow-md shadow-primary/20">
-              <Link href="/sign-up">Empezar gratis</Link>
-            </Button>
-          </nav>
-        </div>
-      </header>
+      <AccessRestrictedBanner />
+      <SiteNav variant="marketing" accentBar={theme?.accentBar} />
       <main className="flex-1">{children}</main>
-      <footer className="border-t border-border/60 bg-white/60 py-8 text-center text-sm text-muted-foreground">
-        <Link
-          href="/aviso-de-privacidad"
-          className="underline-offset-4 hover:text-foreground hover:underline"
-        >
-          Aviso de privacidad
-        </Link>
-      </footer>
+      <Suspense fallback={null}>
+        <SiteFooter variant="marketing" />
+      </Suspense>
     </div>
   );
 }

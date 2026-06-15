@@ -1,8 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { CheckCircle2, XCircle } from 'lucide-react';
+import { Bookmark, CheckCircle2, XCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useQuestionBookmarks } from '@/hooks/useQuestionBookmarks';
 import type { OpcionId, Question, QuestionCardState } from '@/types/question';
 
 const MathRenderer = dynamic(() => import('@/components/math/MathRenderer'), {
@@ -24,6 +25,7 @@ interface QuestionCardProps {
   selectedOption?: OpcionId;
   onSelect: (optionId: OpcionId) => void;
   showExplanation?: boolean;
+  showBookmark?: boolean;
 }
 
 function optionStyles(
@@ -55,9 +57,12 @@ export function QuestionCard({
   selectedOption,
   onSelect,
   showExplanation = false,
+  showBookmark = false,
 }: QuestionCardProps) {
   const answered = state === 'correct' || state === 'error';
   const badgeClass = materiaStyles[question.materia] ?? 'bg-primary/10 text-primary';
+  const { isBookmarked, toggleBookmark } = useQuestionBookmarks();
+  const bookmarked = isBookmarked(question.id);
 
   return (
     <article className="exam-shell space-y-6">
@@ -71,6 +76,28 @@ export function QuestionCard({
             <span className="rounded-full bg-muted px-2 py-0.5 text-xs capitalize text-muted-foreground">
               {question.dificultad}
             </span>
+          )}
+          {showBookmark && (
+            <button
+              type="button"
+              aria-label={bookmarked ? 'Quitar de banquillo de dudas' : 'Guardar en banquillo de dudas'}
+              aria-pressed={bookmarked}
+              onClick={() =>
+                toggleBookmark({
+                  questionId: question.id,
+                  materia: question.materia,
+                  tema: question.tema,
+                })
+              }
+              className={cn(
+                'ml-auto hidden h-9 w-9 items-center justify-center rounded-lg border transition-all active:scale-95 md:inline-flex',
+                bookmarked
+                  ? 'border-uni-primary bg-uni-primary/10 text-uni-primary'
+                  : 'border-border text-muted-foreground hover:border-primary/40'
+              )}
+            >
+              <Bookmark className={cn('h-4 w-4', bookmarked && 'fill-current')} />
+            </button>
           )}
         </div>
         <div className="text-lg font-medium leading-snug md:text-xl">

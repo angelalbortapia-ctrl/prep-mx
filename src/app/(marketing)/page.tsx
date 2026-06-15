@@ -1,14 +1,15 @@
 import { LandingPageView } from '@/components/marketing/LandingPageView';
-import { parseLandingUniversidad } from '@/lib/university-theme';
+import { parsePageUniversidad, parsePlanScope } from '@/lib/university-theme';
 
 export const dynamic = 'force-dynamic';
 
 interface PageProps {
-  searchParams: { uni?: string };
+  searchParams: { uni?: string; plan?: string };
 }
 
 export default function LandingPage({ searchParams }: PageProps) {
-  const universidad = parseLandingUniversidad(searchParams.uni);
+  const universidad = parsePageUniversidad(searchParams.uni);
+  const plan = parsePlanScope(searchParams.plan);
 
-  return <LandingPageView universidad={universidad} />;
+  return <LandingPageView universidad={universidad} plan={plan} />;
 }

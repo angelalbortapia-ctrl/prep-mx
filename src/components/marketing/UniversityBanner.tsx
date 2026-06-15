@@ -1,127 +1,134 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { motion, useReducedMotion } from 'framer-motion';
 import { GraduationCap, Sparkles } from 'lucide-react';
+import { useUniTheme } from '@/contexts/UniThemeContext';
+import { filterToUniId } from '@/lib/uni-theme-config';
 import { cn } from '@/lib/utils';
 import {
   getUniversityTheme,
-  landingUniversidadOptions,
   universidadFilterOptions,
-  type LandingUniversidad,
+  type PlanScope,
   type UniversidadFilter,
 } from '@/lib/university-theme';
 
 interface UniversityBannerProps {
-  value: LandingUniversidad | UniversidadFilter;
+  value: UniversidadFilter;
+  plan?: PlanScope;
   basePath?: string;
-  showMixto?: boolean;
   compact?: boolean;
+  /** Oculta pills cuando el selector vive en el header (landing). */
+  hidePills?: boolean;
 }
 
 export function UniversityBanner({
   value,
+  plan = 'universidad',
   basePath = '/simulador-gratis',
-  showMixto = true,
   compact = false,
+  hidePills = false,
 }: UniversityBannerProps) {
   const router = useRouter();
-  const theme = getUniversityTheme(value);
+  const searchParams = useSearchParams();
+  const prefersReducedMotion = useReducedMotion();
+  const { setUniId, filterId: contextFilter, hydrated } = useUniTheme();
 
-  const options = showMixto
-    ? universidadFilterOptions
-    : landingUniversidadOptions.map((t) => ({
-        id: t.id,
-        shortLabel: t.shortLabel,
-      }));
+  const activeUni = plan === 'todo' || value === 'todas' ? 'todas' : value;
+  const displayUni = hydrated && contextFilter ? contextFilter : activeUni;
+  const theme = getUniversityTheme(displayUni);
 
-  function select(universidad: string) {
-    if (universidad === value) return;
-    router.push(`${basePath}?uni=${universidad}`, { scroll: false });
+  function select(universidad: UniversidadFilter) {
+    if (universidad === value && plan === (universidad === 'todas' ? 'todo' : 'universidad')) {
+      return;
+    }
+
+    const params = new URLSearchParams(searchParams.toString());
+    if (universidad === 'todas') {
+      params.set('uni', 'todas');
+      params.set('plan', 'todo');
+    } else {
+      params.set('uni', universidad);
+      params.set('plan', 'universidad');
+    }
+
+    setUniId(filterToUniId(universidad), { syncUrl: false });
+    router.push(`${basePath}?${params.toString()}`, { scroll: false });
   }
 
   return (
-    <section
+    <motion.section
+      key={displayUni}
+      initial={prefersReducedMotion ? false : { opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35 }}
       className={cn(
-        'relative overflow-hidden rounded-3xl border border-white/20 shadow-2xl transition-all duration-500',
+        'relative overflow-hidden rounded-2xl border border-white/10 shadow-xl',
         theme.banner,
-        compact ? 'shadow-lg' : 'shadow-primary/20'
+        compact ? 'shadow-lg' : 'shadow-2xl'
       )}
     >
-      {/* Decoración */}
-      <div
-        className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/10 blur-2xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -bottom-20 -left-10 h-48 w-48 rounded-full bg-black/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className={cn('absolute left-0 top-0 h-1 w-full', theme.accentBar)}
-        aria-hidden
-      />
+      <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-white/10 blur-3xl" aria-hidden />
+      <div className={cn('absolute inset-x-0 top-0 h-1', theme.accentBar)} aria-hidden />
 
-      <div className={cn('relative z-10', compact ? 'p-5 md:p-6' : 'p-6 md:p-8 lg:p-10')}>
-        {/* Tabs */}
-        <div className="mb-6 flex flex-wrap gap-2">
-          {options.map((option) => {
-            const isActive = option.id === value;
-            const optTheme = getUniversityTheme(option.id as UniversidadFilter);
+      <div className={cn('relative z-10', compact ? 'p-5 md:p-6' : 'p-6 md:p-8')}>
+        {!hidePills && (
+          <div className="mb-5 flex flex-wrap gap-2">
+            {universidadFilterOptions.map((option) => {
+              const isActive = option.id === activeUni;
+              const optTheme = getUniversityTheme(option.id);
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => select(option.id)}
+                  aria-pressed={isActive}
+                  className={cn(
+                    'inline-flex min-h-9 items-center rounded-full px-4 py-1.5 text-sm font-semibold transition-all',
+                    isActive ? optTheme.tabActive : optTheme.tabIdle
+                  )}
+                >
+                  {option.shortLabel}
+                </button>
+              );
+            })}
+          </div>
+        )}
 
-            return (
-              <button
-                key={option.id}
-                type="button"
-                onClick={() => select(option.id)}
-                aria-pressed={isActive}
-                className={cn(
-                  'inline-flex min-h-10 items-center rounded-full px-4 py-2 text-sm font-bold tracking-wide transition-all duration-300',
-                  isActive ? optTheme.tabActive : optTheme.tabIdle
-                )}
-              >
-                {option.shortLabel}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Contenido del banner */}
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl space-y-3">
+          <div className="max-w-2xl space-y-2">
             <div className="flex items-center gap-2 text-white/70">
               <GraduationCap className="h-4 w-4 shrink-0" aria-hidden />
-              <span className="text-xs font-semibold uppercase tracking-[0.2em]">
-                {theme.tagline}
-              </span>
+              <span className="text-xs font-medium uppercase tracking-widest">{theme.tagline}</span>
             </div>
             <h2
               className={cn(
-                'font-extrabold tracking-tight text-white',
-                compact ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl lg:text-5xl'
+                'font-bold tracking-tight text-white',
+                compact ? 'text-2xl md:text-3xl' : 'text-2xl md:text-3xl lg:text-4xl'
               )}
             >
-              Prepárate para {theme.name}
+              {activeUni === 'todas' ? 'Las 3 universidades' : `Prepárate para ${theme.name}`}
             </h2>
-            <p className="text-base leading-relaxed text-white/85 md:text-lg">
-              {theme.description}
-            </p>
+            <p className="max-w-xl text-sm leading-relaxed text-white/85 md:text-base">{theme.description}</p>
           </div>
 
           {!compact && (
-            <div className="flex shrink-0 flex-col gap-2 rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-md md:min-w-[200px]">
-              <div className="flex items-center gap-2 text-white">
-                <Sparkles className="h-4 w-4 text-white/90" aria-hidden />
-                <span className="text-sm font-semibold">Incluye</span>
+            <div className="rounded-xl border border-white/15 bg-black/20 p-4 backdrop-blur-sm md:min-w-[200px]">
+              <div className="mb-2 flex items-center gap-2 text-white">
+                <Sparkles className="h-4 w-4 opacity-90" aria-hidden />
+                <span className="text-sm font-semibold">
+                  {activeUni === 'todas' ? 'Todo en uno' : 'Incluye'}
+                </span>
               </div>
-              <ul className="space-y-1.5 text-sm text-white/80">
-                <li>· 20 preguntas aleatorias</li>
-                <li>· Opciones mezcladas</li>
-                <li>· Feedback al instante</li>
+              <ul className="space-y-1 text-sm text-white/80">
+                <li>Diagnóstico gratuito</li>
+                <li>Simulacros calibrados</li>
+                <li>Retroalimentación al instante</li>
               </ul>
             </div>
           )}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

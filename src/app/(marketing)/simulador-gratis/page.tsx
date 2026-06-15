@@ -1,4 +1,6 @@
+import { Suspense } from 'react';
 import { SimuladorGratisView } from '@/components/exam/SimuladorGratisView';
+import { PageShell } from '@/components/layout/PageShell';
 import {
   parseUniversidadFilter,
   universidadFilterToQuery,
@@ -8,16 +10,20 @@ import { getExamQuestions } from '@/lib/supabase/questions';
 export const dynamic = 'force-dynamic';
 
 interface PageProps {
-  searchParams: { uni?: string };
+  searchParams: { uni?: string; freemium?: string };
 }
 
 export default async function SimuladorGratisPage({ searchParams }: PageProps) {
   const universidad = parseUniversidadFilter(searchParams.uni);
-  const questions = await getExamQuestions(20, universidadFilterToQuery(universidad));
+  const isFreemium = searchParams.freemium === 'diagnostico';
+  const limit = isFreemium ? 10 : 20;
+  const questions = await getExamQuestions(limit, universidadFilterToQuery(universidad));
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-8 md:px-8 md:py-12">
-      <SimuladorGratisView universidad={universidad} questions={questions} />
-    </section>
+    <PageShell size="narrow">
+      <Suspense fallback={<div className="h-32 animate-pulse rounded-3xl bg-muted" />}>
+        <SimuladorGratisView universidad={universidad} questions={questions} />
+      </Suspense>
+    </PageShell>
   );
 }

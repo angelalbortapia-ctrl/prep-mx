@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import type { Database } from '@/types/database';
 import { serverSupabaseOptions } from './server-options';
 
 export function createServerSupabaseClient() {
@@ -7,5 +8,5 @@ export function createServerSupabaseClient() {
   if (!url || !key) {
     throw new Error('Supabase no configurado. Agrega variables en .env.local');
   }
-  return createClient(url, key, serverSupabaseOptions());
+  return createClient<Database>(url, key, serverSupabaseOptions());
 }

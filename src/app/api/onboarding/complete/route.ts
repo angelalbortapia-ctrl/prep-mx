@@ -1,5 +1,7 @@
 import { auth, clerkClient } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
+import { syncClerkUserToSupabase } from '@/lib/supabase/users';
+import { isSupabaseConfigured } from '@/lib/supabase/client';
 
 export async function POST(req: Request) {
   const { userId } = await auth();
@@ -22,6 +24,10 @@ export async function POST(req: Request) {
       onboardingComplete: true,
     },
   });
+
+  if (isSupabaseConfigured) {
+    await syncClerkUserToSupabase(userId);
+  }
 
   return NextResponse.json({ ok: true });
 }

@@ -1,5 +1,11 @@
+import { getInstitutionalCta } from '@/data/official-exam-metrics';
+
 export type UniversidadFilter = 'unam' | 'ipn' | 'uam' | 'todas';
-export type LandingUniversidad = 'unam' | 'ipn' | 'uam';
+export type PlanScope = 'universidad' | 'todo';
+
+export function parsePlanScope(raw?: string | null): PlanScope {
+  return raw === 'todo' ? 'todo' : 'universidad';
+}
 
 export interface UniversityTheme {
   id: UniversidadFilter;
@@ -24,9 +30,9 @@ export const universityThemes: Record<UniversidadFilter, UniversityTheme> = {
     tagline: 'Universidad Nacional Autónoma de México',
     description: 'Simulacros, diagnóstico y plan adaptado al examen de ingreso UNAM.',
     heroHighlight: 'tu área UNAM',
-    banner: 'bg-gradient-to-br from-[#001a33] via-[#003B71] to-[#005a9e]',
-    accentBar: 'bg-[#C5A572]',
-    tabActive: 'bg-white text-[#003B71] shadow-lg',
+    banner: 'bg-gradient-to-br from-[#001a2e] via-[#002B49] to-[#004a7c]',
+    accentBar: 'bg-[#D4AF37]',
+    tabActive: 'bg-white text-[#002B49] shadow-md',
     tabIdle: 'bg-white/15 text-white hover:bg-white/25',
   },
   ipn: {
@@ -36,9 +42,9 @@ export const universityThemes: Record<UniversidadFilter, UniversityTheme> = {
     tagline: 'Instituto Politécnico Nacional',
     description: 'Practica con reactivos al estilo del examen de admisión al IPN.',
     heroHighlight: 'el IPN',
-    banner: 'bg-gradient-to-br from-[#3d0018] via-[#7B0337] to-[#a31545]',
-    accentBar: 'bg-white/90',
-    tabActive: 'bg-white text-[#7B0337] shadow-lg',
+    banner: 'bg-gradient-to-br from-[#1a0509] via-[#6A1B29] to-[#3d0018]',
+    accentBar: 'bg-white/80',
+    tabActive: 'bg-white text-[#6A1B29] shadow-md',
     tabIdle: 'bg-white/15 text-white hover:bg-white/25',
   },
   uam: {
@@ -48,40 +54,55 @@ export const universityThemes: Record<UniversidadFilter, UniversityTheme> = {
     tagline: 'Universidad Autónoma Metropolitana',
     description: 'Prepárate para el examen de ingreso UAM con feedback inmediato.',
     heroHighlight: 'la UAM',
-    banner: 'bg-gradient-to-br from-[#003d24] via-[#006B3F] to-[#00875a]',
-    accentBar: 'bg-emerald-200',
-    tabActive: 'bg-white text-[#006B3F] shadow-lg',
-    tabIdle: 'bg-white/15 text-white hover:bg-white/25',
+    banner: 'bg-gradient-to-br from-[#111111] via-[#1a1a1a] to-[#2d1515]',
+    accentBar: 'bg-[#F05454]',
+    tabActive: 'bg-[#F05454] text-white shadow-md',
+    tabIdle: 'bg-white/10 text-white/90 hover:bg-white/20',
   },
   todas: {
     id: 'todas',
-    name: 'Mixto',
-    shortLabel: 'Mixto',
+    name: 'Todo en uno',
+    shortLabel: 'Todo en uno',
     tagline: 'UNAM · IPN · UAM',
-    description: 'Mezcla de preguntas de las tres universidades en un solo diagnóstico.',
-    heroHighlight: 'cualquier universidad',
-    banner: 'bg-gradient-to-br from-[#1e3a5f] via-[#2563eb] to-[#0891b2]',
-    accentBar: 'bg-gradient-to-r from-[#C5A572] via-white to-emerald-300',
-    tabActive: 'bg-white text-slate-800 shadow-lg',
+    description: 'Un solo lugar para practicar las tres universidades sin cambiar de app.',
+    heroHighlight: 'UNAM, IPN y UAM',
+    banner: 'bg-gradient-to-br from-[#001a2e] via-[#4a1530] to-[#111111]',
+    accentBar: 'bg-gradient-to-r from-[#D4AF37] via-white to-[#F05454]',
+    tabActive: 'bg-white text-slate-900 shadow-md',
     tabIdle: 'bg-white/15 text-white hover:bg-white/25',
   },
 };
 
-export function parseLandingUniversidad(raw?: string | null): LandingUniversidad {
-  if (raw === 'ipn' || raw === 'uam') return raw;
+export function parsePageUniversidad(raw?: string | null): UniversidadFilter {
+  if (raw === 'unam' || raw === 'ipn' || raw === 'uam' || raw === 'todas') {
+    return raw;
+  }
   return 'unam';
 }
 
-export const landingUniversidadOptions = (
-  ['unam', 'ipn', 'uam'] as LandingUniversidad[]
-).map((id) => universityThemes[id]);
+export function landingCopy(
+  universidad: UniversidadFilter,
+  plan: PlanScope,
+  area = '2'
+) {
+  const simUni = plan === 'todo' || universidad === 'todas' ? 'todas' : universidad;
+  const theme = universityThemes[simUni];
+  const ctaUni = plan === 'todo' || universidad === 'todas' ? 'todas' : universidad;
 
-export function landingCopy(universidad: LandingUniversidad) {
-  const theme = universityThemes[universidad];
+  const heroContext =
+    plan === 'todo' || universidad === 'todas'
+      ? 'UNAM, IPN y UAM'
+      : theme.heroHighlight;
+
   return {
-    badge: theme.tagline,
     heroHighlight: theme.heroHighlight,
-    simuladorHref: `/simulador-gratis?uni=${universidad}`,
+    heroTitle:
+      'Entra a la universidad con el plan adaptativo que destruye tus puntos débiles. Mide tus fuerzas hoy mismo',
+    heroSubtitle: `Tu meta: ${heroContext}. Diagnóstico real con 10 reactivos Meta. Sin tarjeta. Sin adivinar qué estudiar.`,
+    ctaPrimary: getInstitutionalCta(ctaUni, area),
+    ctaSecondary: 'Ver rutas de selección',
+    simuladorHref: `/simulador-gratis?uni=${simUni}&freemium=diagnostico`,
+    preciosHref: `/precios?uni=${simUni}&plan=${plan}`,
     theme,
   };
 }
@@ -112,10 +133,10 @@ export function universidadFilterToQuery(universidad: UniversidadFilter): string
 export function diagnosticTitle(universidad: UniversidadFilter): string {
   const name = universityThemes[universidad].name;
   return universidad === 'todas'
-    ? 'Diagnóstico mixto — 20 preguntas'
+    ? 'Diagnóstico todo en uno — 20 preguntas'
     : `Diagnóstico ${name} — 20 preguntas`;
 }
 
-export function getUniversityTheme(universidad: UniversidadFilter | LandingUniversidad): UniversityTheme {
-  return universityThemes[universidad as UniversidadFilter] ?? universityThemes.todas;
+export function getUniversityTheme(universidad: UniversidadFilter): UniversityTheme {
+  return universityThemes[universidad] ?? universityThemes.todas;
 }

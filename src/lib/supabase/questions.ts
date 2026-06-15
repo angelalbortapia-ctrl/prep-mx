@@ -1,19 +1,9 @@
 import type { OpcionId, Question, QuestionOption } from '@/types/question';
+import type { DbQuestionRow } from '@/types/database';
 import { allDemoQuestions, freeDiagnosticQuestions } from '@/lib/diagnostic-questions';
 import { prepareExamQuestions } from '@/lib/shuffle-question-options';
 import { isSupabaseConfigured } from './client';
 import { createServerSupabaseClient } from './server';
-
-type DbQuestionRow = {
-  id: string;
-  materia: string;
-  tema: string;
-  pregunta: string;
-  opciones: QuestionOption[];
-  opcion_correcta: string;
-  explicacion: string;
-  dificultad?: string | null;
-};
 
 function mapRow(row: DbQuestionRow): Question {
   return {
@@ -21,7 +11,7 @@ function mapRow(row: DbQuestionRow): Question {
     materia: row.materia,
     tema: row.tema,
     pregunta: row.pregunta,
-    opciones: row.opciones,
+    opciones: row.opciones as unknown as QuestionOption[],
     opcion_correcta: row.opcion_correcta as OpcionId,
     explicacion: row.explicacion,
     dificultad: (row.dificultad as Question['dificultad']) ?? 'medium',
@@ -58,7 +48,15 @@ function demoFallback(limit: number): Question[] {
   return prepareExamQuestions(source).slice(0, limit);
 }
 
-async function fetchFromSupabase(limit: number, universidad?: string): Promise<Question[]> {
+export interface GetExamQuestionsOptions {
+  limit: number;
+  universidad?: string;
+  /** Si false, RLS lógico: solo reactivos gratuitos (`is_premium = false`). */
+  includePremium?: boolean;
+}
+
+async function fetchFromSupabase(options: GetExamQuestionsOptions): Promise<Question[]> {
+  const { limit, universidad, includePremium = false } = options;
   const supabase = createServerSupabaseClient();
   const fetchLimit = Math.min(Math.max(limit * 8, 120), 500);
 
@@ -67,6 +65,9 @@ async function fetchFromSupabase(limit: number, universidad?: string): Promise<Q
     .select('id', { count: 'exact', head: true })
     .eq('active', true);
 
+  if (!includePremium) {
+    countQuery = countQuery.eq('is_premium', false);
+  }
   if (universidad) {
     countQuery = countQuery.ilike('universidad', universidad);
   }
@@ -80,10 +81,13 @@ async function fetchFromSupabase(limit: number, universidad?: string): Promise<Q
 
   let query = supabase
     .from('questions')
-    .select('id,materia,tema,pregunta,opciones,opcion_correcta,explicacion,dificultad')
+    .select('id,materia,tema,pregunta,opciones,opcion_correcta,explicacion,dificultad,is_premium')
     .eq('active', true)
     .range(offset, offset + fetchLimit - 1);
 
+  if (!includePremium) {
+    query = query.eq('is_premium', false);
+  }
   if (universidad) {
     query = query.ilike('universidad', universidad);
   }
@@ -96,13 +100,17 @@ async function fetchFromSupabase(limit: number, universidad?: string): Promise<Q
 }
 
 /** Preguntas para simulador: Supabase primero, demo si la BD está vacía o sin config. */
-export async function getExamQuestions(limit: number, universidad?: string): Promise<Question[]> {
+export async function getExamQuestions(
+  limit: number,
+  universidad?: string,
+  includePremium = false
+): Promise<Question[]> {
   if (!isSupabaseConfigured) {
     return demoFallback(limit);
   }
 
   try {
-    const fromDb = await fetchFromSupabase(limit, universidad);
+    const fromDb = await fetchFromSupabase({ limit, universidad, includePremium });
     if (fromDb.length >= Math.min(limit, 5)) return fromDb;
   } catch {
     // Supabase caído o sin permisos → demo

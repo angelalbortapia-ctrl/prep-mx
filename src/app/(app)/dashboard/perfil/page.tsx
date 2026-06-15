@@ -1,66 +1,79 @@
 'use client';
 
 import Link from 'next/link';
+import { PageHeader } from '@/components/layout/PageHeader';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CyberCard } from '@/components/ui/cyber-card';
 import { Badge } from '@/components/ui/badge';
-import { areaLabels, universidadLabels } from '@/types/user-profile';
+import { AcceptanceGauge } from '@/components/profile/AcceptanceGauge';
+import { BanquilloPanel } from '@/components/profile/BanquilloPanel';
+import { ConsistencyHeatmap } from '@/components/profile/ConsistencyHeatmap';
+import { StudentGarageHeader } from '@/components/profile/StudentGarageHeader';
+import { useSubscription } from '@/contexts/SubscriptionContext';
+import { useUniTheme } from '@/contexts/UniThemeContext';
+import { useUserProfile } from '@/hooks/useUserProfile';
+import { areaLabels } from '@/types/user-profile';
 
 export default function PerfilPage() {
-  return (
-    <div className="mx-auto max-w-2xl space-y-6">
-      <h1 className="text-2xl font-bold">Mi perfil</h1>
+  const { label: planLabel } = useSubscription();
+  const { entry } = useUniTheme();
+  const { data: profile } = useUserProfile();
+  const averageScore = profile?.averageScore ?? 82;
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Meta de examen</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
+  return (
+    <div className="space-y-6 font-sans pb-24 md:pb-8">
+      <PageHeader title="Mi perfil" description="Telemetría adaptativa de tu postulación." />
+
+      <StudentGarageHeader />
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <CyberCard className="p-6">
+          <h3 className="mb-4 text-sm font-black uppercase tracking-wider text-zinc-400">
+            Probabilidad de aceptación
+          </h3>
+          <AcceptanceGauge averageScore={averageScore} />
+        </CyberCard>
+
+        <CyberCard className="p-6">
+          <h3 className="mb-4 text-sm font-black uppercase tracking-wider text-zinc-400">
+            Consistencia de estudio
+          </h3>
+          <ConsistencyHeatmap />
+        </CyberCard>
+      </div>
+
+      <BanquilloPanel />
+
+      <CyberCard className="p-6">
+        <h3 className="mb-4 text-sm font-black uppercase tracking-wider text-zinc-400">Meta de examen</h3>
+        <div className="space-y-3">
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Universidad</span>
-            <Badge>{universidadLabels.unam}</Badge>
+            <span className="text-zinc-500">Universidad activa</span>
+            <Badge className="border-zinc-700 bg-zinc-900 text-zinc-200">{entry.shortLabel}</Badge>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Área</span>
-            <span className="font-medium">{areaLabels.area2}</span>
+            <span className="text-zinc-500">Área</span>
+            <span className="font-bold text-zinc-200">{areaLabels.area2}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Fecha de examen</span>
-            <span className="font-medium">15 ago 2026</span>
+            <span className="text-zinc-500">Línea de corte meta</span>
+            <span className="font-bold text-zinc-200">{entry.cutoffScore} aciertos</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Estado</span>
-            <Badge variant="secondary">Free tier</Badge>
+            <span className="text-zinc-500">Plan activo</span>
+            <Badge variant="secondary" className="border-zinc-700 bg-zinc-900 text-zinc-300">
+              {planLabel}
+            </Badge>
           </div>
-          <Button asChild variant="outline" className="mt-2 h-11 w-full rounded-xl">
+          <Button
+            asChild
+            variant="outline"
+            className="mt-2 h-11 w-full rounded-xl border-zinc-700 bg-zinc-900 text-zinc-200 hover:border-[hsl(var(--uni-primary))] hover:bg-zinc-950"
+          >
             <Link href="/onboarding">Editar configuración</Link>
           </Button>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Gamificación</CardTitle>
-        </CardHeader>
-        <CardContent className="grid grid-cols-2 gap-4 text-center">
-          <div>
-            <p className="text-2xl font-bold">120</p>
-            <p className="text-xs text-muted-foreground">XP total</p>
-          </div>
-          <div>
-            <p className="text-2xl font-bold">3</p>
-            <p className="text-xs text-muted-foreground">Racha (días)</p>
-          </div>
-          <div>
-            <p className="text-2xl font-bold">2</p>
-            <p className="text-xs text-muted-foreground">Insignias</p>
-          </div>
-          <div>
-            <p className="text-2xl font-bold">#14</p>
-            <p className="text-xs text-muted-foreground">Ranking semanal</p>
-          </div>
-        </CardContent>
-      </Card>
+        </div>
+      </CyberCard>
     </div>
   );
 }
