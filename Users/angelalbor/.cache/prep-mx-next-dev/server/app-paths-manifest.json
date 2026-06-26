@@ -1,7 +1,7 @@
 {
   "/(marketing)/page": "app/(marketing)/page.js",
-  "/(app)/dashboard/page": "app/(app)/dashboard/page.js",
   "/(app)/dashboard/estudio/page": "app/(app)/dashboard/estudio/page.js",
-  "/(marketing)/precios/page": "app/(marketing)/precios/page.js",
-  "/(app)/dashboard/estudio/guia/[materia]/page": "app/(app)/dashboard/estudio/guia/[materia]/page.js"
+  "/(app)/dashboard/perfil/page": "app/(app)/dashboard/perfil/page.js",
+  "/(app)/dashboard/simulacros/page": "app/(app)/dashboard/simulacros/page.js",
+  "/(app)/dashboard/simulacros/[examId]/page": "app/(app)/dashboard/simulacros/[examId]/page.js"
 }

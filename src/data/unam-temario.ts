@@ -4,6 +4,15 @@
  */
 
 import { UNAM_MATEMATICAS_TOPICS } from './unam-temario-matematicas';
+import { UNAM_FISICA_TOPICS } from './unam-temario-fisica';
+import { UNAM_QUIMICA_TOPICS } from './unam-temario-quimica';
+import { UNAM_HISTORIA_TOPICS } from './unam-temario-historia';
+import { UNAM_HISTORIA_MEXICO_TOPICS } from './unam-temario-historia-mexico';
+import { UNAM_GEOGRAFIA_TOPICS } from './unam-temario-geografia';
+import { UNAM_BIOLOGIA_TOPICS } from './unam-temario-biologia';
+import { UNAM_ESPANOL_TOPICS } from './unam-temario-espanol';
+import { UNAM_FILOSOFIA_TOPICS } from './unam-temario-filosofia';
+import { UNAM_LITERATURA_TOPICS } from './unam-temario-literatura';
 
 export type UnamAreaId = 'area1' | 'area2' | 'area3' | 'area4' | 'area5' | 'area6';
 
@@ -90,7 +99,7 @@ export const UNAM_TEMARIO_AREAS: UnamTemarioArea[] = [
   },
 ];
 
-/** Las 10 materias del examen UNAM — topics vacíos, listos para rellenar. */
+/** Materias del examen UNAM (10 reactivos × 9 + 30 de Matemáticas = 120). Sin Historia del Arte. */
 export const UNAM_TEMARIO_MATERIAS: UnamTemarioMateria[] = [
   {
     id: 'matematicas',
@@ -106,7 +115,7 @@ export const UNAM_TEMARIO_MATERIAS: UnamTemarioMateria[] = [
     icon: '📖',
     reactivosOficiales: 10,
     areasRelacionadas: ['area3', 'area4'],
-    topics: [],
+    topics: UNAM_ESPANOL_TOPICS,
   },
   {
     id: 'literatura',
@@ -114,15 +123,23 @@ export const UNAM_TEMARIO_MATERIAS: UnamTemarioMateria[] = [
     icon: '✍️',
     reactivosOficiales: 10,
     areasRelacionadas: ['area4'],
-    topics: [],
+    topics: UNAM_LITERATURA_TOPICS,
   },
   {
     id: 'historia',
-    nombre: 'Historia',
+    nombre: 'Historia Universal',
+    icon: '🌍',
+    reactivosOficiales: 10,
+    areasRelacionadas: ['area3', 'area4'],
+    topics: UNAM_HISTORIA_TOPICS,
+  },
+  {
+    id: 'historia-de-mexico',
+    nombre: 'Historia de México',
     icon: '🏛️',
     reactivosOficiales: 10,
     areasRelacionadas: ['area3', 'area4'],
-    topics: [],
+    topics: UNAM_HISTORIA_MEXICO_TOPICS,
   },
   {
     id: 'geografia',
@@ -130,7 +147,7 @@ export const UNAM_TEMARIO_MATERIAS: UnamTemarioMateria[] = [
     icon: '🌎',
     reactivosOficiales: 10,
     areasRelacionadas: ['area3'],
-    topics: [],
+    topics: UNAM_GEOGRAFIA_TOPICS,
   },
   {
     id: 'fisica',
@@ -138,7 +155,7 @@ export const UNAM_TEMARIO_MATERIAS: UnamTemarioMateria[] = [
     icon: '🧲',
     reactivosOficiales: 10,
     areasRelacionadas: ['area1', 'area2'],
-    topics: [],
+    topics: UNAM_FISICA_TOPICS,
   },
   {
     id: 'quimica',
@@ -146,7 +163,7 @@ export const UNAM_TEMARIO_MATERIAS: UnamTemarioMateria[] = [
     icon: '⚗️',
     reactivosOficiales: 10,
     areasRelacionadas: ['area1', 'area2'],
-    topics: [],
+    topics: UNAM_QUIMICA_TOPICS,
   },
   {
     id: 'biologia',
@@ -154,7 +171,7 @@ export const UNAM_TEMARIO_MATERIAS: UnamTemarioMateria[] = [
     icon: '🧬',
     reactivosOficiales: 10,
     areasRelacionadas: ['area2'],
-    topics: [],
+    topics: UNAM_BIOLOGIA_TOPICS,
   },
   {
     id: 'filosofia',
@@ -162,15 +179,7 @@ export const UNAM_TEMARIO_MATERIAS: UnamTemarioMateria[] = [
     icon: '🦉',
     reactivosOficiales: 10,
     areasRelacionadas: ['area3', 'area4'],
-    topics: [],
-  },
-  {
-    id: 'historia-del-arte',
-    nombre: 'Historia del Arte',
-    icon: '🎨',
-    reactivosOficiales: 10,
-    areasRelacionadas: ['area4', 'area5'],
-    topics: [],
+    topics: UNAM_FILOSOFIA_TOPICS,
   },
 ];
 
