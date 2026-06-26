@@ -2,9 +2,9 @@ import { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import { auth, clerkClient } from '@clerk/nextjs/server';
 import { AppCommandPalette } from '@/components/search/AppCommandPalette';
+import { AppDashboardShell } from '@/components/layout/AppDashboardShell';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { UniThemeVisualRoot } from '@/components/theme/UniThemeVisualRoot';
 import { isDemoMode } from '@/lib/demo-mode';
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
@@ -24,7 +24,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <UniThemeVisualRoot dark className="flex min-h-screen flex-col bg-mesh">
+    <AppDashboardShell>
       <Suspense fallback={<div className="glass-header h-16" aria-hidden />}>
         <SiteNav variant="app" />
       </Suspense>
@@ -33,6 +33,6 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <SiteFooter variant="app" />
       </Suspense>
       <AppCommandPalette />
-    </UniThemeVisualRoot>
+    </AppDashboardShell>
   );
 }

@@ -14,6 +14,14 @@ import {
   readingSegmentsFromMinutes,
 } from '@/components/study/TheorySegmentProgress';
 import { isDemoMode } from '@/lib/demo-mode';
+import { useStudyAppearance } from '@/contexts/StudyAppearanceContext';
+import {
+  studyBadge,
+  studyHeading,
+  studyPanel,
+  studySubtext,
+  studyToolbarBtn,
+} from '@/lib/study-appearance-styles';
 import { cn } from '@/lib/utils';
 import { QuickQuiz } from '@/components/study/QuickQuiz';
 import { AudioGuiaPlayer } from '@/components/study/AudioGuiaPlayer';
@@ -37,6 +45,7 @@ export function GuiaLayout({ guide }: GuiaLayoutProps) {
   const { isDesktop, isTablet } = useDeviceType();
   const { isLoaded, isSignedIn } = useAuth();
   const { entry, hydrated } = useUniTheme();
+  const { isDark } = useStudyAppearance();
   const demo = isDemoMode();
   const [focusMode, setFocusMode] = useState(false);
   const [readProgress, setReadProgress] = useState(0);
@@ -82,7 +91,7 @@ export function GuiaLayout({ guide }: GuiaLayoutProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
-            className="fixed inset-0 z-40 bg-black/95"
+            className={cn('fixed inset-0 z-40 backdrop-blur-sm', isDark ? 'bg-black/92' : 'bg-background/90')}
             aria-hidden
           />
         )}
@@ -104,7 +113,7 @@ export function GuiaLayout({ guide }: GuiaLayoutProps) {
               transition={secondaryTransition}
               className="overflow-hidden"
             >
-              <nav className="mb-4 flex items-center gap-1 text-sm text-zinc-500">
+              <nav className={cn('mb-4 flex items-center gap-1 text-sm', studySubtext(isDark))}>
                 <Link
                   href="/dashboard/estudio"
                   className="inline-flex items-center gap-1 rounded-lg px-2 py-1 font-medium transition-colors hover:text-[hsl(var(--uni-accent))]"
@@ -116,29 +125,28 @@ export function GuiaLayout({ guide }: GuiaLayoutProps) {
 
               <div className="mb-6 space-y-3">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-950 px-3 py-1 text-xs font-black uppercase tracking-wider text-zinc-400">
+                  <span className={studyBadge(isDark)}>
                     <BookOpen className="h-3.5 w-3.5" aria-hidden />
                     {guide.materia}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-xs text-zinc-500">
+                  <span className={cn('inline-flex items-center gap-1.5 text-xs', studySubtext(isDark))}>
                     <Clock className="h-3.5 w-3.5" aria-hidden />
                     {guide.tiempoLecturaMin} min de lectura
                   </span>
                   <NeonStatusBadge tone="active" label="Tutor IA conectado" />
                 </div>
-                <h1 className="text-2xl font-black leading-tight tracking-tight text-zinc-50 md:text-3xl">
+                <h1 className={cn('text-2xl font-black leading-tight tracking-tight md:text-3xl', studyHeading(isDark))}>
                   {guide.titulo}
                 </h1>
-                <p className="text-base leading-relaxed text-zinc-500">{guide.resumen}</p>
+                <p className={cn('text-base leading-relaxed', studySubtext(isDark))}>{guide.resumen}</p>
               </div>
 
               <button
                 type="button"
                 onClick={() => setFocusMode(true)}
                 className={cn(
-                  'mb-2 inline-flex min-h-11 items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5',
-                  'text-sm font-black uppercase tracking-wide text-zinc-200 transition-all duration-300',
-                  'hover:border-[hsl(var(--uni-primary))] hover:shadow-[0_0_16px_hsl(var(--uni-primary)/0.15)]'
+                  'mb-2 inline-flex min-h-11 items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-black uppercase tracking-wide transition-all duration-300',
+                  studyToolbarBtn(isDark)
                 )}
               >
                 <Focus className="h-4 w-4" aria-hidden />
@@ -152,7 +160,8 @@ export function GuiaLayout({ guide }: GuiaLayoutProps) {
           animate={focusMode && !prefersReducedMotion ? { scale: 1.01 } : { scale: 1 }}
           transition={{ type: 'spring', stiffness: 320, damping: 26 }}
           className={cn(
-            'rounded-2xl border border-zinc-800 bg-zinc-950 transition-[padding,box-shadow]',
+            studyPanel(isDark),
+            'transition-[padding,box-shadow]',
             focusMode && 'border p-5 ring-1 ring-[hsl(var(--uni-primary)/0.3)] md:p-6',
             splitView ? 'grid gap-6 lg:grid-cols-2 lg:max-w-none' : 'max-w-2xl'
           )}
@@ -172,10 +181,10 @@ export function GuiaLayout({ guide }: GuiaLayoutProps) {
         {!focusMode && (
           <div id="quiz">
             {isLoaded && !isSignedIn && !demo ? (
-              <div className="mt-8 rounded-2xl border border-zinc-800 bg-zinc-950 p-6 text-center">
+              <div className={cn('mt-8 p-6 text-center', studyPanel(isDark))}>
                 <LogIn className="mx-auto mb-3 h-8 w-8 text-[hsl(var(--uni-primary))]" aria-hidden />
-                <p className="text-sm font-bold text-zinc-100">Guía de estudio · acceso personalizado</p>
-                <p className="mt-1 text-sm text-zinc-500">
+                <p className={cn('text-sm font-bold', studyHeading(isDark))}>Guía de estudio · acceso personalizado</p>
+                <p className={cn('mt-1 text-sm', studySubtext(isDark))}>
                   Inicia sesión para registrar tu progreso SM-2 y sincronizar el banquillo de dudas.
                 </p>
                 <Button asChild className="mt-4 rounded-xl">

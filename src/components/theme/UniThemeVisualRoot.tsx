@@ -33,7 +33,13 @@ export function UniThemeVisualRoot({ children, dark = false, className }: UniThe
   return (
     <div
       data-uni-theme={hydrated ? uniId : undefined}
-      className={cn('font-sans', dark && 'dark', visual.skinClass, visual.pageBgClass, 'uni-visual-root min-h-full transition-[background-color,color] duration-300', className)}
+      className={cn(
+        'uni-visual-root min-h-full font-sans transition-[background-color,color] duration-300',
+        dark && 'dark',
+        visual.skinClass,
+        dark ? visual.pageBgClass : 'bg-background text-foreground',
+        className
+      )}
     >
       {children}
     </div>

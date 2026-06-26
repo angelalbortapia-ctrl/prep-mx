@@ -77,17 +77,127 @@
     box-shadow: var(--uni-card-shadow, 0 8px 32px -8px hsl(var(--uni-primary) / 0.2));
   }
 
-  .katex {
-    font-size: 1.05em;
+  /* Modo claro scoped en zona de estudio (dentro del layout oscuro del dashboard) */
+  .study-light {
+    --background: 220 33% 98%;
+    --foreground: 224 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 47% 11%;
+    --primary: 224 76% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 25% 94%;
+    --secondary-foreground: 224 47% 11%;
+    --muted: 220 20% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+    --border: 220 20% 90%;
+    --input: 220 20% 90%;
+    --ring: 224 76% 40%;
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--background));
   }
 
-  .katex * {
-    box-sizing: content-box !important;
+  /* Fondo claro en todo el `<main>` cuando estudio está en modo claro */
+  main.study-main-light {
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  /* UAM en modo claro del dashboard */
+  .uni-visual-root:not(.dark).uni-skin-uam {
+    background-color: hsl(var(--background)) !important;
+    color: hsl(var(--foreground)) !important;
+  }
+
+  .katex {
+    font-size: 1.02em;
+    color: inherit;
+  }
+
+  .katex .mord,
+  .katex .mop,
+  .katex .mbin,
+  .katex .mrel,
+  .katex .mopen,
+  .katex .mclose,
+  .katex .mpunct,
+  .katex .minner {
+    color: inherit;
+  }
+
+  /* ── Guías: ecuaciones display limpias, sin cajas grises ── */
+  .math-content--rich .katex-display {
+    display: block !important;
+    margin: 1.35rem 0;
+    padding: 0.25rem 0;
+    overflow-x: auto;
+    text-align: center;
+    background: transparent;
+  }
+
+  .math-content--rich .katex-display > .katex {
+    font-size: 1.18em;
+  }
+
+  .math-content--rich .math-paragraph {
+    margin: 0.65rem 0;
+    line-height: 1.75;
+    color: hsl(var(--foreground) / 0.92);
+  }
+
+  .math-content--rich .math-paragraph:has(.katex-display) {
+    margin: 0;
+  }
+
+  /* Inline en guías */
+  .math-content--rich .katex:not(.katex-display .katex) {
+    padding: 0 0.12em;
+    font-size: 1.02em;
+  }
+
+  /* ── Temario: fórmulas pequeñas en línea, texto normal alrededor ── */
+  .math-content--temario {
+    font-size: inherit;
+    line-height: 1.65;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .math-content--temario .math-paragraph {
+    margin: 0;
+    display: inline;
+  }
+
+  .math-content--temario .katex {
+    font-size: 0.95em;
+  }
+
+  .math-content--temario .katex-display {
+    display: inline !important;
+    margin: 0;
+    padding: 0;
+    background: none;
+    width: auto;
+  }
+
+  /* ── Quiz / opciones ── */
+  .math-content--inline {
+    display: inline;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .math-content--inline .math-paragraph {
+    margin: 0;
+    display: inline;
+  }
+
+  .math-content--inline p {
+    display: inline;
   }
 
   .katex-display {
     overflow-x: auto;
-    overflow-y: hidden;
     margin: 0.75rem 0;
   }
 }

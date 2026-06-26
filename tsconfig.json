@@ -33,7 +33,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next-dev.nosync/types/**/*.ts",
-    ".next-build.nosync/types/**/*.ts"
+    ".next-build.nosync/types/**/*.ts",
+    "/Users/angelalbor/.cache/prep-mx-next-dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

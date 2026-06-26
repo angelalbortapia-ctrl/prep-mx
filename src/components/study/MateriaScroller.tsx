@@ -11,7 +11,9 @@ import {
   readingSegmentsFromMinutes,
 } from '@/components/study/TheorySegmentProgress';
 import { SkeletonMateriaCards } from '@/components/ui/skeleton-body';
+import { useStudyAppearance } from '@/contexts/StudyAppearanceContext';
 import { useHaptics } from '@/hooks/useHaptics';
+import { studyHeading, studyPanel, studySubtext } from '@/lib/study-appearance-styles';
 import { cn } from '@/lib/utils';
 
 interface MateriaScrollerProps {
@@ -26,14 +28,17 @@ const MINUTES_PER_TOPIC = 5;
 
 export function MateriaScroller({ initialData, focusMode = false }: MateriaScrollerProps) {
   const { data: materias = initialData, isFetching, isLoading } = useStudyMaterias(initialData);
+  const { isDark } = useStudyAppearance();
   const showSkeleton = isLoading && materias.length === 0;
 
   return (
     <section className="space-y-3">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-black tracking-tight text-zinc-100 md:text-xl">Módulos de estudio</h2>
+        <h2 className={cn('text-lg font-black tracking-tight md:text-xl', studyHeading(isDark))}>
+          Módulos de estudio
+        </h2>
         {isFetching && !showSkeleton && (
-          <span className="text-xs text-zinc-500">Actualizando…</span>
+          <span className={cn('text-xs', studySubtext(isDark))}>Actualizando…</span>
         )}
       </div>
 
@@ -55,6 +60,7 @@ export function MateriaScroller({ initialData, focusMode = false }: MateriaScrol
               materia={materia}
               available={availableSlugs.has(materia.id)}
               focusMode={focusMode}
+              isDark={isDark}
             />
           ))}
         </div>
@@ -63,22 +69,33 @@ export function MateriaScroller({ initialData, focusMode = false }: MateriaScrol
   );
 }
 
-const cardBase = cn(
-  'group relative flex w-[78%] shrink-0 snap-start flex-col gap-3 rounded-xl border border-zinc-800 bg-zinc-950 p-5',
+const cardBaseDark = cn(
+  studyPanel(true),
+  'group relative flex w-[78%] shrink-0 snap-start flex-col gap-3 p-5',
   'transition-all duration-300 tap-transparent gpu sm:w-[60%] md:w-auto md:shrink',
   'hover:scale-[1.01] hover:border-[hsl(var(--uni-primary))]',
   'hover:shadow-[0_0_20px_hsl(var(--uni-primary)/0.15)]'
+);
+
+const cardBaseLight = cn(
+  studyPanel(false),
+  'group relative flex w-[78%] shrink-0 snap-start flex-col gap-3 p-5',
+  'transition-all duration-300 tap-transparent gpu sm:w-[60%] md:w-auto md:shrink',
+  'hover:scale-[1.01] hover:border-[hsl(var(--uni-primary)/0.4)] hover:shadow-md'
 );
 
 function MateriaCard({
   materia,
   available,
   focusMode,
+  isDark,
 }: {
   materia: StudyMateria;
   available: boolean;
   focusMode: boolean;
+  isDark: boolean;
 }) {
+  const cardBase = isDark ? cardBaseDark : cardBaseLight;
   const haptics = useHaptics();
   const totalSegments = readingSegmentsFromMinutes(materia.totalTemas * MINUTES_PER_TOPIC);
   const filledSegments = filledSegmentsFromPercent(totalSegments, available ? materia.progreso : 0);
@@ -93,7 +110,8 @@ function MateriaCard({
 
       <div
         className={cn(
-          'flex h-12 w-12 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900 text-2xl',
+          'flex h-12 w-12 items-center justify-center rounded-xl border text-2xl',
+          isDark ? 'border-zinc-800 bg-zinc-900' : 'border-border bg-muted',
           materia.accent
         )}
       >
@@ -102,17 +120,31 @@ function MateriaCard({
 
       <div className="flex-1">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="font-black leading-tight text-zinc-100">{materia.nombre}</h3>
+          <h3 className={cn('font-black leading-tight', isDark ? 'text-zinc-100' : 'text-foreground')}>
+            {materia.nombre}
+          </h3>
           {available ? (
-            <ArrowUpRight className="h-4 w-4 shrink-0 text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[hsl(var(--uni-accent))]" />
+            <ArrowUpRight
+              className={cn(
+                'h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[hsl(var(--uni-accent))]',
+                isDark ? 'text-zinc-500' : 'text-muted-foreground'
+              )}
+            />
           ) : (
-            <Lock className="h-4 w-4 shrink-0 text-zinc-600" />
+            <Lock className={cn('h-4 w-4 shrink-0', isDark ? 'text-zinc-600' : 'text-muted-foreground/60')} />
           )}
         </div>
-        <p className="mt-1 line-clamp-2 text-sm text-zinc-500">{materia.descripcion}</p>
+        <p className={cn('mt-1 line-clamp-2 text-sm', isDark ? 'text-zinc-500' : 'text-muted-foreground')}>
+          {materia.descripcion}
+        </p>
       </div>
 
-      <div className="flex items-center justify-between text-xs font-bold text-zinc-500">
+      <div
+        className={cn(
+          'flex items-center justify-between text-xs font-bold',
+          isDark ? 'text-zinc-500' : 'text-muted-foreground'
+        )}
+      >
         <span>{available ? `${materia.totalTemas} temas` : 'Próximamente'}</span>
         {available && <span className="tabular-nums text-[hsl(var(--uni-accent))]">{materia.progreso}%</span>}
       </div>

@@ -87,7 +87,7 @@ function QuizItem({ slug, question, index }: QuizItemProps) {
           {index + 1}
         </span>
         <div className="flex-1 text-base font-medium leading-snug text-foreground">
-          <MathRenderer content={question.pregunta} />
+          <MathRenderer content={question.pregunta} variant="inline" />
         </div>
       </div>
 
@@ -124,7 +124,7 @@ function QuizItem({ slug, question, index }: QuizItemProps) {
                   {opcion.id}
                 </span>
                 <span className="flex-1 text-sm font-medium">
-                  <MathRenderer content={opcion.texto} />
+                  <MathRenderer content={opcion.texto} variant="inline" />
                 </span>
               </button>
             </li>
@@ -152,7 +152,7 @@ function QuizItem({ slug, question, index }: QuizItemProps) {
                 ¡Correcto!
               </p>
               <div className="mt-1 text-sm text-muted-foreground">
-                <MathRenderer content={question.explicacion} />
+                <MathRenderer content={question.explicacion} variant="inline" />
               </div>
             </div>
           </motion.div>

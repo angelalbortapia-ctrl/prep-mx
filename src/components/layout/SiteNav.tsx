@@ -6,6 +6,7 @@ import { useAuth } from '@clerk/nextjs';
 import { GraduationCap } from 'lucide-react';
 import { AppUserMenu } from '@/components/app-user-menu';
 import { AppNavExtras } from '@/components/app/AppNavExtras';
+import { DashboardThemeToggle } from '@/components/layout/DashboardThemeToggle';
 import { CommandPalette } from '@/components/search/CommandPalette';
 import { TokenBalanceBadge } from '@/components/exam/TokenBalanceBadge';
 import { LandingUniSwitcher } from '@/components/marketing/LandingUniSwitcher';
@@ -124,6 +125,7 @@ export function SiteNav({ variant, accentBar }: SiteNavProps) {
             </>
           ) : (
             <>
+              <DashboardThemeToggle className="hidden sm:inline-flex" />
               <AppNavExtras />
               {userIdArea(demo, isLoaded, Boolean(isSignedIn))}
               <Link
@@ -143,7 +145,8 @@ export function SiteNav({ variant, accentBar }: SiteNavProps) {
         </div>
       ) : null}
 
-      <nav className="flex gap-1 overflow-x-auto px-4 pb-2 scrollbar-none md:hidden">
+      <nav className="flex items-center gap-2 overflow-x-auto px-4 pb-2 scrollbar-none md:hidden">
+        <DashboardThemeToggle className="sm:hidden" />
         {resolvedItems.map((item) => {
           const active = isNavActive(pathname, item);
           return (

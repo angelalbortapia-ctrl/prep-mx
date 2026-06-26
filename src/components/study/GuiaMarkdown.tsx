@@ -164,7 +164,7 @@ export default function GuiaMarkdown({ content }: GuiaMarkdownProps) {
   const components = useThemedComponents();
 
   return (
-    <div className="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-p:leading-relaxed prose-li:leading-relaxed dark:prose-invert">
+    <div className="math-content math-content--rich prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-p:leading-relaxed prose-li:leading-relaxed dark:prose-invert prose-p:text-foreground/90">
       <ReactMarkdown
         remarkPlugins={[remarkMath]}
         rehypePlugins={[[rehypeKatex, { strict: false, throwOnError: false }]]}

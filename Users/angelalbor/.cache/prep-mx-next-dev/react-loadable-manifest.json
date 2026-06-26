@@ -1,0 +1,88 @@
+{
+  "../node_modules/@capacitor/haptics/dist/esm/index.js -> ./web": {
+    "id": "../node_modules/@capacitor/haptics/dist/esm/index.js -> ./web",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_capacitor_haptics_dist_esm_web_js.js"
+    ]
+  },
+  "../node_modules/@clerk/nextjs/dist/esm/app-router/client/ClerkProvider.js -> ./keyless-creator-reader.js": {
+    "id": "../node_modules/@clerk/nextjs/dist/esm/app-router/client/ClerkProvider.js -> ./keyless-creator-reader.js",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_clerk_nextjs_dist_esm_app-router_client_keyless-creator-reader_js.js"
+    ]
+  },
+  "../node_modules/@clerk/nextjs/dist/esm/app-router/client/keyless-cookie-sync.js -> ../keyless-actions.js": {
+    "id": "../node_modules/@clerk/nextjs/dist/esm/app-router/client/keyless-cookie-sync.js -> ../keyless-actions.js",
+    "files": []
+  },
+  "components/exam/ExamSimulator.tsx -> @/components/math/MathRenderer": {
+    "id": "components/exam/ExamSimulator.tsx -> @/components/math/MathRenderer",
+    "files": [
+      "static/css/_app-pages-browser_src_components_math_MathRenderer_tsx.css",
+      "static/chunks/_app-pages-browser_src_components_math_MathRenderer_tsx.js"
+    ]
+  },
+  "components/exam/QuestionCard.tsx -> @/components/math/MathRenderer": {
+    "id": "components/exam/QuestionCard.tsx -> @/components/math/MathRenderer",
+    "files": [
+      "static/css/_app-pages-browser_src_components_math_MathRenderer_tsx.css",
+      "static/chunks/_app-pages-browser_src_components_math_MathRenderer_tsx.js"
+    ]
+  },
+  "components/marketing/ProductShowcase.tsx -> canvas-confetti": {
+    "id": "components/marketing/ProductShowcase.tsx -> canvas-confetti",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_canvas-confetti_dist_confetti_module_mjs.js"
+    ]
+  },
+  "components/profile/AcceptanceGauge.tsx -> @/components/profile/acceptance-gauge-chart": {
+    "id": "components/profile/AcceptanceGauge.tsx -> @/components/profile/acceptance-gauge-chart",
+    "files": [
+      "static/chunks/_app-pages-browser_src_components_profile_acceptance-gauge-chart_tsx.js"
+    ]
+  },
+  "components/simulador/resultado-feedback.tsx -> @/components/simulador/resultado-feedback-chart": {
+    "id": "components/simulador/resultado-feedback.tsx -> @/components/simulador/resultado-feedback-chart",
+    "files": [
+      "static/chunks/_app-pages-browser_src_components_simulador_resultado-feedback-chart_tsx.js"
+    ]
+  },
+  "components/study/GuiaLayout.tsx -> @/components/study/GuiaMarkdown": {
+    "id": "components/study/GuiaLayout.tsx -> @/components/study/GuiaMarkdown",
+    "files": [
+      "static/css/_app-pages-browser_src_components_study_GuiaMarkdown_tsx.css",
+      "static/chunks/_app-pages-browser_src_components_study_GuiaMarkdown_tsx.js"
+    ]
+  },
+  "components/study/QuickQuiz.tsx -> @/components/math/MathRenderer": {
+    "id": "components/study/QuickQuiz.tsx -> @/components/math/MathRenderer",
+    "files": [
+      "static/css/_app-pages-browser_src_components_math_MathRenderer_tsx.css",
+      "static/chunks/_app-pages-browser_src_components_math_MathRenderer_tsx.js"
+    ]
+  },
+  "components/study/QuickQuiz.tsx -> canvas-confetti": {
+    "id": "components/study/QuickQuiz.tsx -> canvas-confetti",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_canvas-confetti_dist_confetti_module_mjs.js"
+    ]
+  },
+  "components/study/StudyCourseView.tsx -> @/components/study/FlashcardsPanel": {
+    "id": "components/study/StudyCourseView.tsx -> @/components/study/FlashcardsPanel",
+    "files": [
+      "static/chunks/_app-pages-browser_src_components_study_FlashcardsPanel_tsx.js"
+    ]
+  },
+  "components/study/StudyCourseView.tsx -> @/components/study/GuiaLayout": {
+    "id": "components/study/StudyCourseView.tsx -> @/components/study/GuiaLayout",
+    "files": [
+      "static/chunks/_app-pages-browser_src_components_study_GuiaLayout_tsx.js"
+    ]
+  },
+  "hooks/useHaptics.ts -> @capacitor/haptics": {
+    "id": "hooks/useHaptics.ts -> @capacitor/haptics",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_capacitor_haptics_dist_esm_index_js.js"
+    ]
+  }
+}

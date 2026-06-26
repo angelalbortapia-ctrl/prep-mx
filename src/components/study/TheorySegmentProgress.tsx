@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import { useStudyAppearance } from '@/contexts/StudyAppearanceContext';
 import { cn } from '@/lib/utils';
 
 const segmentSpring = { type: 'spring' as const, stiffness: 280, damping: 22 };
@@ -25,14 +26,17 @@ export function TheorySegmentProgress({
   label = 'Progreso de lectura',
 }: TheorySegmentProgressProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
+  const { isDark } = useStudyAppearance();
   const segments = Math.max(1, totalSegments);
   const filled = Math.min(segments, Math.max(0, filledSegments));
 
   return (
     <div className={cn('space-y-1.5', className)} aria-label={label}>
       <div className="flex items-center justify-between gap-2">
-        <span className="text-[10px] font-black uppercase tracking-wider text-zinc-500">{label}</span>
-        <span className="text-[10px] font-bold tabular-nums text-zinc-400">
+        <span className={cn('text-[10px] font-black uppercase tracking-wider', isDark ? 'text-zinc-500' : 'text-muted-foreground')}>
+          {label}
+        </span>
+        <span className={cn('text-[10px] font-bold tabular-nums', isDark ? 'text-zinc-400' : 'text-muted-foreground')}>
           {filled}/{segments}
         </span>
       </div>
@@ -42,7 +46,10 @@ export function TheorySegmentProgress({
           return (
             <div
               key={i}
-              className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-zinc-800/90"
+              className={cn(
+                'relative h-1.5 flex-1 overflow-hidden rounded-full',
+                isDark ? 'bg-zinc-800/90' : 'bg-muted'
+              )}
             >
               <motion.div
                 initial={false}
