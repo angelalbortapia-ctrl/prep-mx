@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, GraduationCap } from 'lucide-react';
+import { ArrowLeft, GraduationCap, Radio } from 'lucide-react';
 import { AdminRoadmap } from '@/components/admin/admin-roadmap';
 import { AdminOperationsPanel } from '@/components/admin/AdminOperationsPanel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -49,6 +49,13 @@ export default async function AdminPage() {
               <h1 className="text-lg font-bold leading-tight">Curso de implementación</h1>
             </div>
           </div>
+          <Link
+            href="/admin/ticker"
+            className="hidden rounded-lg border bg-white px-3 py-1.5 text-sm text-muted-foreground hover:text-primary sm:flex sm:items-center sm:gap-1.5"
+          >
+            <Radio className="h-3.5 w-3.5" />
+            Ticker
+          </Link>
           <Link
             href="/proyecto"
             className="hidden rounded-lg border bg-white px-3 py-1.5 text-sm text-muted-foreground hover:text-primary sm:block"

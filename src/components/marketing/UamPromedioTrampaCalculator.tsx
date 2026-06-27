@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Calculator } from 'lucide-react';
 import {
   UAM_BACHILLERATO_MAX_POINTS,
+  UAM_EXAMEN_MAX_POINTS,
   UAM_MEDICINA_TOTAL_SCORE,
   uamBachilleratoPoints,
   uamExamReactivosNeeded,
@@ -54,8 +55,9 @@ export function UamPromedioTrampaCalculator({ className }: UamPromedioTrampaCalc
       </div>
 
       <p className="text-xs text-zinc-500">
-        La UAM promedia 30% tu bachillerato (máx. {UAM_BACHILLERATO_MAX_POINTS} pts) y 70% tu examen escrito. Evalúa
-        tu meta en Medicina ({UAM_MEDICINA_TOTAL_SCORE} puntos totales históricos).
+        Fórmula UAM: (promedio × 30) + (% aciertos × 7) en escala 1,000. Tu prepa aporta hasta{' '}
+        {UAM_BACHILLERATO_MAX_POINTS} pts; el examen hasta {UAM_EXAMEN_MAX_POINTS}. Meta Medicina:{' '}
+        {UAM_MEDICINA_TOTAL_SCORE} pts.
       </p>
 
       <label className="mt-5 block text-[10px] font-bold uppercase text-zinc-400">

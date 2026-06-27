@@ -85,7 +85,7 @@ export function LandingPageView({ universidad, plan }: LandingPageViewProps) {
           : 'bg-primary text-primary-foreground';
 
   return (
-    <div className="relative font-sans text-zinc-900">
+    <div className="relative pb-20 font-sans text-zinc-900 md:pb-4">
       <div
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]"
         aria-hidden

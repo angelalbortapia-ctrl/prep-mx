@@ -31,6 +31,8 @@ const marketingItems: NavItem[] = [
 
 const appItems: NavItem[] = [
   { href: '/dashboard/estudio', label: 'Estudio' },
+  { href: '/dashboard/herramientas', label: 'Herramientas' },
+  { href: '/dashboard/comparativa', label: 'Comparativa' },
   { href: '/dashboard/simulacros', label: 'Simulacros' },
   { href: '/dashboard/plan', label: 'Plan' },
   {
@@ -63,7 +65,9 @@ export function SiteNav({ variant, accentBar }: SiteNavProps) {
   const journey = marketingJourneyContext(uni, plan);
 
   const homeHref =
-    variant === 'app' ? '/dashboard' : buildJourneyHref('/', journey);
+    variant === 'app'
+      ? buildJourneyHref('/dashboard', uni !== 'todas' ? { uni, plan: 'universidad' } : undefined)
+      : buildJourneyHref('/', journey);
   const items = variant === 'marketing' ? marketingItems : appItems;
 
   const navLinkClass = (active: boolean) =>
@@ -79,7 +83,7 @@ export function SiteNav({ variant, accentBar }: SiteNavProps) {
     href:
       variant === 'marketing'
         ? buildJourneyHref(item.href, journey)
-        : item.href,
+        : buildJourneyHref(item.href, uni !== 'todas' ? { uni, plan: 'universidad' } : undefined),
   }));
 
   const showDashboard = demo || (isLoaded && isSignedIn);

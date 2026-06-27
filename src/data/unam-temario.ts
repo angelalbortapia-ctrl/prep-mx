@@ -3,8 +3,8 @@
  * Estructura lista para hidratar: añade `topics` por materia cuando el usuario entregue el contenido.
  */
 
-import { UNAM_MATEMATICAS_TOPICS } from './unam-temario-matematicas';
 import { UNAM_FISICA_TOPICS } from './unam-temario-fisica';
+import { UNAM_MATEMATICAS_TOPICS } from './unam-temario-matematicas';
 import { UNAM_QUIMICA_TOPICS } from './unam-temario-quimica';
 import { UNAM_HISTORIA_TOPICS } from './unam-temario-historia';
 import { UNAM_HISTORIA_MEXICO_TOPICS } from './unam-temario-historia-mexico';

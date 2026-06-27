@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { BookOpen, GraduationCap, Search, Sparkles } from 'lucide-react';
+import { BookOpen, GraduationCap, Search, Sparkles, Wrench } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { studyGuideSlugs, getStudyGuide } from '@/data/study-guides';
+import { STUDY_TOOLS } from '@/data/study-tools/tools-meta';
 import { UNI_IDS, getUniThemeEntry } from '@/lib/uni-theme-config';
 import { useUniTheme } from '@/contexts/UniThemeContext';
 import { cn } from '@/lib/utils';
@@ -64,6 +65,15 @@ export function CommandPalette({ globalHotkey = true }: CommandPaletteProps) {
       ];
     });
 
+    const toolItems: CommandItem[] = STUDY_TOOLS.map((tool) => ({
+      id: `tool-${tool.id}`,
+      label: tool.title,
+      hint: tool.tag,
+      href: tool.href,
+      icon: <Wrench className="h-4 w-4" />,
+      keywords: [tool.title, tool.tag ?? '', 'herramienta', tool.slug],
+    }));
+
     const extras: CommandItem[] = [
       {
         id: 'sim',
@@ -81,7 +91,7 @@ export function CommandPalette({ globalHotkey = true }: CommandPaletteProps) {
       },
     ];
 
-    return [...uniItems, ...guideItems, ...extras];
+    return [...uniItems, ...toolItems, ...guideItems, ...extras];
   }, []);
 
   const filtered = useMemo(() => {

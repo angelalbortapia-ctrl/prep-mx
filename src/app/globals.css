@@ -8,6 +8,8 @@
   :root {
     --background: 220 33% 98%;
     --foreground: 224 47% 11%;
+    --ticker-height: 2.75rem;
+    --ticker-uni-filter-height: 1.75rem;
     --card: 0 0% 100%;
     --card-foreground: 224 47% 11%;
     --primary: 224 76% 40%;
@@ -483,7 +485,103 @@
     @apply fixed inset-x-0 bottom-0 z-40 border-t bg-white/95 p-3 backdrop-blur-md md:hidden;
   }
 
+  /* Ticker de admisión — marquee inferior */
+  .university-ticker-shell {
+    height: var(--ticker-height, 2.75rem);
+  }
+
+  .university-ticker-shell.with-uni-filters {
+    height: calc(var(--ticker-height, 2.75rem) + var(--ticker-uni-filter-height, 0px));
+  }
+
+  @media (min-width: 768px) {
+    .university-ticker-shell.with-uni-filters {
+      height: var(--ticker-height, 2.75rem);
+    }
+  }
+
+  @keyframes university-ticker-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .university-ticker-track {
+    animation: university-ticker-scroll var(--ticker-duration, 900s) linear infinite;
+    will-change: transform;
+  }
+
+  .university-ticker:hover .university-ticker-track,
+  .university-ticker:focus-within .university-ticker-track,
+  .university-ticker.is-paused .university-ticker-track {
+    animation-play-state: paused;
+  }
+
+  .university-ticker.no-hover-pause:hover .university-ticker-track,
+  .university-ticker.no-hover-pause:focus-within .university-ticker-track {
+    animation-play-state: running;
+  }
+
+  .university-ticker.no-hover-pause.is-paused .university-ticker-track {
+    animation-play-state: paused;
+  }
+
+  /* Promo — bandita de advertencia (franjas + triángulo) */
+  .ticker-promo-stripe {
+    background: repeating-linear-gradient(
+      -45deg,
+      #000 0,
+      #000 4px,
+      #facc15 4px,
+      #facc15 8px
+    );
+  }
+
+  .ticker-promo-hazard {
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.3));
+  }
+
+  .ticker-promo-hazard-light {
+    filter: none;
+  }
+
+  .ticker-promo-hazard-light .ticker-promo-stripe {
+    opacity: 0.85;
+  }
+
+  @keyframes ticker-vhs-jitter {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(0.5px);
+    }
+  }
+
+  .ticker-vhs-item {
+    animation: ticker-vhs-jitter 0.15s steps(2) infinite;
+  }
+
   @media (prefers-reduced-motion: reduce) {
+    .ticker-vhs-item {
+      animation: none;
+    }
+
+    .university-ticker-track {
+      animation: none;
+      overflow-x: auto;
+      max-width: 100%;
+      scrollbar-width: none;
+    }
+
+    .university-ticker-track::-webkit-scrollbar {
+      display: none;
+    }
+
     .anim-fade-up,
     .anim-delay-1,
     .anim-delay-2,

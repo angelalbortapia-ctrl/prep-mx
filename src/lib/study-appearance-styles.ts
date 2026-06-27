@@ -77,3 +77,13 @@ export function unamHeaderBadge(isDark: boolean) {
       : 'border-[#D4AF37]/30 bg-[#002B49]/10 text-[#002B49]'
   );
 }
+
+/** Badge de temario con acentos de la universidad activa (CSS vars). */
+export function uniThemedHeaderBadge(isDark: boolean) {
+  return cn(
+    'inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider',
+    isDark
+      ? 'border-[hsl(var(--uni-accent)/0.3)] bg-[hsl(var(--uni-primary)/0.25)] text-[hsl(var(--uni-accent))]'
+      : 'border-[hsl(var(--uni-primary)/0.25)] bg-[hsl(var(--uni-primary)/0.08)] text-[hsl(var(--uni-primary))]'
+  );
+}

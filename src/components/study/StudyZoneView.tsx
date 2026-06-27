@@ -1,13 +1,15 @@
 'use client';
 
-import { useState } from 'react';
-import { BookOpen, Focus, X } from 'lucide-react';
+import Link from 'next/link';
+import { useMemo, useState } from 'react';
+import { BookOpen, Focus, Sparkles, X } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { MateriaScroller } from '@/components/study/MateriaScroller';
-import { UnamTemarioSection } from '@/components/study/UnamTemarioSection';
+import { TemarioSection } from '@/components/study/TemarioSection';
 import { CyberCard, NeonStatusBadge } from '@/components/ui/cyber-card';
 import { useStudyAppearance } from '@/contexts/StudyAppearanceContext';
 import { useUniTheme } from '@/contexts/UniThemeContext';
+import { getTemarioForUni, getTemarioMateriaIds, resolveTemarioUniId } from '@/data/temario-registry';
 import type { StudyMateria } from '@/data/study-materias';
 import {
   studyBadge,
@@ -25,8 +27,25 @@ export function StudyZoneView({ materias }: StudyZoneViewProps) {
   const [focusMode, setFocusMode] = useState(false);
   const prefersReducedMotion = useReducedMotion() ?? false;
   const { isDark } = useStudyAppearance();
-  const { entry, hydrated, filterId, uniId } = useUniTheme();
-  const showUnamTemario = filterId === 'unam' || uniId === 'unam';
+  const { entry, hydrated, filterId, uniId, universityTheme } = useUniTheme();
+  const temarioUni = resolveTemarioUniId(filterId, uniId);
+  const scopeIds = useMemo(() => {
+    if (temarioUni === 'unam') return undefined;
+    return Array.from(getTemarioMateriaIds(temarioUni));
+  }, [temarioUni]);
+  const scopedMaterias = useMemo(() => {
+    if (!scopeIds) return materias;
+    const allowed = new Set(scopeIds);
+    return materias.filter((m) => allowed.has(m.id));
+  }, [materias, scopeIds]);
+  const temarioLabels = useMemo(() => {
+    if (temarioUni === 'unam') return undefined;
+    const labels: Record<string, { nombre: string; icon: string }> = {};
+    for (const m of getTemarioForUni(temarioUni).materias) {
+      labels[m.id] = { nombre: m.nombre, icon: m.icon };
+    }
+    return labels;
+  }, [temarioUni]);
 
   const haloStyle = hydrated
     ? { boxShadow: `0 0 48px ${entry.colors.primary}33, 0 0 80px ${entry.colors.accent}22` }
@@ -90,10 +109,23 @@ export function StudyZoneView({ materias }: StudyZoneViewProps) {
                 ¿Qué quieres repasar hoy?
               </h1>
               <p className={cn('mt-2 max-w-xl text-sm', studySubtext(isDark))}>
-                Desliza entre materias y entra a practicar con feedback inmediato.
+                Desliza entre materias y entra a practicar con feedback inmediato. Examen{' '}
+                {universityTheme.shortLabel}.
               </p>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-3 flex flex-wrap items-center gap-2">
                 <NeonStatusBadge tone="active" label="SM-2 sincronizado" />
+                <Link
+                  href="/dashboard/comparativa"
+                  className={cn(
+                    'inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-[10px] font-black uppercase tracking-wider transition-colors',
+                    isDark
+                      ? 'border-zinc-800 text-zinc-400 hover:border-primary/40 hover:text-primary'
+                      : 'border-border text-muted-foreground hover:border-primary/30 hover:text-primary'
+                  )}
+                >
+                  <Sparkles className="h-3 w-3" aria-hidden />
+                  Descubre tu examen ideal
+                </Link>
               </div>
             </div>
 
@@ -116,9 +148,9 @@ export function StudyZoneView({ materias }: StudyZoneViewProps) {
       </AnimatePresence>
 
       <AnimatePresence initial={false}>
-        {!focusMode && showUnamTemario && (
+        {!focusMode && (
           <motion.div
-            key="temario-unam"
+            key={`temario-${temarioUni}`}
             initial={false}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -126,7 +158,7 @@ export function StudyZoneView({ materias }: StudyZoneViewProps) {
             className="mb-8 overflow-hidden"
           >
             <CyberCard className="p-5 md:p-6">
-              <UnamTemarioSection />
+              <TemarioSection />
             </CyberCard>
           </motion.div>
         )}
@@ -162,7 +194,13 @@ export function StudyZoneView({ materias }: StudyZoneViewProps) {
           )}
           style={focusMode ? haloStyle : undefined}
         >
-          <MateriaScroller initialData={materias} focusMode={focusMode} />
+          <MateriaScroller
+            initialData={scopedMaterias}
+            focusMode={focusMode}
+            scopeIds={scopeIds}
+            temarioLabels={temarioLabels}
+            allowGuides={temarioUni === 'unam'}
+          />
         </CyberCard>
       </motion.div>
 

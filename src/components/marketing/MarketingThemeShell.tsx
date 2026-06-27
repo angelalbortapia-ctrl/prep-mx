@@ -4,7 +4,9 @@ import { Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { TickerRenderer } from '@/components/marketing/ticker/TickerRenderer';
 import { AccessRestrictedBanner } from '@/components/system/AccessRestrictedBanner';
+import { useTickerDocumentVars } from '@/hooks/useTickerDocumentVars';
 import { useUniTheme } from '@/contexts/UniThemeContext';
 import { getUniVisualIdentity } from '@/lib/uni-visual-identity';
 import { cn } from '@/lib/utils';
@@ -34,6 +36,12 @@ function ShellInner({ children }: { children: React.ReactNode }) {
   const isSimulador = pathname === '/simulador-gratis';
   const isPrecios = pathname === '/precios';
   const themed = isHome || isSimulador || isPrecios;
+  const showTicker = isHome || isSimulador || isPrecios;
+  useTickerDocumentVars(showTicker);
+  const tickerPadMobile = isHome
+    ? 'pb-[calc(var(--ticker-height)+var(--ticker-uni-filter-height)+3.75rem)]'
+    : 'pb-[calc(var(--ticker-height)+var(--ticker-uni-filter-height))]';
+  const tickerPadDesktop = 'md:pb-[calc(var(--ticker-height)+0.5rem)]';
 
   const universidad = parsePageUniversidad(searchParams.get('uni'));
   const plan = parsePlanScope(searchParams.get('plan'));
@@ -55,9 +63,22 @@ function ShellInner({ children }: { children: React.ReactNode }) {
     >
       <AccessRestrictedBanner />
       <SiteNav variant="marketing" accentBar={theme?.accentBar} />
-      <main className="flex-1">{children}</main>
+      <main
+        className={cn(
+          'flex-1',
+          showTicker && cn(tickerPadMobile, tickerPadDesktop)
+        )}
+      >
+        {children}
+      </main>
+      {showTicker ? <TickerRenderer /> : null}
       <Suspense fallback={null}>
-        <SiteFooter variant="marketing" />
+        <SiteFooter
+          variant="marketing"
+          className={
+            showTicker ? cn(tickerPadMobile, tickerPadDesktop) : undefined
+          }
+        />
       </Suspense>
     </div>
   );

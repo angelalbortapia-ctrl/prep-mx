@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useMemo } from 'react';
 import { ArrowUpRight, Lock } from 'lucide-react';
 import type { StudyMateria } from '@/data/study-materias';
 import { studyGuideSlugs } from '@/data/study-guides';
@@ -19,6 +20,12 @@ import { cn } from '@/lib/utils';
 interface MateriaScrollerProps {
   initialData: StudyMateria[];
   focusMode?: boolean;
+  /** Limita módulos visibles (p. ej. materias del examen UAM/IPN). */
+  scopeIds?: string[];
+  /** Etiquetas del temario oficial (nombre/ícono) para la uni activa. */
+  temarioLabels?: Record<string, { nombre: string; icon: string }>;
+  /** Guías interactivas solo disponibles para temario UNAM por ahora. */
+  allowGuides?: boolean;
 }
 
 const availableSlugs = new Set(studyGuideSlugs);
@@ -26,10 +33,21 @@ const availableSlugs = new Set(studyGuideSlugs);
 /** Minutos estimados por tema para cápsulas de lectura (~5 min). */
 const MINUTES_PER_TOPIC = 5;
 
-export function MateriaScroller({ initialData, focusMode = false }: MateriaScrollerProps) {
+export function MateriaScroller({
+  initialData,
+  focusMode = false,
+  scopeIds,
+  temarioLabels,
+  allowGuides = true,
+}: MateriaScrollerProps) {
   const { data: materias = initialData, isFetching, isLoading } = useStudyMaterias(initialData);
   const { isDark } = useStudyAppearance();
-  const showSkeleton = isLoading && materias.length === 0;
+  const visibleMaterias = useMemo(() => {
+    if (!scopeIds?.length) return materias;
+    const allowed = new Set(scopeIds);
+    return materias.filter((m) => allowed.has(m.id));
+  }, [materias, scopeIds]);
+  const showSkeleton = isLoading && visibleMaterias.length === 0;
 
   return (
     <section className="space-y-3">
@@ -54,15 +72,21 @@ export function MateriaScroller({ initialData, focusMode = false }: MateriaScrol
             focusMode && 'md:grid-cols-2 xl:grid-cols-2'
           )}
         >
-          {materias.map((materia) => (
-            <MateriaCard
-              key={materia.id}
-              materia={materia}
-              available={availableSlugs.has(materia.id)}
-              focusMode={focusMode}
-              isDark={isDark}
-            />
-          ))}
+          {visibleMaterias.map((materia) => {
+            const label = temarioLabels?.[materia.id];
+            const display = label
+              ? { ...materia, nombre: label.nombre, icon: label.icon }
+              : materia;
+            return (
+              <MateriaCard
+                key={materia.id}
+                materia={display}
+                available={allowGuides && availableSlugs.has(materia.id)}
+                focusMode={focusMode}
+                isDark={isDark}
+              />
+            );
+          })}
         </div>
       )}
     </section>

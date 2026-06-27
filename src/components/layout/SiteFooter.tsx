@@ -25,6 +25,9 @@ export function SiteFooter({ variant = 'marketing', className }: SiteFooterProps
   const journey = marketingJourneyContext(uni, plan);
 
   if (variant === 'app') {
+    const appJourney =
+      uni !== 'todas' ? { uni, plan: 'universidad' as const } : undefined;
+
     return (
       <footer
         className={cn(
@@ -34,10 +37,16 @@ export function SiteFooter({ variant = 'marketing', className }: SiteFooterProps
       >
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 md:px-8">
           <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-            <Link href="/dashboard" className="font-semibold text-foreground hover:underline">
+            <Link
+              href={buildJourneyHref('/dashboard', appJourney)}
+              className="font-semibold text-foreground hover:underline"
+            >
               Mi espacio
             </Link>
-            <Link href="/dashboard/estudio" className="hover:text-foreground hover:underline">
+            <Link
+              href={buildJourneyHref('/dashboard/estudio', appJourney)}
+              className="hover:text-foreground hover:underline"
+            >
               Estudio
             </Link>
             <Link href="/aviso-de-privacidad" className="hover:text-foreground hover:underline">

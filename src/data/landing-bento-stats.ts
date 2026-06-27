@@ -1,3 +1,8 @@
+import {
+  calculateUamDiezmo,
+  UAM_EXAM_QUESTIONS,
+} from '@/data/study-tools/uam-diezmo';
+
 export interface UniBentoStats {
   acceptanceRate?: string;
   acceptanceLabel?: string;
@@ -22,33 +27,30 @@ export const LANDING_BENTO_STATS: Record<'unam' | 'ipn' | 'uam', UniBentoStats> 
     environmentNote: 'Examen 100% digital en línea',
   },
   uam: {
-    flagshipCareer: 'Medicina (CAD Xochimilco)',
-    flagshipCutoff: '88 puntos totales históricos',
-    competitionNote: '70% promedio de bachillerato · 30% examen escrito',
+    flagshipCareer: 'Medicina (UAM Xochimilco)',
+    flagshipCutoff: '806 pts históricos (escala 1,000)',
+    competitionNote: '30% promedio de prepa · 70% examen escrito',
     environmentNote: 'Examen de Selección en Línea',
   },
 };
 
-/** Puntaje total histórico requerido para Medicina UAM (escala 0–100). */
-export const UAM_MEDICINA_TOTAL_SCORE = 88;
+/** Puntaje total histórico Medicina UAM — escala oficial 0–1,000. */
+export const UAM_MEDICINA_TOTAL_SCORE = 806;
 
-/** Puntos máximos del promedio de bachillerato (70% del puntaje total). */
-export const UAM_BACHILLERATO_MAX_POINTS = 30;
+/** Máximo aporte del promedio de prepa (promedio 10 × 30). */
+export const UAM_BACHILLERATO_MAX_POINTS = 300;
 
-/** Puntos máximos del examen escrito (30% del puntaje total = 70 reactivos). */
-export const UAM_EXAMEN_MAX_POINTS = 70;
+/** Máximo aporte del examen (100 % aciertos × 7). */
+export const UAM_EXAMEN_MAX_POINTS = 700;
 
 export function uamBachilleratoPoints(promedio: number): number {
-  const clamped = Math.min(10, Math.max(0, promedio));
-  return Math.min(UAM_BACHILLERATO_MAX_POINTS, Math.round(clamped * 3 * 10) / 10);
+  const prepa = Math.min(10, Math.max(0, promedio));
+  return prepa * 30;
 }
 
 export function uamExamReactivosNeeded(
   promedio: number,
   totalRequired = UAM_MEDICINA_TOTAL_SCORE
 ): number {
-  const bachillerato = uamBachilleratoPoints(promedio);
-  const puntosExamen = Math.max(0, totalRequired - bachillerato);
-  const reactivos = Math.ceil((puntosExamen / UAM_EXAMEN_MAX_POINTS) * 120);
-  return Math.min(120, reactivos);
+  return calculateUamDiezmo(promedio, totalRequired, UAM_EXAM_QUESTIONS).correctAnswersRounded;
 }

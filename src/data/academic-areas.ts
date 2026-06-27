@@ -39,20 +39,43 @@ const UAM_DIVISIONS: AcademicArea[] = [
   {
     id: 'cbi',
     label: 'CBI — Ciencias Básicas e Ingeniería',
-    description: 'Matemáticas, física y química aplicada.',
-    weights: { matematicas: 35, fisica: 30, quimica: 25, espanol: 10 },
+    description: 'Matemáticas avanzadas, física y química.',
+    weights: { matematicas: 24, fisica: 24, quimica: 24 },
   },
   {
     id: 'cbs',
     label: 'CBS — Ciencias Biológicas y de la Salud',
-    description: 'Biología, química y razonamiento.',
-    weights: { biologia: 35, quimica: 30, matematicas: 20, espanol: 15 },
+    description: 'Biología, química orgánica y física médica.',
+    weights: { biologia: 30, quimica: 24, fisica: 18 },
   },
   {
     id: 'csh',
     label: 'CSH — Ciencias Sociales y Humanidades',
-    description: 'Historia, geografía y comprensión.',
-    weights: { historia: 30, geografia: 25, espanol: 30, matematicas: 15 },
+    description: 'Historia, literatura y política.',
+    weights: { historia: 24, literatura: 24, 'formacion-civica': 24 },
+  },
+  {
+    id: 'cad',
+    label: 'CAD — Ciencias y Artes para el Diseño',
+    description: 'Diseño, arte, geometría técnica y física aplicada.',
+    weights: {
+      diseno: 18,
+      'arte-arquitectura': 18,
+      'dibujo-tecnico': 18,
+      'fisica-diseno': 18,
+    },
+  },
+  {
+    id: 'cni',
+    label: 'CNI — Ciencias Naturales e Ingeniería (Cuajimalpa)',
+    description: 'División exclusiva del campus Cuajimalpa.',
+    weights: { 'cni-cuajimalpa': 72 },
+  },
+  {
+    id: 'ccd',
+    label: 'CCD — Comunicación y Diseño (Cuajimalpa)',
+    description: 'División exclusiva del campus Cuajimalpa.',
+    weights: { 'ccd-cuajimalpa': 72 },
   },
 ];
 
@@ -60,8 +83,16 @@ const IPN_GENERAL: AcademicArea[] = [
   {
     id: 'general',
     label: 'Examen general IPN',
-    description: 'Distribución estándar del examen de ingreso.',
-    weights: { matematicas: 30, fisica: 25, quimica: 20, espanol: 25 },
+    description: 'Distribución estándar del examen de ingreso digital.',
+    weights: {
+      matematicas: 29,
+      fisica: 25,
+      quimica: 18,
+      biologia: 9,
+      espanol: 9,
+      ingles: 6,
+      historia: 4,
+    },
   },
 ];
 

@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "WATCHPACK_POLLING=true next dev",
     "dev:clean": "rm -rf .next .next-dev.nosync \"$HOME/.cache/prep-mx-next-dev\" && WATCHPACK_POLLING=true next dev",
+    "dev:reset": "bash scripts/dev-reset.sh",
+    "gen:ipn": "node scripts/gen-ipn-matematicas.mjs && node scripts/gen-ipn-fisica.mjs && node scripts/gen-ipn-quimica.mjs && node scripts/gen-ipn-biologia.mjs && node scripts/gen-ipn-espanol.mjs && node scripts/gen-ipn-ingles.mjs && node scripts/gen-ipn-historia.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

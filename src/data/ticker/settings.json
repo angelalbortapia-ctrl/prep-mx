@@ -1,0 +1,30 @@
+{
+  "theme": {
+    "layoutId": "neon-outline",
+    "brandLabel": "PrepMX",
+    "liveLabel": "Live",
+    "simularLabel": "Simular",
+    "accentPrimary": "#22d3ee",
+    "accentSecondary": "#e879f9",
+    "background": "#050510",
+    "borderColor": "#22d3ee",
+    "badgeTextColor": "#22d3ee",
+    "itemTextColor": "#22d3ee",
+    "glowOpacity": 0.35,
+    "speedMultiplier": 2.2,
+    "fontSize": "xs",
+    "itemGap": "normal",
+    "barHeight": "3.25rem",
+    "borderStyle": "glow",
+    "showUniFilters": false,
+    "showLiveBadge": true,
+    "showSimularLink": false,
+    "showPauseButton": false,
+    "pauseOnHover": true,
+    "scanlines": false,
+    "blurBackdrop": false,
+    "roundedTrack": false,
+    "showItemBadges": false,
+    "uppercaseBadges": true
+  }
+}

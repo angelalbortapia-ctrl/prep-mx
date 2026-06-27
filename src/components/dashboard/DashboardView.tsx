@@ -9,6 +9,7 @@ import { PageHeader } from '@/components/layout/PageHeader';
 import { StreakWidget } from '@/components/dashboard/StreakWidget';
 import { WeaknessRadar } from '@/components/dashboard/WeaknessRadar';
 import { StudyCalendar } from '@/components/dashboard/StudyCalendar';
+import { OnboardingAffinityBanner } from '@/components/comparativa/OnboardingAffinityBanner';
 import { useUniTheme } from '@/hooks/useUniTheme';
 import { examCountdownLabel, getAdmissionMilestones } from '@/data/admission-timeline';
 
@@ -20,6 +21,8 @@ export function DashboardView() {
 
   return (
     <div className="space-y-8">
+      <OnboardingAffinityBanner />
+
       <PageHeader
         badge={<Badge variant="secondary">{entry.shortLabel}</Badge>}
         title="Hola, bienvenido de vuelta"
@@ -76,7 +79,7 @@ export function DashboardView() {
             <Link href="/dashboard/tutor">Tutor IA</Link>
           </Button>
           <Button asChild variant="outline" className="h-11 rounded-xl">
-            <Link href="/dashboard/diagnostico/demo">Último diagnóstico</Link>
+            <Link href="/dashboard/comparativa">Descubre tu examen ideal</Link>
           </Button>
         </CardContent>
       </Card>
