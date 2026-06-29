@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { CyberCard } from '@/components/ui/cyber-card';
 import { Badge } from '@/components/ui/badge';
 import { AcceptanceGauge } from '@/components/profile/AcceptanceGauge';
-import { BanquilloPanel } from '@/components/profile/BanquilloPanel';
+import { BanquilloPanel } from '@/components/bookmarks/BanquilloPanel';
 import { ConsistencyHeatmap } from '@/components/profile/ConsistencyHeatmap';
 import { StudentGarageHeader } from '@/components/profile/StudentGarageHeader';
 import { useSubscription } from '@/contexts/SubscriptionContext';
@@ -70,7 +70,9 @@ export default function PerfilPage() {
             variant="outline"
             className="mt-2 h-11 w-full rounded-xl border-zinc-700 bg-zinc-900 text-zinc-200 hover:border-[hsl(var(--uni-primary))] hover:bg-zinc-950"
           >
-            <Link href="/onboarding">Editar configuración</Link>
+            <Link href={profile?.authenticated ? '/onboarding' : '/sign-up?redirect_url=%2Fonboarding'}>
+              {profile?.authenticated ? 'Editar configuración' : 'Iniciar sesión para editar'}
+            </Link>
           </Button>
         </div>
       </CyberCard>

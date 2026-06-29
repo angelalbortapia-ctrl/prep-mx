@@ -228,6 +228,7 @@ function TickerChrome({
   return (
     <TickerShell
       previewMode={props.previewMode}
+      placement={props.placement}
       hasMobileCta={props.hasMobileCta}
       paused={props.paused}
       className={cn(

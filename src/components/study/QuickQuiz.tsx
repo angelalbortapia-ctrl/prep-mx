@@ -4,6 +4,9 @@ import { useCallback, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowDownToLine, CheckCircle2, Sparkles, XCircle } from 'lucide-react';
+import { ExamOptionCard } from '@/components/exam/ExamOptionCard';
+import { examFeedback, metricStatus } from '@/lib/design-system/colors';
+import { pressScale } from '@/lib/design-system/interactive';
 import { cn } from '@/lib/utils';
 import { useHaptics } from '@/hooks/useHaptics';
 import { useStudyProgress } from '@/hooks/useStudyProgress';
@@ -91,42 +94,22 @@ function QuizItem({ slug, question, index }: QuizItemProps) {
         </div>
       </div>
 
-      <ul className="space-y-2.5" role="listbox" aria-label={`Opciones pregunta ${index + 1}`}>
+      <ul className="space-y-3" role="listbox" aria-label={`Opciones pregunta ${index + 1}`}>
         {question.opciones.map((opcion) => {
-          const isSelected = selected === opcion.id;
-          const isCorrectOption = opcion.id === question.opcion_correcta;
           const reveal = state !== 'idle';
 
           return (
             <li key={opcion.id}>
-              <button
-                type="button"
-                role="option"
-                aria-selected={isSelected}
+              <ExamOptionCard
+                optionId={opcion.id}
+                correctAnswer={question.opcion_correcta}
+                selectedOption={selected ?? undefined}
+                answered={reveal}
                 disabled={answeredCorrect}
-                onClick={() => handleSelect(opcion.id)}
-                className={cn(
-                  'flex min-h-14 w-full items-center gap-3 rounded-xl border-2 px-4 py-3 text-left transition-transform active:scale-[0.98]',
-                  !reveal && 'border-border bg-background sm:hover:border-primary/40',
-                  reveal && isCorrectOption && 'border-green-400 bg-green-50 dark:bg-green-950/30',
-                  reveal && isSelected && !isCorrectOption && 'border-red-300 bg-red-50 dark:bg-red-950/30',
-                  reveal && !isCorrectOption && !isSelected && 'border-border opacity-60'
-                )}
+                onSelect={handleSelect}
               >
-                <span
-                  className={cn(
-                    'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border-2 text-sm font-bold',
-                    reveal && isCorrectOption && 'border-green-500 bg-green-500 text-white',
-                    reveal && isSelected && !isCorrectOption && 'border-red-400 bg-red-400 text-white',
-                    (!reveal || (!isCorrectOption && !isSelected)) && 'border-border text-muted-foreground'
-                  )}
-                >
-                  {opcion.id}
-                </span>
-                <span className="flex-1 text-sm font-medium">
-                  <MathRenderer content={opcion.texto} variant="inline" />
-                </span>
-              </button>
+                <MathRenderer content={opcion.texto} variant="exam-option" />
+              </ExamOptionCard>
             </li>
           );
         })}
@@ -143,11 +126,14 @@ function QuizItem({ slug, question, index }: QuizItemProps) {
             }
             exit={{ opacity: 0 }}
             transition={{ duration: 0.45 }}
-            className="mt-4 flex items-start gap-2.5 rounded-xl border-2 border-green-200 bg-green-50/80 p-4 dark:border-green-900/50 dark:bg-green-950/20"
+            className={cn(
+              'mt-4 flex items-start gap-2.5 rounded-xl border-2 p-4',
+              metricStatus.mastered.surfaceStrong
+            )}
           >
-            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-green-600" aria-hidden />
+            <Sparkles className={cn('mt-0.5 h-5 w-5 shrink-0', examFeedback.correctIcon)} aria-hidden />
             <div>
-              <p className="flex items-center gap-1.5 font-semibold text-green-700 dark:text-green-400">
+              <p className={cn('flex items-center gap-1.5 font-semibold', examFeedback.correctIcon)}>
                 <CheckCircle2 className="h-4 w-4" aria-hidden />
                 ¡Correcto!
               </p>
@@ -165,16 +151,22 @@ function QuizItem({ slug, question, index }: QuizItemProps) {
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="mt-4 flex flex-col gap-3 rounded-xl border-2 border-amber-200 bg-amber-50/80 p-4 dark:border-amber-900/50 dark:bg-amber-950/20"
+            className={cn(
+              'mt-4 flex flex-col gap-3 rounded-xl border-2 p-4',
+              metricStatus.review.surfaceStrong
+            )}
           >
-            <p className="flex items-center gap-1.5 font-semibold text-amber-700 dark:text-amber-400">
+            <p className={cn('flex items-center gap-1.5 font-semibold', examFeedback.reviewIcon)}>
               <XCircle className="h-4 w-4" aria-hidden />
               Casi — repasa el concepto
             </p>
             <button
               type="button"
               onClick={() => scrollToAnchor(question.anchorId)}
-              className="inline-flex min-h-12 items-center justify-center gap-2 self-start rounded-xl bg-amber-500 px-4 py-2.5 text-sm font-semibold text-white transition-transform active:scale-[0.98]"
+              className={cn(
+                'inline-flex min-h-12 items-center justify-center gap-2 self-start rounded-xl bg-amber-500 px-4 py-2.5 text-sm font-semibold text-white',
+                pressScale
+              )}
             >
               <ArrowDownToLine className="h-4 w-4" aria-hidden />
               Revisar teoría de nuevo

@@ -1,3 +1,9 @@
+import { createHash } from 'node:crypto';
+import {
+  extractMediaFromImportRow,
+  normalizeMediaPathsForDb,
+} from '../src/lib/question-media';
+
 /** Gemini a veces escribe { "id": "D": "texto" } sin la clave "texto". */
 export function fixGeminiJsonTypos(raw: string): string {
   return raw.replace(/"id":\s*"([ABCD])":\s*"/g, '"id": "$1", "texto": "');
@@ -36,7 +42,6 @@ export function fixGeminiJsonQuotes(raw: string): string {
         if (!isClosing && next === ',') {
           let k = j + 1;
           while (k < raw.length && /\s/.test(raw[k])) k++;
-          // Cierre real: después de la coma viene otra clave JSON entre comillas
           isClosing = raw[k] === '"';
         }
 
@@ -65,20 +70,23 @@ export function normalizeGeminiText(text: string | undefined | null): string {
     text
       .replace(/\u2212/g, '-')
       .replace(/\r\n/g, '\n')
-      // "25\n" al final de opción → 25%
       .replace(/(\d)\s*\n\s*("|$)/g, '$1%$2')
-      // x\n2\n → x^2 (exponentes rotos)
       .replace(/([a-zA-Z])\s*\n\s*(\d+)\s*\n/g, '$1^$2')
-      // H₂O rotos: H \n2\n → H_2
       .replace(/([A-Za-z])\s*\n\s*(\d+)\s*\n/g, '$1_$2')
-      // espacios múltiples
       .replace(/[ \t]+/g, ' ')
       .replace(/\n{3,}/g, '\n\n')
       .trim()
   );
 }
 
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
 export interface GeminiQuestion {
+  /** Slug estable opcional — preferido para upsert al corregir KaTeX */
+  import_key?: string;
+  slug?: string;
+  id?: string;
   universidad: string;
   area?: string;
   materia: string;
@@ -88,14 +96,61 @@ export interface GeminiQuestion {
   opcion_correcta: string;
   explicacion: string;
   dificultad?: string;
+  /** Rutas CDN Bunny (no Base64). */
+  media?: import('@/lib/question-media').QuestionMediaStored;
+  imagen?: string;
+  imagen_stem?: string;
+  image?: string;
+  imagen_url?: string;
   [key: string]: unknown;
+}
+
+/**
+ * Clave estable para upsert. Prioridad:
+ * 1. `import_key` / `slug` / `id` explícito en el JSON (no UUID de BD)
+ * 2. Hash de universidad + materia + tema + respuesta correcta + opciones
+ */
+export function computeQuestionImportKey(q: GeminiQuestion): string {
+  const raw =
+    (typeof q.import_key === 'string' && q.import_key.trim()) ||
+    (typeof q.slug === 'string' && q.slug.trim()) ||
+    (typeof q.id === 'string' && q.id.trim() && !UUID_RE.test(q.id) ? q.id.trim() : '');
+
+  if (raw) {
+    return raw.toLowerCase().replace(/\s+/g, '-').slice(0, 120);
+  }
+
+  const fingerprint = [
+    String(q.universidad).toLowerCase().trim(),
+    String(q.materia).toLowerCase().trim(),
+    String(q.tema).toLowerCase().trim(),
+    String(q.opcion_correcta).toUpperCase().trim(),
+    JSON.stringify(
+      (Array.isArray(q.opciones) ? q.opciones : []).map((o) =>
+        normalizeGeminiText(typeof o === 'object' && o && 'texto' in o ? String(o.texto) : String(o))
+      )
+    ),
+  ].join('|');
+
+  return createHash('sha256').update(fingerprint).digest('hex').slice(0, 32);
 }
 
 export function toDbRow(q: GeminiQuestion) {
   if (!q.pregunta || !q.opcion_correcta || !q.opciones?.length) {
     throw new Error(`Pregunta incompleta: ${q.pregunta?.slice(0, 60) ?? '(sin texto)'}`);
   }
+  const importKey = computeQuestionImportKey(q);
+  const mediaRaw = extractMediaFromImportRow(q as Record<string, unknown>);
+  const media = mediaRaw
+    ? normalizeMediaPathsForDb(mediaRaw, {
+        universidad: q.universidad,
+        materia: q.materia,
+        questionId: importKey,
+      })
+    : {};
+
   return {
+    import_key: importKey,
     universidad: q.universidad,
     materia: q.materia,
     tema: q.tema,
@@ -107,5 +162,6 @@ export function toDbRow(q: GeminiQuestion) {
     opcion_correcta: q.opcion_correcta,
     explicacion: normalizeGeminiText(q.explicacion),
     dificultad: q.dificultad ?? 'medium',
+    media,
   };
 }

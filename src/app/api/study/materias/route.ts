@@ -1,18 +1,17 @@
 import { NextResponse } from 'next/server';
-import { getStudyMaterias } from '@/data/study-materias';
+import {
+  getCachedStudyMaterias,
+  STATIC_CATALOG_MATERIAS_HEADERS,
+  STATIC_CATALOG_REVALIDATE_SECONDS,
+} from '@/lib/cache/static-catalog';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = STATIC_CATALOG_REVALIDATE_SECONDS;
 
-/** Materias de la Zona de Estudio (cacheable por TanStack Query en el cliente). */
+/** Materias de la Zona de Estudio — catálogo estático (src/data), cacheado en servidor. */
 export async function GET() {
-  const materias = getStudyMaterias();
+  const materias = await getCachedStudyMaterias();
   return NextResponse.json(
     { materias, fetchedAt: new Date().toISOString() },
-    {
-      headers: {
-        // Permite SWR a nivel CDN/navegador; el caché fuerte vive en TanStack.
-        'Cache-Control': 'public, max-age=0, s-maxage=600, stale-while-revalidate=86400',
-      },
-    }
+    { headers: STATIC_CATALOG_MATERIAS_HEADERS }
   );
 }

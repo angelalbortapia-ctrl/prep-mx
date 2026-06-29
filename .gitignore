@@ -6,6 +6,8 @@ node_modules/
 # Next.js
 .next/
 .next-dev.nosync/
+# Caché de dev mal ubicada dentro del repo (distDir relativo)
+/Users/
 *.nosync/
 out/
 build/
@@ -47,6 +49,7 @@ Thumbs.db
 
 # Supabase
 supabase/.temp/
+backups/
 
 # Sentry
 .sentryclirc

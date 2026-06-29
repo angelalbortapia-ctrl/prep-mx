@@ -6,7 +6,9 @@ import type { TickerUniFilter } from '@/data/ticker';
 import type { TickerItem } from '@/data/ticker/types';
 import { useUniThemeOptional } from '@/contexts/UniThemeContext';
 import { filterToUniId } from '@/lib/uni-theme-config';
-import { prepareTickerFeed } from '@/lib/ticker/feed';
+import { prepareDashboardAvisosFeed, prepareTickerFeed } from '@/lib/ticker/feed';
+
+export type TickerSurface = 'marketing' | 'dashboard';
 
 function parseUrlUni(raw: string | null): TickerUniFilter | null {
   if (raw === 'unam' || raw === 'ipn' || raw === 'uam') return raw;
@@ -31,13 +33,14 @@ export function useTickerController(
   items: TickerItem[],
   showUniFilters: boolean,
   previewMode = false,
-  previewFilter: TickerUniFilter = 'all'
+  previewFilter: TickerUniFilter = 'all',
+  surface: TickerSurface = 'marketing'
 ) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
   const uniTheme = useUniThemeOptional();
-  const hasMobileCta = pathname === '/';
+  const hasMobileCta = surface === 'marketing' && pathname === '/';
 
   const [paused, setPaused] = useState(false);
   const [tabOverride, setTabOverride] = useState<TickerUniFilter | null>(null);
@@ -56,16 +59,26 @@ export function useTickerController(
     if (parseUrlUni(urlUni)) setTabOverride(null);
   }, [urlUni, previewMode, showUniFilters]);
 
-  const filtered = useMemo(
-    () => prepareTickerFeed(items, filter),
-    [items, filter]
-  );
+  const filtered = useMemo(() => {
+    const prepare =
+      surface === 'dashboard' ? prepareDashboardAvisosFeed : prepareTickerFeed;
+    return prepare(items, filter);
+  }, [items, filter, surface]);
 
   const onFilterChange = useCallback(
     (id: TickerUniFilter) => {
       if (previewMode) return;
 
       if (showUniFilters) setTabOverride(id);
+
+      if (surface === 'dashboard') {
+        if (id === 'all') {
+          uniTheme?.setUniId('todos', { syncUrl: false });
+        } else {
+          uniTheme?.setUniId(filterToUniId(id), { syncUrl: false });
+        }
+        return;
+      }
 
       const params = new URLSearchParams(searchParams.toString());
 
@@ -82,7 +95,7 @@ export function useTickerController(
       const qs = params.toString();
       router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
     },
-    [previewMode, showUniFilters, searchParams, pathname, router, uniTheme]
+    [previewMode, showUniFilters, surface, searchParams, pathname, router, uniTheme]
   );
 
   const onTogglePause = useCallback(() => setPaused((p) => !p), []);

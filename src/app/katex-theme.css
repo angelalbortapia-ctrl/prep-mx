@@ -1,0 +1,46 @@
+/**
+ * Overrides de KaTeX — importar DESPUÉS de katex.min.css.
+ * El CSS oficial fija color negro; heredamos --foreground del tema (incl. .dark).
+ */
+
+.math-content {
+  color: hsl(var(--foreground));
+}
+
+.math-content .katex {
+  color: inherit;
+  font-family: KaTeX_Main, KaTeX_Math, 'Times New Roman', serif;
+}
+
+.math-content .katex .mord,
+.math-content .katex .mop,
+.math-content .katex .mbin,
+.math-content .katex .mrel,
+.math-content .katex .mopen,
+.math-content .katex .mclose,
+.math-content .katex .mpunct,
+.math-content .katex .minner,
+.math-content .katex .mtext,
+.math-content .katex .mathnormal,
+.math-content .katex .mathit,
+.math-content .katex .mathbf,
+.math-content .katex .amsrm,
+.math-content .katex .textrm {
+  color: inherit;
+}
+
+/* Barras de fracción, raíz y adornos — siguen el color del texto */
+.math-content .katex .frac-line,
+.math-content .katex .overline .overline-line,
+.math-content .katex .underline .underline-line,
+.math-content .katex .sqrt > .sqrt-sign {
+  color: inherit;
+}
+
+.math-content .katex .frac-line {
+  border-bottom-color: currentColor;
+}
+
+.math-content--fallback {
+  color: hsl(var(--foreground));
+}

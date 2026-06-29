@@ -8,7 +8,8 @@ import { useUniTheme } from '@/hooks/useUniTheme';
 import { filterToUniId } from '@/lib/uni-theme-config';
 import { getUniVisualIdentity } from '@/lib/uni-visual-identity';
 import { playGameSound } from '@/lib/play-game-sound';
-import { getLandingAccent, landingBody, landingSectionTitle } from '@/lib/landing-typography';
+import { getLandingAccent, landingBody, landingSection, landingSectionHeader, landingSectionLead, landingSectionTitle } from '@/lib/landing-typography';
+import { landingContainer } from '@/lib/design-system/layout';
 import { type UniversidadFilter } from '@/lib/university-theme';
 import { cn } from '@/lib/utils';
 
@@ -137,7 +138,7 @@ function ShowcaseSimulacrosView({ accentHex, examShellClass, neonClass }: Showca
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={springTransition}
-              className="absolute right-3 top-3 z-10 rounded-full bg-green-500 px-3 py-1 text-xs font-bold text-white shadow-lg shadow-green-500/30"
+              className="absolute right-3 top-3 z-10 rounded-full bg-emerald-500 px-3 py-1 text-xs font-bold text-white shadow-lg shadow-emerald-500/30"
             >
               ¡Correcto!
             </motion.span>
@@ -165,8 +166,8 @@ function ShowcaseSimulacrosView({ accentHex, examShellClass, neonClass }: Showca
                   'w-full rounded-xl border px-4 py-3 text-left text-sm tap-transparent transition-all duration-200',
                   !showResult &&
                     'border-border bg-muted/50 hover:border-primary/50 hover:bg-primary/[0.06] hover:shadow-md hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50',
-                  showResult && correct && 'border-green-400 bg-green-50 font-medium text-green-800',
-                  showResult && isPicked && !correct && 'border-red-300 bg-red-50 font-medium text-red-800',
+                  showResult && correct && 'border-emerald-500/40 bg-emerald-500/10 font-medium text-emerald-800 dark:text-emerald-200',
+                  showResult && isPicked && !correct && 'border-rose-500/40 bg-rose-500/10 font-medium text-rose-800 dark:text-rose-200',
                   showResult && !isPicked && !correct && 'opacity-50'
                 )}
               >
@@ -238,7 +239,7 @@ function ShowcasePresionView({ metricClass }: { metricClass: string }) {
       <motion.div
         className={cn(
           'font-sans text-7xl font-black tabular-nums tracking-tight md:text-8xl',
-          urgent ? 'text-red-600 showcase-weak-blink' : 'text-foreground',
+          urgent ? 'text-rose-500 showcase-weak-blink' : 'text-foreground',
           metricClass
         )}
         animate={urgent && !prefersReducedMotion ? { scale: [1, 1.03, 1] } : { scale: 1 }}
@@ -283,7 +284,7 @@ function ShowcasePresionView({ metricClass }: { metricClass: string }) {
       <div className="w-full max-w-sm">
         <div className="h-2 overflow-hidden rounded-full bg-muted">
           <motion.div
-            className={cn('h-full rounded-full', urgent ? 'bg-red-500' : 'bg-primary')}
+            className={cn('h-full rounded-full', urgent ? 'bg-rose-500' : 'bg-indigo-600')}
             style={{ width: `${(secondsLeft / REACTIVO_SECONDS) * 100}%` }}
             layout
             transition={springTransition}
@@ -366,7 +367,7 @@ function ShowcaseComunidadView({
 
 interface ProductShowcaseProps {
   universidad: UniversidadFilter;
-  variant?: 'default' | 'viewport';
+  variant?: 'default' | 'viewport' | 'embed';
 }
 
 export function ProductShowcase({ universidad, variant = 'default' }: ProductShowcaseProps) {
@@ -384,41 +385,19 @@ export function ProductShowcase({ universidad, variant = 'default' }: ProductSho
   const isUam = effectiveUniId === 'uam';
 
   const transition = prefersReducedMotion ? { duration: 0 } : springTransition;
+  const isEmbed = variant === 'embed';
   const isViewport = variant === 'viewport';
   const isPresion = activeDemoTab === 'presion';
 
-  return (
-    <section
-      id="showcase"
-      className={cn('scroll-mt-24 font-sans', isViewport ? 'mx-auto w-full max-w-5xl px-4 py-6' : 'py-10 md:py-14')}
-      aria-label="Tour interactivo del producto"
+  const demoChrome = (
+    <div
+      className={cn(
+        'overflow-hidden border border-border shadow-lg',
+        isEmbed ? 'rounded-xl' : 'rounded-2xl'
+      )}
     >
-      <motion.div
-        className="mb-5 text-center"
-        initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={springTransition}
-      >
-        <span
-          className="inline-flex rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider"
-          style={
-            hydrated
-              ? { borderColor: `${landingAccent.primary}40`, color: landingAccent.primary, backgroundColor: `${landingAccent.primary}10` }
-              : undefined
-          }
-        >
-          Interés · Prueba el producto
-        </span>
-        <h2 className={cn('mt-3', landingSectionTitle)}>Siente la presión del examen real</h2>
-        <p className={cn('mx-auto mt-3 max-w-2xl', landingBody)}>
-          Cuatro modos demo: responde un reactivo, entrena el cronómetro, compite con tu tribu y mira tu diagnóstico.
-        </p>
-      </motion.div>
-
-      <div className="overflow-hidden rounded-2xl border border-zinc-200 shadow-lg">
       <nav
-        className="mb-0 flex overflow-x-auto border-b border-zinc-200 bg-zinc-50"
+        className="mb-0 flex overflow-x-auto border-b border-border bg-muted scrollbar-none"
         aria-label="Módulos del producto"
       >
         {DEMO_TABS.map(({ id, label }) => {
@@ -429,10 +408,10 @@ export function ProductShowcase({ universidad, variant = 'default' }: ProductSho
               type="button"
               onClick={() => setActiveDemoTab(id)}
               className={cn(
-                'tap-transparent min-w-[120px] flex-1 border-b-2 px-2 py-4 text-center text-xs font-bold transition-all',
+                'tap-transparent min-h-11 min-w-[5rem] shrink-0 flex-1 border-b-2 px-2 py-2.5 text-center text-[10px] font-bold leading-tight transition-all sm:min-w-[110px] sm:py-3 sm:text-xs',
                 active
-                  ? 'border-zinc-900 bg-white text-zinc-900'
-                  : 'border-transparent text-zinc-500 hover:text-zinc-900'
+                  ? 'border-foreground bg-card text-foreground'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
               )}
               aria-pressed={active}
             >
@@ -444,20 +423,20 @@ export function ProductShowcase({ universidad, variant = 'default' }: ProductSho
 
       <motion.div
         className={cn(
-          'showcase-carrosserie relative z-10 w-full overflow-hidden rounded-b-2xl border border-t-0 border-zinc-200 font-sans shadow-xl',
-          isViewport
-            ? 'min-h-[300px] bg-white p-6'
-            : 'aspect-[16/10] p-4 md:aspect-[16/9] md:p-6',
+          'showcase-carrosserie relative z-10 w-full overflow-hidden rounded-b-2xl border border-t-0 border-border font-sans shadow-xl',
+          isEmbed
+            ? 'min-h-[260px] bg-card p-4 sm:min-h-[300px]'
+            : isViewport
+              ? 'min-h-[300px] bg-card p-6'
+              : 'aspect-[16/10] p-4 md:aspect-[16/9] md:p-6',
           visual.skinClass,
-          !isViewport && visual.shellClass,
+          !isViewport && !isEmbed && visual.shellClass,
           visual.showcaseClass,
           visual.neonClass,
           isUam && 'text-zinc-100'
         )}
         data-showcase-uni={effectiveUniId}
-        animate={
-          isPresion && !prefersReducedMotion ? { scale: 1.01 } : { scale: 1 }
-        }
+        animate={isPresion && !prefersReducedMotion ? { scale: 1.01 } : { scale: 1 }}
         transition={{ type: 'spring', stiffness: 320, damping: 26 }}
       >
         <div
@@ -496,7 +475,55 @@ export function ProductShowcase({ universidad, variant = 'default' }: ProductSho
           </motion.div>
         </AnimatePresence>
       </motion.div>
+    </div>
+  );
+
+  if (isEmbed) {
+    return (
+      <div className="font-sans" aria-label="Vista previa del simulador">
+        {demoChrome}
       </div>
+    );
+  }
+
+  return (
+    <section
+      id="showcase"
+      className={cn(
+        'font-sans',
+        isViewport ? cn(landingSection, landingContainer, 'w-full') : 'scroll-mt-24 py-10 md:py-14'
+      )}
+      aria-label="Tour interactivo del producto"
+    >
+      <motion.div
+        className={cn(isViewport ? landingSectionHeader : 'mb-5 text-center')}
+        initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={springTransition}
+      >
+        <span
+          className="inline-flex rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider"
+          style={
+            hydrated
+              ? {
+                  borderColor: `${landingAccent.primary}40`,
+                  color: landingAccent.primary,
+                  backgroundColor: `${landingAccent.primary}10`,
+                }
+              : undefined
+          }
+        >
+          Interés · Prueba el producto
+        </span>
+        <h2 className={cn('mt-3', landingSectionTitle)}>Siente la presión del examen real</h2>
+        <p className={cn('mx-auto mt-3 max-w-2xl md:mt-4', landingBody)}>
+          Cuatro modos demo: responde un reactivo, entrena el cronómetro, compite con tu tribu y mira tu
+          diagnóstico.
+        </p>
+      </motion.div>
+
+      {demoChrome}
     </section>
   );
 }

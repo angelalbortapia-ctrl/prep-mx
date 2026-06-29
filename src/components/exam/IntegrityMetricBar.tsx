@@ -1,6 +1,7 @@
 'use client';
 
 import { ShieldAlert } from 'lucide-react';
+import { metricBarTone } from '@/lib/design-system/colors';
 import { cn } from '@/lib/utils';
 
 interface IntegrityMetricBarProps {
@@ -10,8 +11,7 @@ interface IntegrityMetricBarProps {
 }
 
 export function IntegrityMetricBar({ score, blurCount, className }: IntegrityMetricBarProps) {
-  const tone =
-    score >= 90 ? 'bg-green-500' : score >= 70 ? 'bg-amber-500' : 'bg-red-500';
+  const tone = metricBarTone(score);
 
   return (
     <div className={cn('rounded-2xl border bg-card p-4', className)}>

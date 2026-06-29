@@ -95,3 +95,11 @@ export function canStartFreeDiagnostic(
 ): boolean {
   return !hasUniAccess(subscriptions, uniId) && !isFreeDiagnosticDone(uniId);
 }
+
+/** Explicaciones KaTeX en modo ráfaga — requiere Pase Pro de la uni activa. */
+export function canViewBurstExplanations(
+  subscriptions: SubscriptionScope[],
+  uniId: UniId
+): boolean {
+  return hasUniAccess(subscriptions, uniId);
+}

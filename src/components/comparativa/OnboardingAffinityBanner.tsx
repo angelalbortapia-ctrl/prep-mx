@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Sparkles, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { COMPARATIVA_AFFINITY_HREF } from '@/components/comparativa/ComparativaAffinityEmptyState';
 import { loadAffinityResult } from '@/lib/persist-affinity';
 import { cn } from '@/lib/utils';
 
@@ -51,7 +52,7 @@ export function OnboardingAffinityBanner() {
       </div>
       <div className="flex shrink-0 items-center gap-2">
         <Button asChild size="sm" className="rounded-xl">
-          <Link href="/dashboard/comparativa">Descubre tu examen ideal</Link>
+          <Link href={COMPARATIVA_AFFINITY_HREF}>Descubre tu examen ideal</Link>
         </Button>
         <button
           type="button"

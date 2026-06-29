@@ -1,4 +1,6 @@
+import { buttonRadius } from '@/lib/design-system/buttons';
 import type { UniId } from '@/lib/uni-theme-config';
+import { cn } from '@/lib/utils';
 
 /** Tipografía institucional por universidad (Tailwind utility classes). */
 export const uniFonts = {
@@ -36,8 +38,8 @@ export const UNI_VISUAL_IDENTITY: Record<UniId, UniVisualIdentity> = {
   unam: {
     primaryHex: '#002B49',
     accentHex: '#D4AF37',
-    radius: 'rounded-full',
-    radiusValue: '9999px',
+    radius: buttonRadius,
+    radiusValue: '0.75rem',
     skinClass: 'uni-skin-unam',
     fontClass: uniFonts.unam,
     pageBgClass: 'bg-slate-50',
@@ -45,8 +47,8 @@ export const UNI_VISUAL_IDENTITY: Record<UniId, UniVisualIdentity> = {
       'border-[#002B49]/20 bg-gradient-to-br from-slate-50 via-[#faf6ed] to-slate-100 shadow-[0_12px_40px_-8px_rgba(0,43,73,0.18)]',
     examShellClass: 'exam-shell-unam rounded-xl border-[#002B49]/15 bg-white/90',
     buttonClass:
-      'rounded-full bg-[#002B49] text-[#D4AF37] shadow-md shadow-[#D4AF37]/25 hover:bg-[#002B49]/90',
-    tabActiveClass: 'rounded-full bg-[#002B49] text-[#D4AF37] shadow-md shadow-[#D4AF37]/20',
+      cn(buttonRadius, 'bg-[#002B49] text-[#D4AF37] shadow-md shadow-[#D4AF37]/25 hover:bg-[#002B49]/90'),
+    tabActiveClass: cn(buttonRadius, 'bg-[#002B49] text-[#D4AF37] shadow-md shadow-[#D4AF37]/20'),
     cardClass: 'rounded-xl border-[#002B49]/15 bg-white/95 shadow-sm',
     timerClass: 'exam-timer-unam rounded-full font-serif tabular-nums tracking-normal text-[#002B49]',
     metricClass: 'font-serif tabular-nums tracking-normal text-[#002B49]',
@@ -58,19 +60,23 @@ export const UNI_VISUAL_IDENTITY: Record<UniId, UniVisualIdentity> = {
   ipn: {
     primaryHex: '#6A1B29',
     accentHex: '#E2E8F0',
-    radius: 'rounded-md',
-    radiusValue: '0.375rem',
+    radius: buttonRadius,
+    radiusValue: '0.75rem',
     skinClass: 'uni-skin-ipn',
     fontClass: uniFonts.ipn,
     pageBgClass: 'bg-[#faf5f6]',
     shellClass:
-      'rounded-md border-[#6A1B29]/30 bg-gradient-to-b from-[#faf5f6] to-white shadow-[0_0_28px_rgba(106,27,41,0.28)] ring-1 ring-[#6A1B29]/20',
-    examShellClass: 'exam-shell-ipn rounded-md border-[#6A1B29]/25 bg-white',
-    buttonClass:
-      'rounded-md bg-[#6A1B29] font-bold text-white shadow-[0_0_20px_rgba(106,27,41,0.45)] hover:bg-[#6A1B29]/90',
-    tabActiveClass:
-      'rounded-md bg-[#6A1B29] font-bold text-white shadow-[0_0_18px_rgba(106,27,41,0.5)]',
-    cardClass: 'rounded-md border-[#6A1B29]/20 bg-white shadow-[inset_0_1px_0_rgba(226,232,240,0.8)]',
+      'rounded-xl border-[#6A1B29]/30 bg-gradient-to-b from-[#faf5f6] to-white shadow-[0_0_28px_rgba(106,27,41,0.28)] ring-1 ring-[#6A1B29]/20',
+    examShellClass: 'exam-shell-ipn rounded-xl border-[#6A1B29]/25 bg-white',
+    buttonClass: cn(
+      buttonRadius,
+      'bg-[#6A1B29] font-bold text-white shadow-[0_0_20px_rgba(106,27,41,0.45)] hover:bg-[#6A1B29]/90'
+    ),
+    tabActiveClass: cn(
+      buttonRadius,
+      'bg-[#6A1B29] font-bold text-white shadow-[0_0_18px_rgba(106,27,41,0.5)]'
+    ),
+    cardClass: 'rounded-xl border-[#6A1B29]/20 bg-white shadow-[inset_0_1px_0_rgba(226,232,240,0.8)]',
     timerClass:
       'exam-timer-ipn showcase-timer rounded-md font-mono font-bold tabular-nums tracking-wider text-[#6A1B29] shadow-[0_0_14px_rgba(106,27,41,0.45)]',
     metricClass: 'font-mono font-bold tabular-nums tracking-wider text-[#6A1B29]',
@@ -83,17 +89,19 @@ export const UNI_VISUAL_IDENTITY: Record<UniId, UniVisualIdentity> = {
   uam: {
     primaryHex: '#F05454',
     accentHex: '#111111',
-    radius: 'rounded-lg',
-    radiusValue: '0.5rem',
+    radius: buttonRadius,
+    radiusValue: '0.75rem',
     skinClass: 'uni-skin-uam',
     fontClass: uniFonts.uam,
     pageBgClass: 'bg-[#111111] text-zinc-100',
-    shellClass: 'rounded-lg border border-zinc-800 bg-[#111111] text-zinc-100',
-    examShellClass: 'exam-shell-uam rounded-lg border border-zinc-800 bg-[#111111]',
-    buttonClass:
-      'rounded-lg border border-zinc-800 bg-[#F05454] font-semibold text-white hover:bg-[#F05454]/90',
-    tabActiveClass: 'rounded-lg border border-zinc-700 bg-[#F05454] text-white',
-    cardClass: 'rounded-lg border border-zinc-800 bg-[#111111]/95',
+    shellClass: 'rounded-xl border border-zinc-800 bg-[#111111] text-zinc-100',
+    examShellClass: 'exam-shell-uam rounded-xl border border-zinc-800 bg-[#111111]',
+    buttonClass: cn(
+      buttonRadius,
+      'border border-zinc-800 bg-[#F05454] font-semibold text-white hover:bg-[#F05454]/90'
+    ),
+    tabActiveClass: cn(buttonRadius, 'border border-zinc-700 bg-[#F05454] text-white'),
+    cardClass: 'rounded-xl border border-zinc-800 bg-[#111111]/95',
     timerClass:
       'exam-timer-uam rounded-lg border border-zinc-800 bg-[#111111] font-mono tabular-nums text-[#F05454]',
     metricClass: 'font-mono tabular-nums text-[#F05454]',
@@ -112,8 +120,8 @@ export const UNI_VISUAL_IDENTITY: Record<UniId, UniVisualIdentity> = {
     pageBgClass: 'bg-slate-50',
     shellClass: 'rounded-xl border-border bg-card shadow-xl',
     examShellClass: 'exam-shell-todos rounded-xl',
-    buttonClass: 'rounded-xl bg-primary text-primary-foreground shadow-md shadow-primary/25',
-    tabActiveClass: 'rounded-full bg-primary text-primary-foreground shadow-md shadow-primary/25',
+    buttonClass: cn(buttonRadius, 'bg-primary text-primary-foreground shadow-md shadow-primary/25'),
+    tabActiveClass: cn(buttonRadius, 'bg-primary text-primary-foreground shadow-md shadow-primary/25'),
     cardClass: 'rounded-xl border border-border bg-card shadow-sm',
     timerClass: 'exam-timer-todos font-mono tabular-nums',
     metricClass: 'font-mono tabular-nums text-primary',

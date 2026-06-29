@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TaskLessonCard } from '@/components/admin/task-lesson-card';
 import { GuidedCourse } from '@/components/admin/guided-course';
+import { CourseProgressAdminPanel } from '@/components/admin/CourseProgressAdminPanel';
 import {
   getAdminPriorities,
   getCompletedTasks,
@@ -78,6 +79,7 @@ export function AdminRoadmap() {
             </button>
           ))}
         </div>
+        <CourseProgressAdminPanel />
         <GuidedCourse />
       </div>
     );

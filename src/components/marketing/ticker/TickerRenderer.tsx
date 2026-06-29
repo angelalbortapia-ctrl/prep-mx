@@ -4,9 +4,10 @@ import { useMemo } from 'react';
 import { megaUniversityTickerData } from '@/data/ticker';
 import { applyTickerUniFilter, mergeTickerConfig, type TickerConfig } from '@/data/ticker/ticker-config';
 import type { TickerUniFilter } from '@/data/ticker/utils';
-import { useTickerController } from '@/hooks/useTickerController';
+import { useTickerController, type TickerSurface } from '@/hooks/useTickerController';
 import { useTickerItems, useTickerSettings } from '@/hooks/useTickerData';
 import { enrichTickerItem } from '@/lib/ticker/feed';
+import type { TickerPlacement } from './TickerShared';
 import { TickerLayoutView } from './TickerLayoutView';
 
 interface TickerRendererProps {
@@ -14,12 +15,16 @@ interface TickerRendererProps {
   configOverride?: Partial<TickerConfig>;
   /** Solo preview admin: simula filtro UNAM / IPN / UAM. */
   previewUniFilter?: TickerUniFilter;
+  placement?: TickerPlacement;
+  surface?: TickerSurface;
 }
 
 export function TickerRenderer({
   previewMode,
   configOverride,
   previewUniFilter = 'all',
+  placement = 'bottom',
+  surface = 'marketing',
 }: TickerRendererProps) {
   const { data: itemsData } = useTickerItems();
   const { data: settingsData } = useTickerSettings();
@@ -38,7 +43,8 @@ export function TickerRenderer({
     items,
     baseConfig.showUniFilters,
     previewMode,
-    previewUniFilter
+    previewUniFilter,
+    surface
   );
 
   const config = useMemo(() => {
@@ -59,6 +65,7 @@ export function TickerRenderer({
       config={config}
       previewMode={previewMode}
       hasMobileCta={previewMode ? false : ctrl.hasMobileCta}
+      placement={placement}
     />
   );
 }

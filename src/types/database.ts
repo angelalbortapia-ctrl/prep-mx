@@ -18,7 +18,12 @@ export interface Database {
           status: string | null;
           xp_total: number | null;
           current_streak_days: number | null;
+          last_study_date: string | null;
           exam_tokens: number | null;
+          stripe_customer_id: string | null;
+          subscription_status: string | null;
+          premium_scope: string | null;
+          is_premium: boolean;
           created_at: string | null;
         };
         Insert: {
@@ -31,7 +36,12 @@ export interface Database {
           status?: string | null;
           xp_total?: number | null;
           current_streak_days?: number | null;
+          last_study_date?: string | null;
           exam_tokens?: number | null;
+          stripe_customer_id?: string | null;
+          subscription_status?: string | null;
+          premium_scope?: string | null;
+          is_premium?: boolean;
           created_at?: string | null;
         };
         Update: {
@@ -44,7 +54,12 @@ export interface Database {
           status?: string | null;
           xp_total?: number | null;
           current_streak_days?: number | null;
+          last_study_date?: string | null;
           exam_tokens?: number | null;
+          stripe_customer_id?: string | null;
+          subscription_status?: string | null;
+          premium_scope?: string | null;
+          is_premium?: boolean;
           created_at?: string | null;
         };
         Relationships: [];
@@ -62,6 +77,8 @@ export interface Database {
           dificultad: string | null;
           active: boolean | null;
           is_premium: boolean;
+          import_key: string | null;
+          media: Json;
           created_at: string | null;
         };
         Insert: {
@@ -76,6 +93,8 @@ export interface Database {
           dificultad?: string | null;
           active?: boolean | null;
           is_premium?: boolean;
+          import_key?: string | null;
+          media?: Json;
           created_at?: string | null;
         };
         Update: {
@@ -90,6 +109,8 @@ export interface Database {
           dificultad?: string | null;
           active?: boolean | null;
           is_premium?: boolean;
+          import_key?: string | null;
+          media?: Json;
           created_at?: string | null;
         };
         Relationships: [];
@@ -178,6 +199,72 @@ export interface Database {
         };
         Relationships: [];
       };
+      exam_draft_sessions: {
+        Row: {
+          id: string;
+          user_id: string;
+          exam_session_id: string;
+          exam_id: string | null;
+          mode: string;
+          current_index: number;
+          status: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          exam_session_id: string;
+          exam_id?: string | null;
+          mode: string;
+          current_index?: number;
+          status?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          exam_session_id?: string;
+          exam_id?: string | null;
+          mode?: string;
+          current_index?: number;
+          status?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      exam_answers_draft: {
+        Row: {
+          id: string;
+          user_id: string;
+          exam_session_id: string;
+          question_id: string;
+          opcion_elegida: string | null;
+          is_correct: boolean;
+          time_spent_seconds: number;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          exam_session_id: string;
+          question_id: string;
+          opcion_elegida?: string | null;
+          is_correct: boolean;
+          time_spent_seconds?: number;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          exam_session_id?: string;
+          question_id?: string;
+          opcion_elegida?: string | null;
+          is_correct?: boolean;
+          time_spent_seconds?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       exams: {
         Row: {
           id: string;
@@ -235,6 +322,76 @@ export interface Database {
         };
         Relationships: [];
       };
+      user_course_state: {
+        Row: {
+          user_id: string;
+          current_lesson_id: string | null;
+          just_completed_lesson_id: string | null;
+          updated_at: string;
+        };
+        Insert: {
+          user_id: string;
+          current_lesson_id?: string | null;
+          just_completed_lesson_id?: string | null;
+          updated_at?: string;
+        };
+        Update: {
+          user_id?: string;
+          current_lesson_id?: string | null;
+          just_completed_lesson_id?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'user_course_state_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: true;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
+      user_lessons_progress: {
+        Row: {
+          id: string;
+          user_id: string;
+          lesson_id: string;
+          completed: boolean;
+          checked_steps: Json;
+          active_step_index: number;
+          completed_at: string | null;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          lesson_id: string;
+          completed?: boolean;
+          checked_steps?: Json;
+          active_step_index?: number;
+          completed_at?: string | null;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          lesson_id?: string;
+          completed?: boolean;
+          checked_steps?: Json;
+          active_step_index?: number;
+          completed_at?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'user_lessons_progress_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
@@ -246,3 +403,5 @@ export interface Database {
 export type DbQuestionRow = Database['public']['Tables']['questions']['Row'];
 export type DbUserRow = Database['public']['Tables']['users']['Row'];
 export type DbBookmarkRow = Database['public']['Tables']['user_bookmarks']['Row'];
+export type DbUserLessonProgressRow = Database['public']['Tables']['user_lessons_progress']['Row'];
+export type DbUserCourseStateRow = Database['public']['Tables']['user_course_state']['Row'];

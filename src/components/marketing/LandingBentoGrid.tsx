@@ -45,15 +45,15 @@ export function LandingBentoGrid({ universidad, className }: LandingBentoGridPro
 
   return (
     <section
-      className={cn('grid grid-cols-1 gap-4 font-sans md:grid-cols-3 md:gap-5', className)}
+      className={cn('grid grid-cols-1 gap-5 font-sans md:grid-cols-3 md:gap-6', className)}
       aria-label="Estadísticas del concurso oficial"
       style={{ '--uni-primary': cfg.primary, '--uni-accent': cfg.accent } as CSSProperties}
     >
       <motion.article {...motionProps} className={landingBentoCard}>
-        <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">{cfg.badge}</div>
-        <div className="mt-2 text-5xl font-black tabular-nums tracking-tight text-zinc-900">{cfg.reactivos}</div>
-        <div className="text-sm font-medium text-zinc-700">Reactivos oficiales en {cfg.horas} horas</div>
-        <p className="mt-3 text-sm leading-relaxed text-zinc-500">{cfg.detalleMaterias}</p>
+        <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{cfg.badge}</div>
+        <div className="mt-2 text-4xl font-black tabular-nums tracking-tight text-foreground sm:text-5xl">{cfg.reactivos}</div>
+        <div className="text-sm font-medium text-foreground/90">Reactivos oficiales en {cfg.horas} horas</div>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{cfg.detalleMaterias}</p>
       </motion.article>
 
       <motion.article
@@ -61,18 +61,18 @@ export function LandingBentoGrid({ universidad, className }: LandingBentoGridPro
         transition={{ ...springReveal.transition, delay: prefersReducedMotion ? 0 : 0.05 }}
         className={landingBentoCard}
       >
-        <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Tasa de admisión</div>
-        <div className="mt-1 text-4xl font-black tabular-nums text-rose-500">{cfg.aceptacion}</div>
-        <div className="mt-4 border-t border-zinc-100 pt-4">
-          <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Corte alta competencia</div>
+        <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Tasa de admisión</div>
+        <div className="mt-1 text-3xl font-black tabular-nums text-rose-500 sm:text-4xl">{cfg.aceptacion}</div>
+        <div className="mt-4 border-t border-border pt-4">
+          <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Corte alta competencia</div>
           <div className="mt-2 flex flex-wrap items-center gap-2">
-            <span className="text-sm font-semibold text-zinc-900">{cfg.carreraTop}</span>
+            <span className="text-sm font-semibold text-foreground">{cfg.carreraTop}</span>
             <span className={statusBadgeRisk}>
               <span className={statusDotRisk} aria-hidden />
               Alta demanda
             </span>
           </div>
-          <div className="mt-1 text-xl font-black tabular-nums text-zinc-800">
+          <div className="mt-1 text-xl font-black tabular-nums text-foreground">
             {cfg.aciertosTop} {cfg.aciertosTopLabel}
           </div>
         </div>
@@ -87,13 +87,13 @@ export function LandingBentoGrid({ universidad, className }: LandingBentoGridPro
           className={cn(landingBentoCard, 'flex flex-col justify-between')}
         >
           <div className="space-y-2">
-            <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
               Termómetro de riesgo
             </div>
-            <div className="text-sm font-semibold text-zinc-900">{cfg.carreraTop}</div>
-            <p className="text-sm leading-relaxed text-zinc-500">{cfg.contextoRiesgo}</p>
+            <div className="text-sm font-semibold text-foreground">{cfg.carreraTop}</div>
+            <p className="text-sm leading-relaxed text-muted-foreground">{cfg.contextoRiesgo}</p>
           </div>
-          <p className="mt-4 text-xs text-zinc-400">Convocatoria 2026</p>
+          <p className="mt-4 text-xs text-muted-foreground">Convocatoria 2026</p>
         </motion.article>
       )}
 

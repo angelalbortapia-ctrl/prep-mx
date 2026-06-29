@@ -41,8 +41,15 @@ try {
   questionCount = await countRows(url, service, 'questions');
 } catch (e) {
   fail(`No se pudo leer la tabla "questions": ${e.message}`);
-  if (String(e.message).includes('does not exist') || String(e.message).includes('42P01')) {
+  const msg = String(e.message);
+  if (msg.includes('does not exist') || msg.includes('42P01')) {
     console.log('\n→ Ejecuta el SQL en Supabase: supabase/migrations/001_initial.sql\n');
+  } else if (msg.includes('fetch failed') || msg.includes('ENOTFOUND') || msg.includes('ECONNREFUSED')) {
+    console.log('\n→ Posibles causas:');
+    console.log('  • Proyecto Supabase pausado → supabase.com → tu proyecto → Resume');
+    console.log('  • NEXT_PUBLIC_SUPABASE_URL incorrecta en .env.local');
+    console.log('  • Sin conexión a internet');
+    console.log('  • Ejecuta también: supabase/migrations/002_rls_bookmarks.sql\n');
   }
   process.exit(1);
 }
@@ -60,8 +67,43 @@ for (const table of EXPECTED_TABLES) {
 }
 
 ok(`Preguntas en BD: ${questionCount}`);
+
+let migration002Ok = true;
+try {
+  const res = await fetch(`${url}/rest/v1/questions?select=is_premium&limit=1`, {
+    headers: {
+      apikey: service,
+      Authorization: `Bearer ${service}`,
+    },
+  });
+  if (!res.ok) {
+    migration002Ok = false;
+    fail('Migración 002 pendiente (falta columna questions.is_premium)');
+  } else {
+    ok('Migración 002: columna is_premium existe');
+  }
+} catch {
+  migration002Ok = false;
+}
+
+try {
+  await countRows(url, service, 'user_bookmarks');
+  ok('Migración 002: tabla user_bookmarks existe');
+} catch {
+  migration002Ok = false;
+  fail('Migración 002 pendiente (falta tabla user_bookmarks)');
+}
+
+if (!migration002Ok) {
+  console.log('\n⚠️  Ejecuta en Supabase SQL Editor:');
+  console.log('   supabase/migrations/002_rls_bookmarks.sql\n');
+  console.log('   (Bookmarks, exam_tokens y filtro premium no funcionarán hasta entonces.)\n');
+}
+
 if (questionCount === 0) {
   console.log('\n💡 La tabla está vacía. Carga demo con: npm run seed:questions\n');
-} else {
+} else if (migration002Ok) {
   console.log('\n🎉 Supabase listo. Reinicia dev si acabas de crear .env.local: npm run dev:clean\n');
+} else {
+  console.log('\n✅ Conexión y preguntas OK. Completa migración 002 para bookmarks y tokens.\n');
 }

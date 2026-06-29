@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{},\"appUsingSizeAdjust\":false,\"pagesUsingSizeAdjust\":false}"
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/angelalbor/Documents/GitHub/prep-mx/src/app/layout\":[\"static/media/eaead17c7dbfcd5d-s.p.woff2\",\"static/media/636a5ac981f94f8b-s.p.woff2\",\"static/media/0b78ff376f6b9734-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"

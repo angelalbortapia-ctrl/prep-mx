@@ -32,15 +32,12 @@ import {
 import {
   clearCelebration,
   completeLesson,
-  getDefaultProgress,
   isLessonComplete,
   isStepChecked,
-  loadCourseProgress,
-  resetCourseProgress,
-  saveCourseProgress,
   toggleStep,
   type CourseProgress,
 } from '@/lib/course-progress';
+import { useCourseProgress } from '@/hooks/useCourseProgress';
 
 const XP_PER_STEP = 10;
 const XP_PER_LESSON = 50;
@@ -60,24 +57,31 @@ function computeXp(progress: CourseProgress) {
 }
 
 export function GuidedCourse() {
-  const [progress, setProgress] = useState<CourseProgress>(getDefaultProgress);
-  const [hydrated, setHydrated] = useState(false);
+  const { progress, hydrated, isSyncing, useLocalOnly, persist, syncToggle, resetProgress } =
+    useCourseProgress();
   const [copied, setCopied] = useState(false);
   const [cardIndex, setCardIndex] = useState(0);
   const [showTemario, setShowTemario] = useState(false);
   const [xpFlash, setXpFlash] = useState(0);
 
   useEffect(() => {
-    const saved = loadCourseProgress();
-    const first = getFirstIncompleteLesson(saved.completedLessonIds);
-    setProgress({ ...saved, currentLessonId: saved.currentLessonId ?? first.id });
-    setHydrated(true);
-  }, []);
+    if (!hydrated || progress.currentLessonId) return;
+    const first = getFirstIncompleteLesson(progress.completedLessonIds);
+    persist({ ...progress, currentLessonId: first.id });
+    if (!useLocalOnly) {
+      syncToggle({ lessonId: first.id, currentLessonId: first.id });
+    }
+    // Solo al hidratar sin lección activa guardada
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hydrated, progress.currentLessonId]);
 
-  const persist = useCallback((next: CourseProgress) => {
-    setProgress(next);
-    saveCourseProgress(next);
-  }, []);
+  const saveProgress = useCallback(
+    (next: CourseProgress, sync?: Parameters<typeof syncToggle>[0]) => {
+      persist(next);
+      if (sync) syncToggle(sync);
+    },
+    [persist, syncToggle]
+  );
 
   const currentLesson =
     implementationCourse.find((l) => l.id === progress.currentLessonId) ??
@@ -119,7 +123,12 @@ export function GuidedCourse() {
   const goToLesson = (lesson: CourseLesson) => {
     if (!isLessonUnlocked(lesson, progress.completedLessonIds)) return;
     setShowTemario(false);
-    persist({ ...progress, currentLessonId: lesson.id, justCompletedLessonId: null });
+    const next = { ...progress, currentLessonId: lesson.id, justCompletedLessonId: null };
+    saveProgress(next, {
+      lessonId: lesson.id,
+      currentLessonId: lesson.id,
+      justCompletedLessonId: null,
+    });
   };
 
   const flashXp = () => {
@@ -132,7 +141,12 @@ export function GuidedCourse() {
 
   const handleStepDone = (stepId: string) => {
     if (!isStepChecked(currentLesson.id, stepId, progress)) {
-      persist(toggleStep(progress, currentLesson.id, stepId));
+      const next = toggleStep(progress, currentLesson.id, stepId);
+      saveProgress(next, {
+        lessonId: currentLesson.id,
+        stepId,
+        activeStepIndex: next.activeStepIndex[currentLesson.id],
+      });
       flashXp();
     }
     advance();
@@ -140,7 +154,13 @@ export function GuidedCourse() {
 
   const handleCompleteLesson = () => {
     if (!allStepsDone) return;
-    persist(completeLesson(progress, currentLesson.id, nextLesson?.id ?? null));
+    const next = completeLesson(progress, currentLesson.id, nextLesson?.id ?? null);
+    saveProgress(next, {
+      lessonId: currentLesson.id,
+      completed: true,
+      currentLessonId: next.currentLessonId,
+      justCompletedLessonId: next.justCompletedLessonId,
+    });
   };
 
   const handleCopyPrompt = async () => {
@@ -151,8 +171,7 @@ export function GuidedCourse() {
 
   const handleReset = () => {
     if (!confirm('¿Reiniciar progreso del curso? No borra tu código.')) return;
-    const fresh = resetCourseProgress();
-    persist({ ...fresh, currentLessonId: getFirstIncompleteLesson([]).id });
+    resetProgress();
     setCardIndex(0);
     setShowTemario(false);
   };
@@ -204,7 +223,12 @@ export function GuidedCourse() {
                 size="lg"
                 className="w-full gap-2 shadow-lg shadow-primary/20"
                 onClick={() => {
-                  persist(clearCelebration({ ...progress, currentLessonId: nextAfter.id }));
+                  const next = clearCelebration({ ...progress, currentLessonId: nextAfter.id });
+                  saveProgress(next, {
+                    lessonId: nextAfter.id,
+                    currentLessonId: nextAfter.id,
+                    justCompletedLessonId: null,
+                  });
                   setCardIndex(0);
                 }}
               >
@@ -212,7 +236,13 @@ export function GuidedCourse() {
                 <ArrowRight className="h-4 w-4" />
               </Button>
             ) : (
-              <Button size="lg" className="w-full" onClick={() => persist(clearCelebration(progress))}>
+              <Button size="lg" className="w-full" onClick={() => {
+                const next = clearCelebration(progress);
+                saveProgress(next, {
+                  lessonId: currentLesson.id,
+                  justCompletedLessonId: null,
+                });
+              }}>
                 ¡Terminaste el curso! Volver
               </Button>
             )}
@@ -276,6 +306,9 @@ export function GuidedCourse() {
               <RotateCcw className="h-3 w-3" />
               Reiniciar progreso
             </button>
+            {!useLocalOnly && isSyncing ? (
+              <p className="text-center text-[10px] text-primary">Guardando en Supabase…</p>
+            ) : null}
           </div>
         </aside>
 

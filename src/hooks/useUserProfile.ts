@@ -16,6 +16,7 @@ export interface UserProfileResponse {
   averageScore?: number;
   examTokens?: number;
   onboardingComplete?: boolean;
+  isPremium?: boolean;
 }
 
 export function useUserProfile() {

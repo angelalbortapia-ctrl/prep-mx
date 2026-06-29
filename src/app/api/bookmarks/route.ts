@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { requireAuthenticatedSupabaseUser } from '@/lib/supabase/users';
+import { requireAuthenticatedSupabaseUser, getDbUserId } from '@/lib/supabase/users';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import type { DbBookmarkRow } from '@/types/database';
 
@@ -19,10 +19,11 @@ export async function GET() {
   if ('error' in authResult) return authResult.error;
 
   const supabase = createServerSupabaseClient();
+  const dbUserId = getDbUserId(authResult.user);
   const { data, error } = await supabase
     .from('user_bookmarks')
     .select('*')
-    .eq('user_id', authResult.user.id)
+    .eq('user_id', dbUserId)
     .order('saved_at', { ascending: false });
 
   if (error) {
@@ -49,11 +50,12 @@ export async function POST(req: Request) {
   }
 
   const supabase = createServerSupabaseClient();
+  const dbUserId = getDbUserId(authResult.user);
   const { data, error } = await supabase
     .from('user_bookmarks')
     .upsert(
       {
-        user_id: authResult.user.id,
+        user_id: dbUserId,
         question_id: body.questionId,
         materia: body.materia,
         tema: body.tema,
@@ -80,11 +82,12 @@ export async function DELETE(req: Request) {
     return NextResponse.json({ error: 'questionId requerido' }, { status: 400 });
   }
 
+  const dbUserId = getDbUserId(authResult.user);
   const supabase = createServerSupabaseClient();
   const { error } = await supabase
     .from('user_bookmarks')
     .delete()
-    .eq('user_id', authResult.user.id)
+    .eq('user_id', dbUserId)
     .eq('question_id', body.questionId);
 
   if (error) {

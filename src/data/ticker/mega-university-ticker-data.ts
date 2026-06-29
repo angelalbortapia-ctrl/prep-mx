@@ -182,6 +182,9 @@ const UAM_CUTOFFS: UamRow[] = [
 ];
 
 const CRONOGRAMA_ITEMS = [
+  '⚠️ UNAM: revisa el calendario de registro en dgae.unam.mx — las fechas de cierre no se extienden',
+  '📢 IPN: ya puedes consultar sedes y horarios del examen de admisión en la convocatoria oficial',
+  '⚠️ UAM: ventana de registro en línea — confirma tu ficha antes del cierre en uam.mx',
   'RESULTADOS UNAM: Publicación Concurso Licenciatura 2026 — Viernes 17 de Julio de 2026 en dgae.unam.mx',
   'CONVOCATORIA IPN: Complementaria (Segunda Vuelta) — 23 de Julio de 2026',
   'REGISTRO IPN: Examen complementario en línea — Del 23 al 29 de Julio de 2026',

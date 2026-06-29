@@ -41,6 +41,20 @@ const config: Config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        trust: {
+          DEFAULT: 'hsl(var(--trust))',
+          foreground: 'hsl(var(--trust-foreground))',
+          surface: 'hsl(var(--trust-surface))',
+        },
+        conversion: {
+          DEFAULT: 'hsl(var(--conversion))',
+          foreground: 'hsl(var(--conversion-foreground))',
+        },
+        status: {
+          mastered: 'hsl(var(--status-mastered))',
+          review: 'hsl(var(--status-review))',
+          critical: 'hsl(var(--status-critical))',
+        },
         'uni-primary': 'hsl(var(--uni-primary) / <alpha-value>)',
         'uni-accent': 'hsl(var(--uni-accent) / <alpha-value>)',
         'uni-primary-foreground': 'hsl(var(--uni-primary-foreground) / <alpha-value>)',
@@ -61,8 +75,23 @@ const config: Config = {
         spring: 'cubic-bezier(0.22, 1, 0.36, 1)',
       },
       fontFamily: {
-        serif: ["'Playfair Display'", 'Georgia', 'Garamond', 'Times New Roman', 'serif'],
-        sans: ["'Plus Jakarta Sans'", 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-reading)', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        display: ['var(--font-geist-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Georgia', 'Garamond', 'Times New Roman', 'serif'],
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },

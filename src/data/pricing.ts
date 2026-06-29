@@ -75,7 +75,7 @@ export const MONETIZATION_PLANS: MonetizationPlan[] = [
       'Tutor IA post-error',
       'Repaso espaciado SM-2',
     ],
-    ctaLabel: 'Desbloquear mi universidad',
+    ctaLabel: 'Comprar Pase Pro',
   },
   {
     id: 'todos',

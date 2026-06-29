@@ -37,6 +37,13 @@ export async function GET() {
     });
   } catch (e) {
     const message = e instanceof Error ? e.message : 'Error desconocido';
-    return NextResponse.json({ ok: false, configured: false, message }, { status: 503 });
+    const hint =
+      message.includes('fetch failed') || message.includes('ENOTFOUND')
+        ? 'Proyecto Supabase pausado, URL incorrecta o sin red. Revisa supabase.com → Resume project.'
+        : message;
+    return NextResponse.json(
+      { ok: false, configured: true, message: hint },
+      { status: 503 }
+    );
   }
 }

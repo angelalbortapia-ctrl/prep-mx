@@ -7,6 +7,7 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { TickerRenderer } from '@/components/marketing/ticker/TickerRenderer';
 import { AccessRestrictedBanner } from '@/components/system/AccessRestrictedBanner';
 import { useTickerDocumentVars } from '@/hooks/useTickerDocumentVars';
+import { useDashboardDarkMode } from '@/hooks/useDashboardDarkMode';
 import { useUniTheme } from '@/contexts/UniThemeContext';
 import { getUniVisualIdentity } from '@/lib/uni-visual-identity';
 import { cn } from '@/lib/utils';
@@ -39,25 +40,33 @@ function ShellInner({ children }: { children: React.ReactNode }) {
   const showTicker = isHome || isSimulador || isPrecios;
   useTickerDocumentVars(showTicker);
   const tickerPadMobile = isHome
-    ? 'pb-[calc(var(--ticker-height)+var(--ticker-uni-filter-height)+3.75rem)]'
+    ? 'pb-[calc(var(--ticker-height)+var(--ticker-uni-filter-height)+var(--mobile-sticky-cta-height))]'
     : 'pb-[calc(var(--ticker-height)+var(--ticker-uni-filter-height))]';
   const tickerPadDesktop = 'md:pb-[calc(var(--ticker-height)+0.5rem)]';
 
   const universidad = parsePageUniversidad(searchParams.get('uni'));
   const plan = parsePlanScope(searchParams.get('plan'));
   const { filterId, hydrated, uniId } = useUniTheme();
+  const { isDark } = useDashboardDarkMode();
   const themeKey = effectiveThemeKey(pathname, universidad, plan);
   const contextKey = hydrated ? filterId : themeKey;
   const theme = themed ? getUniversityTheme(contextKey) : null;
   const visual = hydrated ? getUniVisualIdentity(uniId) : null;
+  const pageSurfaceClass =
+    themed && visual
+      ? isDark && visual.skinClass !== 'uni-skin-uam'
+        ? 'bg-background text-foreground'
+        : visual.pageBgClass
+      : undefined;
 
   return (
     <div
       className={cn(
         'flex min-h-screen flex-col font-sans transition-[background-color,color] duration-300',
+        isDark && 'dark',
         themed && visual
-          ? cn('uni-theme', visual.skinClass, visual.pageBgClass)
-          : 'bg-mesh'
+          ? cn('uni-theme', visual.skinClass, pageSurfaceClass)
+          : 'bg-mesh text-foreground'
       )}
       data-universidad={themed ? contextKey : undefined}
     >
@@ -65,7 +74,7 @@ function ShellInner({ children }: { children: React.ReactNode }) {
       <SiteNav variant="marketing" accentBar={theme?.accentBar} />
       <main
         className={cn(
-          'flex-1',
+          'min-w-0 flex-1 overflow-x-clip',
           showTicker && cn(tickerPadMobile, tickerPadDesktop)
         )}
       >

@@ -1,10 +1,7 @@
-import { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import { auth, clerkClient } from '@clerk/nextjs/server';
-import { AppCommandPalette } from '@/components/search/AppCommandPalette';
 import { AppDashboardShell } from '@/components/layout/AppDashboardShell';
-import { SiteNav } from '@/components/layout/SiteNav';
-import { SiteFooter } from '@/components/layout/SiteFooter';
+import { AppLayoutChrome } from '@/components/layout/AppLayoutChrome';
 import { isDemoMode } from '@/lib/demo-mode';
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
@@ -25,14 +22,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <AppDashboardShell>
-      <Suspense fallback={<div className="glass-header h-16" aria-hidden />}>
-        <SiteNav variant="app" />
-      </Suspense>
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 md:px-8 md:py-8">{children}</main>
-      <Suspense fallback={null}>
-        <SiteFooter variant="app" />
-      </Suspense>
-      <AppCommandPalette />
+      <AppLayoutChrome>{children}</AppLayoutChrome>
     </AppDashboardShell>
   );
 }

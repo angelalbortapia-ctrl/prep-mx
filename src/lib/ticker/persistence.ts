@@ -10,6 +10,7 @@ import {
 import { megaUniversityTickerData } from '@/data/ticker/mega-university-ticker-data';
 import { TICKER_BADGE_LABELS } from '@/data/ticker/types';
 import { enrichTickerItem, isPromoScheduledActive, resolveTickerHref } from '@/lib/ticker/feed';
+import { sanitizeMarketingHref } from '@/lib/marketing-routes';
 
 const DATA_DIR = path.join(process.cwd(), 'src/data/ticker');
 const CUSTOM_FILE = path.join(DATA_DIR, 'custom-items.json');
@@ -32,10 +33,11 @@ export interface TickerCustomItemInput {
 function normalizeHref(href?: string | null): string | undefined {
   if (!href?.trim()) return undefined;
   const trimmed = href.trim();
-  if (trimmed.startsWith('/') || trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('mailto:')) {
     return trimmed;
   }
-  return `/${trimmed.replace(/^\//, '')}`;
+  const withSlash = trimmed.startsWith('/') ? trimmed : `/${trimmed.replace(/^\//, '')}`;
+  return sanitizeMarketingHref(withSlash);
 }
 
 export async function readCustomTickerItems(): Promise<TickerItem[]> {

@@ -1,10 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { TutorEmptyState } from '@/components/tutor/TutorEmptyState';
+import { isDemoMode } from '@/lib/demo-mode';
 
 const demoQuestions = [
   { id: '1', text: 'Estequiometría — reactivo #42', materia: 'Química' },
@@ -13,6 +16,7 @@ const demoQuestions = [
 ];
 
 export default function TutorPage() {
+  const showDemo = isDemoMode();
   const [selected, setSelected] = useState<string | null>(null);
   const [response, setResponse] = useState('');
 
@@ -25,7 +29,7 @@ export default function TutorPage() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="mx-auto w-full max-w-3xl space-y-6">
       <div>
         <h1 className="flex items-center gap-2 text-2xl font-bold">
           <Bot className="h-7 w-7 text-primary" />
@@ -36,41 +40,45 @@ export default function TutorPage() {
         </p>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">Preguntas recientes con error</CardTitle>
-          <CardDescription>Selecciona una para recibir explicación personalizada</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-2">
-          {demoQuestions.map((q) => (
-            <button
-              key={q.id}
-              type="button"
-              onClick={() => askTutor(q.id)}
-              className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left text-sm transition-colors hover:bg-muted ${
-                selected === q.id ? 'border-primary bg-primary/5' : ''
-              }`}
-            >
-              <span>{q.text}</span>
-              <Badge variant="secondary">{q.materia}</Badge>
-            </button>
-          ))}
-        </CardContent>
-      </Card>
+      {showDemo ? (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Preguntas recientes con error</CardTitle>
+            <CardDescription>Selecciona una para recibir explicación personalizada</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            {demoQuestions.map((q) => (
+              <button
+                key={q.id}
+                type="button"
+                onClick={() => askTutor(q.id)}
+                className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left text-sm transition-colors hover:bg-muted ${
+                  selected === q.id ? 'border-primary bg-primary/5' : ''
+                }`}
+              >
+                <span>{q.text}</span>
+                <Badge variant="secondary">{q.materia}</Badge>
+              </button>
+            ))}
+          </CardContent>
+        </Card>
+      ) : (
+        <TutorEmptyState />
+      )}
 
-      {response && (
+      {response && showDemo ? (
         <Card>
           <CardHeader>
             <CardTitle className="text-base">Explicación del tutor</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-relaxed text-muted-foreground">{response}</p>
-            <Button className="mt-4 h-11 rounded-xl" variant="outline">
-              Ver ejercicio de práctica similar
+            <Button asChild className="mt-4 h-11 rounded-xl" variant="outline">
+              <Link href="/dashboard/herramientas/rafaga">Ver ejercicio de práctica similar</Link>
             </Button>
           </CardContent>
         </Card>
-      )}
+      ) : null}
     </div>
   );
 }

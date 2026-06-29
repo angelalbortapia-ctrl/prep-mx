@@ -6,10 +6,13 @@ import { TICKER_UNI_FILTERS } from '@/data/ticker';
 import type { TickerItem } from '@/data/ticker/types';
 import { cn } from '@/lib/utils';
 
+export type TickerPlacement = 'bottom' | 'top-sticky' | 'relative';
+
 export function TickerShell({
   children,
   className,
   previewMode,
+  placement = 'bottom',
   hasMobileCta,
   paused,
   style,
@@ -17,16 +20,23 @@ export function TickerShell({
   children: ReactNode;
   className?: string;
   previewMode?: boolean;
+  placement?: TickerPlacement;
   hasMobileCta?: boolean;
   paused?: boolean;
   style?: CSSProperties;
 }) {
+  const resolvedPlacement: TickerPlacement = previewMode ? 'relative' : placement;
+
   return (
     <section
       className={cn(
         'university-ticker group',
-        previewMode ? 'relative w-full' : 'fixed inset-x-0 z-[45]',
-        !previewMode && (hasMobileCta ? 'bottom-[3.75rem] md:bottom-0' : 'bottom-0'),
+        resolvedPlacement === 'relative' && 'relative w-full',
+        resolvedPlacement === 'bottom' && 'fixed inset-x-0 z-[45]',
+        resolvedPlacement === 'bottom' &&
+          (hasMobileCta ? 'bottom-[var(--mobile-sticky-cta-height)] md:bottom-0' : 'bottom-0'),
+        resolvedPlacement === 'top-sticky' &&
+          'sticky top-16 z-40 w-full shrink-0 border-b border-border/60 shadow-sm',
         paused && 'is-paused',
         className
       )}

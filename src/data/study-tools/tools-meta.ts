@@ -4,6 +4,7 @@ import {
   Calculator,
   CalendarDays,
   Clock,
+  ClipboardList,
   GitCompare,
   Landmark,
   Scale,
@@ -31,6 +32,16 @@ export const STUDY_TOOLS: StudyToolMeta[] = [
     tag: 'Diagnóstico',
   },
   {
+    id: 'hoja-respuestas',
+    slug: 'hoja-respuestas',
+    title: 'Hoja de respuestas oficial',
+    description:
+      'PDF imprimible con óvalos A–D como en el examen físico UNAM, IPN y UAM. Practica marcar sin estrés.',
+    icon: ClipboardList,
+    href: '/dashboard/herramientas/hoja-respuestas',
+    tag: 'Recurso · PDF',
+  },
+  {
     id: 'uam-diezmo',
     slug: 'uam-diezmo',
     title: 'Simulador del diezmo UAM',
@@ -43,12 +54,12 @@ export const STUDY_TOOLS: StudyToolMeta[] = [
   {
     id: 'rafaga',
     slug: 'rafaga',
-    title: 'Modo ráfaga',
+    title: 'Modo práctica de ráfaga',
     description:
-      'Pregunta aleatoria, 45 segundos y puntos por acierto. Ideal para el metro o el camión.',
+      'Una pregunta a la vez, feedback verde/rojo al instante y explicación KaTeX con Plan Pro. Ideal en el metro: 10 min, no 3 horas.',
     icon: Clock,
     href: '/dashboard/herramientas/rafaga',
-    tag: 'Juego',
+    tag: 'Práctica · Pro',
   },
   {
     id: 'calendario',

@@ -1,4 +1,5 @@
 import { LandingPageView } from '@/components/marketing/LandingPageView';
+import { getLandingTemarioCatalog } from '@/lib/temario/landing-display';
 import { parsePageUniversidad, parsePlanScope } from '@/lib/university-theme';
 
 export const dynamic = 'force-dynamic';
@@ -10,6 +11,13 @@ interface PageProps {
 export default function LandingPage({ searchParams }: PageProps) {
   const universidad = parsePageUniversidad(searchParams.uni);
   const plan = parsePlanScope(searchParams.plan);
+  const temarioCatalog = getLandingTemarioCatalog();
 
-  return <LandingPageView universidad={universidad} plan={plan} />;
+  return (
+    <LandingPageView
+      universidad={universidad}
+      plan={plan}
+      temarioCatalog={temarioCatalog}
+    />
+  );
 }

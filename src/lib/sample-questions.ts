@@ -7,7 +7,7 @@ export const sampleQuestions: Question[] = [
     materia: 'matematicas',
     tema: 'algebra',
     pregunta:
-      'Resuelve la ecuación $$x^2 - 5x + 6 = 0$$. ¿Cuál es el conjunto solución?',
+      'Resuelve la ecuación $x^2 - 5x + 6 = 0$. ¿Cuál es el conjunto solución?',
     opciones: [
       { id: 'A', texto: '{2, 3}' },
       { id: 'B', texto: '{-2, -3}' },

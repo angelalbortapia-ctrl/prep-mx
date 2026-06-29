@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { onlineManager, QueryClientProvider } from '@tanstack/react-query';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
-import { createQueryClient, DEFAULT_GC_TIME } from '@/lib/query/query-client';
+import { createQueryClient, isStaticCatalogQueryKey, PERSISTED_QUERY_MAX_AGE } from '@/lib/query/query-client';
 
 const STORAGE_KEY = 'prepmx-query-cache';
 
@@ -29,8 +29,11 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     return onlineManager.subscribe(() => {
       if (onlineManager.isOnline()) {
-        // Re-dispara queries marcadas como stale y mutaciones en pausa.
-        void queryClient.resumePausedMutations().then(() => queryClient.invalidateQueries());
+        void queryClient.resumePausedMutations().then(() =>
+          queryClient.invalidateQueries({
+            predicate: (query) => !isStaticCatalogQueryKey(query.queryKey),
+          })
+        );
       }
     });
   }, [queryClient]);
@@ -43,7 +46,13 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
   return (
     <PersistQueryClientProvider
       client={queryClient}
-      persistOptions={{ persister, maxAge: DEFAULT_GC_TIME }}
+      persistOptions={{
+        persister,
+        maxAge: PERSISTED_QUERY_MAX_AGE,
+        dehydrateOptions: {
+          shouldDehydrateQuery: (query) => isStaticCatalogQueryKey(query.queryKey),
+        },
+      }}
     >
       {children}
     </PersistQueryClientProvider>

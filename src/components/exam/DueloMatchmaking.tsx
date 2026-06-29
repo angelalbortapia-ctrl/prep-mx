@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Swords, Timer, Users, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -40,24 +40,41 @@ export function DueloMatchmaking({ userScore = 0, triggerClassName }: DueloMatch
   const [botScore, setBotScore] = useState(45);
   const [liveUser, setLiveUser] = useState(userScore);
   const [liveBot, setLiveBot] = useState(45);
+  const matchTimeoutsRef = useRef<number[]>([]);
+
+  const clearMatchTimeouts = () => {
+    for (const id of matchTimeoutsRef.current) {
+      window.clearTimeout(id);
+    }
+    matchTimeoutsRef.current = [];
+  };
+
+  useEffect(() => {
+    return () => clearMatchTimeouts();
+  }, []);
 
   useEffect(() => {
     setLiveUser(userScore);
   }, [userScore]);
 
   function startMatchmaking() {
+    clearMatchTimeouts();
     setPhase('searching');
     void haptics.selection();
 
-    window.setTimeout(() => {
-      setPhase('matched');
-      void haptics.success();
-    }, 1800);
+    matchTimeoutsRef.current.push(
+      window.setTimeout(() => {
+        setPhase('matched');
+        void haptics.success();
+      }, 1800)
+    );
 
-    window.setTimeout(() => {
-      setPhase('live');
-      setBotScore(55 + Math.floor(Math.random() * 25));
-    }, 2800);
+    matchTimeoutsRef.current.push(
+      window.setTimeout(() => {
+        setPhase('live');
+        setBotScore(55 + Math.floor(Math.random() * 25));
+      }, 2800)
+    );
   }
 
   useEffect(() => {
@@ -83,6 +100,7 @@ export function DueloMatchmaking({ userScore = 0, triggerClassName }: DueloMatch
   }, [phase, haptics]);
 
   function reset() {
+    clearMatchTimeouts();
     setPhase('idle');
     setLiveUser(userScore);
     setLiveBot(45);

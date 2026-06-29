@@ -8,3 +8,8 @@ export function isDemoMode(): boolean {
     process.env.NODE_ENV === 'development'
   );
 }
+
+/** No bloquear botones/pantallas en demo si Clerk tarda o no tiene keys locales. */
+export function isClerkUiReady(isLoaded: boolean): boolean {
+  return isLoaded || isDemoMode();
+}

@@ -1,0 +1,42 @@
+# Respaldo diario de la base de producción (Supabase).
+# Secrets requeridos en GitHub → Settings → Secrets → Actions:
+#   SUPABASE_DB_URL — URI directa postgres (puerto 5432)
+name: Supabase daily backup
+
+on:
+  schedule:
+    # 06:00 UTC ≈ medianoche Ciudad de México (invierno)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install PostgreSQL client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Run pg_dump
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          BACKUP_OUTPUT_DIR: ${{ runner.temp }}/backups
+          BACKUP_RETENTION_DAYS: '0'
+        run: bash scripts/backup-supabase.sh
+
+      - name: Upload backup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: prepmx-supabase-${{ github.run_id }}
+          path: ${{ runner.temp }}/backups/*.sql.gz
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Summary
+        run: |
+          ls -lh "${{ runner.temp }}/backups"
+          echo "Descarga el artifact desde la pestaña Actions de este workflow."

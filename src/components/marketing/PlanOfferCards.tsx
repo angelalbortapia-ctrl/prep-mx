@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlanScopeToggle } from '@/components/marketing/PlanScopeToggle';
+import { StripeCheckoutButton } from '@/components/marketing/StripeCheckoutButton';
 import { MONETIZATION_PLANS, type MonetizationPlan } from '@/data/pricing';
 import { buildJourneyHref } from '@/lib/journey-links';
 import { useUniTheme } from '@/hooks/useUniTheme';
@@ -27,7 +28,7 @@ function highlightedShellClass(uniId: ReturnType<typeof filterToUniId>): string 
     return 'border-[#D4AF37]/50 bg-[#002B49] text-[#D4AF37] shadow-[0_0_40px_rgba(212,175,55,0.25)]';
   }
   if (uniId === 'ipn') {
-    return 'border-[#6A1B29]/40 bg-white text-[#6A1B29] shadow-[0_0_32px_rgba(106,27,41,0.35)] ring-2 ring-[#6A1B29]/20';
+    return 'border-[#6A1B29]/40 bg-card text-[#6A1B29] shadow-[0_0_32px_rgba(106,27,41,0.35)] ring-2 ring-[#6A1B29]/20 dark:text-rose-300';
   }
   if (uniId === 'uam') {
     return 'border-zinc-700 bg-[#111111] text-[#F05454] shadow-[0_0_0_1px_rgba(240,84,84,0.4)]';
@@ -57,17 +58,17 @@ function planCtaHref(
 
 export function PlanOfferCards({ universidad, plan, basePath, variant = 'default' }: PlanOfferCardsProps) {
   const prefersReducedMotion = useReducedMotion();
-  const { uniId, hydrated } = useUniTheme();
+  const { uniId } = useUniTheme();
   const effectiveUniId = universidad !== 'todas' ? filterToUniId(universidad) : uniId;
   const visual = getUniVisualIdentity(effectiveUniId);
   const highlightClass = highlightedShellClass(effectiveUniId);
   const isDark = variant === 'dark';
 
   return (
-    <div id="planes" className="scroll-mt-24 space-y-8">
+    <div className="scroll-mt-24 space-y-10 overflow-x-clip md:space-y-12">
       <PlanScopeToggle value={plan} basePath={basePath} />
 
-      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="mx-auto grid min-w-0 w-full grid-cols-1 gap-6 md:grid-cols-3">
         {MONETIZATION_PLANS.map((item) => {
           const highlighted = Boolean(item.highlighted);
           const isProSelected = item.id === 'pro' && plan === 'universidad';
@@ -109,13 +110,13 @@ export function PlanOfferCards({ universidad, plan, basePath, variant = 'default
                     {item.badge}
                   </Badge>
                 )}
-                <CardTitle className={cn('text-xl', highlighted && 'text-inherit')}>{item.name}</CardTitle>
+                <CardTitle className={cn('text-lg sm:text-xl', highlighted && 'text-inherit')}>{item.name}</CardTitle>
                 <CardDescription className={cn(highlighted && 'text-inherit/80')}>
                   {item.description}
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-1">
-                <p className={cn('text-3xl font-bold', highlighted && 'text-inherit')}>
+                <p className={cn('text-2xl font-bold sm:text-3xl', highlighted && 'text-inherit')}>
                   {item.priceLabel}
                   {item.price > 0 && (
                     <span className={cn('mt-1 block text-sm font-normal', highlighted ? 'opacity-80' : 'text-muted-foreground')}>
@@ -139,25 +140,19 @@ export function PlanOfferCards({ universidad, plan, basePath, variant = 'default
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button
-                  asChild
-                  className={cn(
-                    'h-11 w-full',
-                    visual.radius,
-                    highlighted
-                      ? effectiveUniId === 'unam'
-                        ? 'bg-[#D4AF37] text-[#002B49] hover:bg-[#D4AF37]/90'
-                        : effectiveUniId === 'uam'
-                          ? 'bg-[#F05454] text-white hover:bg-[#F05454]/90'
-                          : effectiveUniId === 'ipn'
-                            ? 'bg-[#6A1B29] text-white hover:bg-[#6A1B29]/90'
-                            : 'bg-primary-foreground text-primary hover:bg-primary-foreground/90'
-                      : undefined
-                  )}
-                  variant={highlighted ? 'default' : item.id === 'express' ? 'outline' : 'default'}
-                >
-                  <Link href={planCtaHref(item, universidad, plan, basePath)}>{item.ctaLabel}</Link>
-                </Button>
+                {item.id === 'express' ? (
+                  <Button asChild variant="outline" size="cta" className="w-full">
+                    <Link href={planCtaHref(item, universidad, plan, basePath)}>{item.ctaLabel}</Link>
+                  </Button>
+                ) : (
+                  <StripeCheckoutButton
+                    planId={item.id}
+                    universidad={universidad}
+                    label={item.ctaLabel}
+                    variant={item.id === 'pro' ? 'conversion' : 'outline'}
+                    className="w-full"
+                  />
+                )}
               </CardFooter>
             </Card>
           );

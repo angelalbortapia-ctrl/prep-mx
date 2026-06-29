@@ -12,6 +12,9 @@ import {
   type StudyAreaId,
 } from '@/data/university-comparison';
 import { persistAffinityResult } from '@/lib/persist-affinity';
+import { flushPendingDiagnostic, readPendingDiagnostic } from '@/lib/pending-diagnostic';
+import { useVerifiedClerkSession } from '@/hooks/useVerifiedClerkSession';
+import { LegalConsentCheckbox } from '@/components/legal/LegalConsentCheckbox';
 import { areaLabels, universidadLabels, type Universidad } from '@/types/user-profile';
 
 const steps = ['Tu perfil', 'Área de carrera', 'Fecha de examen'];
@@ -28,11 +31,13 @@ export function OnboardingProfileWizard({
   onBack,
 }: OnboardingProfileWizardProps) {
   const { user } = useUser();
+  const { isSessionReady, sessionError } = useVerifiedClerkSession();
   const [step, setStep] = useState(0);
   const [universidad, setUniversidad] = useState<Universidad>(affinity.recommended);
   const [area, setArea] = useState(() => areaIdForUni(affinity.recommended, studyArea, affinity));
   const [examDate, setExamDate] = useState('');
   const [name, setName] = useState('');
+  const [legalConsentAccepted, setLegalConsentAccepted] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
@@ -66,6 +71,16 @@ export function OnboardingProfileWizard({
   }
 
   async function finish() {
+    if (!legalConsentAccepted) {
+      setError('Debes aceptar los Términos y el Aviso de Privacidad para continuar.');
+      return;
+    }
+
+    if (!isSessionReady) {
+      setError(sessionError ?? 'Tu sesión aún se está verificando. Espera un momento e intenta de nuevo.');
+      return;
+    }
+
     setSaving(true);
     setError('');
 
@@ -90,13 +105,21 @@ export function OnboardingProfileWizard({
       const res = await fetch('/api/onboarding/complete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(profile),
+        body: JSON.stringify({
+          ...profile,
+          hadDiagnostic: Boolean(readPendingDiagnostic()),
+          legalConsentAccepted: true,
+        }),
       });
       if (!res.ok) throw new Error('No se pudo guardar');
 
       persistAffinityResult(affinity, { studyArea });
       localStorage.setItem('prepmx-profile', JSON.stringify(profile));
-      window.location.href = `/dashboard/estudio?uni=${universidad}`;
+
+      const flushed = await flushPendingDiagnostic();
+      window.location.href = flushed.feedbackId
+        ? `/dashboard/diagnostico/${flushed.feedbackId}`
+        : `/dashboard/estudio?uni=${universidad}`;
     } catch {
       setError('Algo falló al guardar. Intenta otra vez.');
       setSaving(false);
@@ -126,6 +149,11 @@ export function OnboardingProfileWizard({
         <CardContent className="space-y-4">
           {step === 0 && (
             <>
+              <LegalConsentCheckbox
+                id="onboarding-legal-consent"
+                checked={legalConsentAccepted}
+                onCheckedChange={setLegalConsentAccepted}
+              />
               <Input
                 placeholder="Tu nombre"
                 value={name}
@@ -207,13 +235,21 @@ export function OnboardingProfileWizard({
             {step < steps.length - 1 ? (
               <Button
                 className="h-11 flex-1"
-                disabled={step === 0 ? !universidad : !area}
+                disabled={
+                  step === 0
+                    ? !universidad || !legalConsentAccepted
+                    : !area
+                }
                 onClick={() => setStep((s) => s + 1)}
               >
                 Siguiente
               </Button>
             ) : (
-              <Button className="h-11 flex-1" disabled={!examDate || saving} onClick={finish}>
+              <Button
+                className="h-11 flex-1"
+                disabled={!examDate || !legalConsentAccepted || saving || !isSessionReady}
+                onClick={finish}
+              >
                 {saving ? 'Guardando…' : 'Crear mi plan'}
               </Button>
             )}

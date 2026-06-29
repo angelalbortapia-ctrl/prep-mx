@@ -49,18 +49,18 @@ export function UamPromedioTrampaCalculator({ className }: UamPromedioTrampaCalc
     >
       <div className="mb-4 flex items-center gap-2 text-[#F05454]">
         <Calculator className="h-5 w-5 shrink-0" aria-hidden />
-        <span className="text-xs font-bold uppercase tracking-wider text-zinc-500">
+        <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
           Calculadora del Promedio Trampa UAM
         </span>
       </div>
 
-      <p className="text-xs text-zinc-500">
+      <p className="text-xs text-muted-foreground">
         Fórmula UAM: (promedio × 30) + (% aciertos × 7) en escala 1,000. Tu prepa aporta hasta{' '}
         {UAM_BACHILLERATO_MAX_POINTS} pts; el examen hasta {UAM_EXAMEN_MAX_POINTS}. Meta Medicina:{' '}
         {UAM_MEDICINA_TOTAL_SCORE} pts.
       </p>
 
-      <label className="mt-5 block text-[10px] font-bold uppercase text-zinc-400">
+      <label className="mt-5 block text-[10px] font-bold uppercase text-muted-foreground">
         Tu promedio de bachillerato
         <div className="mt-2 flex flex-wrap items-center gap-4">
           <input
@@ -85,7 +85,7 @@ export function UamPromedioTrampaCalculator({ className }: UamPromedioTrampaCalc
               const v = parseFloat(e.target.value);
               if (!Number.isNaN(v)) setPromedio(Math.min(10, Math.max(6, v)));
             }}
-            className="w-full rounded-lg border border-zinc-200 bg-zinc-50 p-2 text-xs font-bold text-zinc-900 focus:outline-none dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+            className="w-full rounded-lg border border-border bg-muted p-2 text-xs font-bold text-foreground focus:outline-none"
           />
         </div>
       </label>
@@ -95,17 +95,17 @@ export function UamPromedioTrampaCalculator({ className }: UamPromedioTrampaCalc
         initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ type: 'spring', stiffness: 280, damping: 26 }}
-        className="mt-5 space-y-1 rounded-lg border border-zinc-100 bg-zinc-50 p-2.5 text-[11px] dark:border-zinc-900 dark:bg-zinc-900"
+        className="mt-5 space-y-1 rounded-lg border border-border bg-muted/80 p-2.5 text-[11px]"
       >
-        <div className="font-bold text-zinc-800 dark:text-zinc-200">
+        <div className="font-bold text-foreground">
           Puntos de la prepa:{' '}
           <span className="text-[#F05454]">
             {bachilleratoPoints} / {UAM_BACHILLERATO_MAX_POINTS}
           </span>
         </div>
-        <div className="font-bold text-zinc-500">
+        <div className="font-bold text-muted-foreground">
           Reactivos mínimos en examen:{' '}
-          <span className="text-zinc-900 dark:text-zinc-100">{examReactivos} / 120</span>
+          <span className="text-foreground">{examReactivos} / 120</span>
         </div>
       </motion.div>
     </motion.article>

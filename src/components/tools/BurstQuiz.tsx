@@ -1,194 +1,181 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Flame, RotateCcw, Timer, Zap } from 'lucide-react';
+import Link from 'next/link';
+import { CheckCircle2, ChevronRight, Loader2, RotateCcw, Smartphone, XCircle, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CyberCard } from '@/components/ui/cyber-card';
-import {
-  BURST_FALLBACK_QUESTIONS,
-  BURST_POINTS_CORRECT,
-  BURST_TIMER_SECONDS,
-} from '@/data/study-tools/burst-quiz';
-import { useExamQuestions } from '@/hooks/useStudyData';
-import type { OpcionId, Question } from '@/types/question';
+import { ExamOptionCard } from '@/components/exam/ExamOptionCard';
+import { BurstExplanationPaywall } from '@/components/tools/BurstExplanationPaywall';
+import { QuestionMediaFigure, QuestionVideoEmbed } from '@/components/exam/QuestionMediaFigure';
+import { BURST_FALLBACK_QUESTIONS } from '@/data/study-tools/burst-quiz';
+import { stripExplanationForPractice, type BurstPracticeQuestion } from '@/lib/practice-burst';
+import { useBurstPracticeAnswer, useBurstPracticeQuestions } from '@/hooks/useBurstPractice';
+import { useSubscription } from '@/contexts/SubscriptionContext';
+import { useUniTheme } from '@/hooks/useUniTheme';
+import { canViewPracticeExplanations } from '@/lib/practice-access';
+import { SkeletonExamQuestion } from '@/components/ui/skeleton-body';
+import type { OpcionId } from '@/types/question';
 import { cn } from '@/lib/utils';
+import { useQueryClient } from '@tanstack/react-query';
 
 const MathRenderer = dynamic(() => import('@/components/math/MathRenderer'), {
   ssr: false,
   loading: () => <span className="inline-block h-5 w-2/3 animate-pulse rounded bg-muted" />,
 });
 
-const TOTAL_ROUNDS = 10;
+const SESSION_SIZE = 10;
 
-type BurstPhase = 'idle' | 'playing' | 'feedback' | 'ended';
+type Phase = 'idle' | 'question' | 'feedback' | 'ended';
 
-function pickRandomQuestion(pool: Question[], excludeId?: string): Question {
+function pickRandom(pool: BurstPracticeQuestion[], excludeId?: string): BurstPracticeQuestion {
   const filtered = excludeId ? pool.filter((q) => q.id !== excludeId) : pool;
   const source = filtered.length > 0 ? filtered : pool;
   return source[Math.floor(Math.random() * source.length)];
 }
 
 export function BurstQuiz() {
-  const { data: apiQuestions, isLoading, isError } = useExamQuestions({ limit: 40, enabled: true });
+  const { uniId } = useUniTheme();
+  const subscription = useSubscription();
+  const queryClient = useQueryClient();
+  const answerMutation = useBurstPracticeAnswer();
+
+  const uniFilter = uniId === 'todos' ? 'todas' : uniId;
+  const { data: apiPool, isLoading, isError, refetch } = useBurstPracticeQuestions(uniFilter);
 
   const pool = useMemo(() => {
-    if (apiQuestions && apiQuestions.length > 0) return apiQuestions;
-    return BURST_FALLBACK_QUESTIONS;
-  }, [apiQuestions]);
+    if (apiPool && apiPool.length > 0) return apiPool;
+    return BURST_FALLBACK_QUESTIONS.map(stripExplanationForPractice);
+  }, [apiPool]);
 
-  const [phase, setPhase] = useState<BurstPhase>('idle');
-  const [current, setCurrent] = useState<Question | null>(null);
+  const canExplain = canViewPracticeExplanations(subscription.subscriptions, uniId);
+
+  const [phase, setPhase] = useState<Phase>('idle');
+  const [current, setCurrent] = useState<BurstPracticeQuestion | null>(null);
   const [selected, setSelected] = useState<OpcionId | null>(null);
-  const [timedOut, setTimedOut] = useState(false);
-  const [score, setScore] = useState(0);
-  const [streak, setStreak] = useState(0);
-  const [maxStreak, setMaxStreak] = useState(0);
   const [round, setRound] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(BURST_TIMER_SECONDS);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const clearTimer = useCallback(() => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-  }, []);
+  const [correctCount, setCorrectCount] = useState(0);
+  const [correctOption, setCorrectOption] = useState<OpcionId | null>(null);
+  const [explanation, setExplanation] = useState<string | null>(null);
+  const [explanationImagenUrl, setExplanationImagenUrl] = useState<string | null>(null);
+  const [explanationVideoUrl, setExplanationVideoUrl] = useState<string | null>(null);
+  const [explanationLocked, setExplanationLocked] = useState(false);
+  const startedAtRef = useRef<number>(0);
 
   const startRound = useCallback(
     (prevId?: string) => {
-      const next = pickRandomQuestion(pool, prevId);
+      const next = pickRandom(pool, prevId);
       setCurrent(next);
       setSelected(null);
-      setTimedOut(false);
-      setTimeLeft(BURST_TIMER_SECONDS);
-      setPhase('playing');
+      setCorrectOption(null);
+      setExplanation(null);
+      setExplanationImagenUrl(null);
+      setExplanationVideoUrl(null);
+      setExplanationLocked(false);
+      answerMutation.reset();
+      startedAtRef.current = Date.now();
+      setPhase('question');
       setRound((r) => r + 1);
     },
-    [pool]
+    [pool, answerMutation]
   );
 
-  useEffect(() => {
-    if (phase !== 'playing') {
-      clearTimer();
-      return;
-    }
-
-    timerRef.current = setInterval(() => {
-      setTimeLeft((t) => (t > 0 ? t - 1 : 0));
-    }, 1000);
-
-    return clearTimer;
-  }, [phase, current?.id, clearTimer]);
-
-  useEffect(() => {
-    if (phase === 'playing' && timeLeft === 0) {
-      clearTimer();
-      setTimedOut(true);
-      setStreak(0);
-      setPhase('feedback');
-    }
-  }, [phase, timeLeft, clearTimer]);
-
-  function startGame() {
-    clearTimer();
-    setScore(0);
-    setStreak(0);
-    setMaxStreak(0);
+  const startSession = useCallback(() => {
+    setCorrectCount(0);
     setRound(0);
+    void refetch();
     startRound();
-  }
+  }, [refetch, startRound]);
 
-  function selectOption(optionId: OpcionId) {
-    if (phase !== 'playing' || !current || selected) return;
-    clearTimer();
+  const selectOption = async (optionId: OpcionId) => {
+    if (phase !== 'question' || !current || selected || answerMutation.isPending) return;
+
     setSelected(optionId);
+    const elapsed = Math.max(1, Math.round((Date.now() - startedAtRef.current) / 1000));
 
-    const correct = optionId === current.opcion_correcta;
-    if (correct) {
-      setStreak((prev) => {
-        const next = prev + 1;
-        setMaxStreak((m) => Math.max(m, next));
-        const bonus = prev >= 2 ? 5 : 0;
-        setScore((s) => s + BURST_POINTS_CORRECT + bonus);
-        return next;
+    try {
+      const result = await answerMutation.mutateAsync({
+        questionId: current.id,
+        opcionElegida: optionId,
+        timeSpentSeconds: elapsed,
       });
-    } else {
-      setStreak(0);
-    }
-    setPhase('feedback');
-  }
 
-  function nextQuestion() {
-    if (round >= TOTAL_ROUNDS) {
+      setCorrectOption(result.correctOption);
+      setExplanation(result.explanation);
+      setExplanationImagenUrl(result.explanationImagenUrl);
+      setExplanationVideoUrl(result.explanationVideoUrl);
+      setExplanationLocked(result.explanationLocked);
+      if (result.isCorrect) setCorrectCount((c) => c + 1);
+
+      void queryClient.invalidateQueries({ queryKey: ['study', 'sm2-summary'] });
+      void queryClient.invalidateQueries({ queryKey: ['gamification'] });
+      setPhase('feedback');
+    } catch {
+      setPhase('question');
+      setSelected(null);
+    }
+  };
+
+  const nextQuestion = () => {
+    if (round >= SESSION_SIZE) {
       setPhase('ended');
       return;
     }
     startRound(current?.id);
-  }
+  };
 
-  const timerPct = (timeLeft / BURST_TIMER_SECONDS) * 100;
-  const isCorrect = current && selected === current.opcion_correcta;
+  const isCorrect = selected !== null && correctOption !== null && selected === correctOption;
 
   return (
     <div className="space-y-4">
-      <CyberCard className="flex flex-wrap items-center justify-between gap-3 p-4">
-        <div className="flex items-center gap-4 text-sm">
-          <span className="flex items-center gap-1 font-bold">
-            <Zap className="h-4 w-4 text-amber-500" />
-            {score} pts
-          </span>
-          <span className="flex items-center gap-1 text-muted-foreground">
-            <Flame className="h-4 w-4 text-orange-500" />
-            Racha: {streak}
-          </span>
-          <span className="text-muted-foreground">
-            Ronda {Math.min(round, TOTAL_ROUNDS)}/{TOTAL_ROUNDS}
-          </span>
+      <CyberCard className="flex flex-wrap items-center justify-between gap-3 border-primary/20 bg-primary/[0.03] p-4">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-wider text-primary">Modo práctica de ráfaga</p>
+          <p className="mt-0.5 text-sm text-muted-foreground">
+            Una pregunta · feedback al instante · ~10 min en el camión
+          </p>
         </div>
-        {phase === 'playing' ? (
-          <div className="flex items-center gap-2">
-            <Timer className={cn('h-4 w-4', timeLeft <= 10 ? 'text-red-500' : 'text-primary')} />
-            <span className={cn('font-mono font-bold', timeLeft <= 10 && 'text-red-500')}>
-              {timeLeft}s
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Smartphone className="h-4 w-4" aria-hidden />
+          {phase === 'idle' || phase === 'ended' ? (
+            <span>{SESSION_SIZE} preguntas por sesión</span>
+          ) : (
+            <span>
+              {Math.min(round, SESSION_SIZE)}/{SESSION_SIZE} · {correctCount} aciertos
             </span>
-          </div>
-        ) : null}
+          )}
+        </div>
       </CyberCard>
 
-      {phase === 'playing' ? (
-        <div className="h-1.5 overflow-hidden rounded-full bg-muted">
-          <div
-            className={cn(
-              'h-full transition-all duration-1000 ease-linear',
-              timeLeft <= 10 ? 'bg-red-500' : 'bg-primary'
-            )}
-            style={{ width: `${timerPct}%` }}
-          />
-        </div>
-      ) : null}
-
       {phase === 'idle' ? (
-        <CyberCard className="space-y-4 p-6 text-center">
-          <p className="text-sm text-muted-foreground">
-            {TOTAL_ROUNDS} preguntas aleatorias · {BURST_TIMER_SECONDS} segundos cada una · puntos por
-            acierto y bonus por racha (3+ seguidas).
-          </p>
-          {isError ? (
-            <p className="text-xs text-amber-600">Sin conexión al banco — usamos preguntas locales.</p>
-          ) : null}
-          <Button
-            type="button"
-            className="h-12 rounded-xl px-8"
-            onClick={startGame}
-            disabled={isLoading && pool.length === 0}
-          >
-            {isLoading ? 'Cargando banco…' : 'Iniciar ráfaga'}
-          </Button>
-        </CyberCard>
+        isLoading && !apiPool ? (
+          <SkeletonExamQuestion />
+        ) : (
+          <CyberCard className="space-y-4 p-6 text-center">
+            <Zap className="mx-auto h-8 w-8 text-amber-500" aria-hidden />
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Sin cronómetro de 3 horas. Respondes una pregunta, ves verde o rojo al momento y{' '}
+              {canExplain ? (
+                'la explicación con KaTeX'
+              ) : (
+                <strong className="text-foreground">desbloqueas la explicación con Plan Pro</strong>
+              )}
+              . Cada respuesta actualiza tu SM-2.
+            </p>
+            {isError ? (
+              <p className="text-xs text-amber-600 dark:text-amber-400">
+                Sin conexión al banco — modo local limitado.
+              </p>
+            ) : null}
+            <Button type="button" className="h-12 rounded-xl px-8" onClick={startSession}>
+              Empezar ráfaga
+            </Button>
+          </CyberCard>
+        )
       ) : null}
 
-      {current && phase !== 'idle' && phase !== 'ended' ? (
+      {current && (phase === 'question' || phase === 'feedback') ? (
         <CyberCard className="space-y-4 p-5 md:p-6">
           <div className="flex items-center justify-between gap-2">
             <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-bold capitalize text-primary">
@@ -197,53 +184,99 @@ export function BurstQuiz() {
             <span className="text-xs text-muted-foreground">{current.tema}</span>
           </div>
 
-          <div className="text-base font-medium leading-relaxed">
+          <div className="text-base font-medium leading-relaxed text-foreground">
             <MathRenderer content={current.pregunta} />
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-3">
             {current.opciones.map((opt) => {
-              let style = 'border-border hover:border-primary/40';
-              if (phase === 'feedback' || selected) {
-                if (opt.id === current.opcion_correcta) style = 'border-green-500 bg-green-50';
-                else if (opt.id === selected) style = 'border-red-400 bg-red-50';
-                else style = 'border-border opacity-50';
-              }
+              const revealed = phase === 'feedback' && correctOption !== null;
 
               return (
-                <button
+                <ExamOptionCard
                   key={opt.id}
-                  type="button"
-                  disabled={phase === 'feedback'}
-                  onClick={() => selectOption(opt.id)}
-                  className={cn(
-                    'w-full rounded-xl border px-4 py-3 text-left text-sm transition-colors',
-                    style
-                  )}
+                  optionId={opt.id}
+                  correctAnswer={correctOption ?? current.opcion_correcta}
+                  selectedOption={selected ?? undefined}
+                  answered={revealed}
+                  disabled={phase === 'feedback' || answerMutation.isPending}
+                  onSelect={(id) => void selectOption(id)}
+                  trailing={
+                    answerMutation.isPending && selected === opt.id ? (
+                      <Loader2 className="h-4 w-4 shrink-0 animate-spin text-primary" />
+                    ) : null
+                  }
                 >
-                  <span className="mr-2 font-bold">{opt.id}.</span>
-                  <MathRenderer content={opt.texto} />
-                </button>
+                  <MathRenderer content={opt.texto} variant="exam-option" />
+                </ExamOptionCard>
               );
             })}
           </div>
 
           {phase === 'feedback' ? (
-            <div
-              className={cn(
-                'rounded-xl border p-4 text-sm',
-                isCorrect ? 'border-green-200 bg-green-50' : 'border-amber-200 bg-amber-50'
+            <div className="space-y-3">
+              <div
+                className={cn(
+                  'flex gap-3 rounded-xl border-2 p-4',
+                  isCorrect
+                    ? 'border-green-200 bg-green-50/90 dark:border-green-800 dark:bg-green-950/40'
+                    : 'border-amber-200 bg-amber-50/90 dark:border-amber-800 dark:bg-amber-950/40'
+                )}
+              >
+                {isCorrect ? (
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
+                ) : (
+                  <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" />
+                )}
+                <div className="min-w-0 flex-1">
+                  <p className="font-bold text-foreground">
+                    {isCorrect ? '¡Correcto!' : 'Incorrecto'}
+                  </p>
+                  {!isCorrect && correctOption ? (
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      La respuesta correcta es <strong className="text-foreground">{correctOption}</strong>
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+
+              {explanationLocked || !explanation ? (
+                <BurstExplanationPaywall
+                  uniId={uniId}
+                  onUpgradeDemo={
+                    subscription.addSubscription
+                      ? () => subscription.addSubscription(uniId === 'todos' ? 'todos' : uniId)
+                      : undefined
+                  }
+                />
+              ) : (
+                <div className="rounded-xl border border-border bg-muted/30 p-4">
+                  <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
+                    Explicación Pro
+                  </p>
+                  <div className="mt-2 text-sm leading-relaxed text-foreground">
+                    <MathRenderer content={explanation} variant="rich" />
+                  </div>
+                  {explanationImagenUrl ? (
+                    <QuestionMediaFigure
+                      src={explanationImagenUrl}
+                      alt="Explicación visual"
+                      className="mt-3"
+                    />
+                  ) : null}
+                  {explanationVideoUrl ? (
+                    <QuestionVideoEmbed
+                      embedUrl={explanationVideoUrl}
+                      title="Video explicativo"
+                      className="mt-3"
+                    />
+                  ) : null}
+                </div>
               )}
-            >
-              <p className="font-bold">{isCorrect ? '¡Correcto!' : 'Truco del reactivo'}</p>
-              {timedOut && !selected ? (
-                <p className="mt-1 text-muted-foreground">Se acabó el tiempo.</p>
-              ) : null}
-              <p className="mt-2 leading-relaxed text-muted-foreground">
-                <MathRenderer content={current.explicacion} />
-              </p>
-              <Button type="button" className="mt-4 rounded-xl" onClick={nextQuestion}>
-                {round >= TOTAL_ROUNDS ? 'Ver puntaje final' : 'Siguiente pregunta'}
+
+              <Button type="button" className="w-full rounded-xl sm:w-auto" onClick={nextQuestion}>
+                {round >= SESSION_SIZE ? 'Ver resumen' : 'Siguiente pregunta'}
+                <ChevronRight className="ml-1 h-4 w-4" />
               </Button>
             </div>
           ) : null}
@@ -252,14 +285,21 @@ export function BurstQuiz() {
 
       {phase === 'ended' ? (
         <CyberCard className="space-y-4 p-6 text-center">
-          <p className="text-2xl font-black">Puntaje final: {score}</p>
-          <p className="text-sm text-muted-foreground">
-            Completaste {TOTAL_ROUNDS} rondas · mejor racha: {maxStreak}
+          <p className="text-2xl font-black text-foreground">
+            {correctCount}/{SESSION_SIZE} aciertos
           </p>
-          <Button type="button" variant="outline" className="rounded-xl" onClick={startGame}>
-            <RotateCcw className="mr-2 h-4 w-4" />
-            Jugar de nuevo
-          </Button>
+          <p className="text-sm text-muted-foreground">
+            Sesión de ráfaga completada. Tu SM-2 ya programó los repasos de lo que fallaste.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button type="button" className="rounded-xl" onClick={startSession}>
+              <RotateCcw className="mr-2 h-4 w-4" />
+              Otra ráfaga
+            </Button>
+            <Button asChild variant="outline" className="rounded-xl">
+              <Link href="/dashboard/simulacros">Simulacro completo</Link>
+            </Button>
+          </div>
         </CyberCard>
       ) : null}
     </div>

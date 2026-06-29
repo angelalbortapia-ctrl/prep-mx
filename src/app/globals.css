@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,22 +8,34 @@
     --foreground: 224 47% 11%;
     --ticker-height: 2.75rem;
     --ticker-uni-filter-height: 1.75rem;
+    --app-nav-height: 4rem;
+    --app-viewport-main: calc(100dvh - var(--app-nav-height) - var(--ticker-height));
+    --mobile-sticky-cta-height: 4.5rem;
     --card: 0 0% 100%;
-    --card-foreground: 224 47% 11%;
-    --primary: 224 76% 40%;
+    --card-foreground: 222 47% 11%;
+    --primary: 243 75% 59%;
     --primary-foreground: 0 0% 100%;
     --secondary: 220 25% 94%;
-    --secondary-foreground: 224 47% 11%;
+    --secondary-foreground: 222 47% 11%;
     --muted: 220 20% 96%;
     --muted-foreground: 220 9% 46%;
-    --accent: 199 89% 48%;
+    --accent: 243 75% 59%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
+    --destructive: 350 89% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 220 20% 90%;
     --input: 220 20% 90%;
-    --ring: 224 76% 40%;
+    --ring: 243 75% 59%;
     --radius: 0.75rem;
+    /* PrepMX design system — 3 roles */
+    --trust: 243 75% 59%;
+    --trust-foreground: 0 0% 100%;
+    --trust-surface: 222 47% 11%;
+    --conversion: 262 83% 58%;
+    --conversion-foreground: 0 0% 100%;
+    --status-mastered: 160 84% 39%;
+    --status-review: 38 92% 50%;
+    --status-critical: 350 89% 60%;
     /* Tema institucional dinámico (sobreescrito por UniThemeProvider) */
     --uni-primary: 224 76% 40%;
     --uni-accent: 199 89% 48%;
@@ -38,8 +48,21 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    @apply bg-background font-sans font-normal text-foreground antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-bold tracking-tight text-balance;
+  }
+
+  h1 {
+    @apply font-extrabold;
   }
 
   /* Modo oscuro ergonómico — sin #000 ni #FFF puros (fatiga visual nocturna) */
@@ -48,19 +71,19 @@
     --foreground: 240 5% 96%;
     --card: 240 5% 12%;
     --card-foreground: 240 5% 96%;
-    --primary: 224 76% 55%;
+    --primary: 243 75% 67%;
     --primary-foreground: 240 5% 96%;
     --secondary: 240 4% 16%;
     --secondary-foreground: 240 5% 96%;
     --muted: 240 4% 16%;
     --muted-foreground: 240 5% 65%;
-    --accent: 199 89% 48%;
+    --accent: 243 75% 67%;
     --accent-foreground: 240 5% 96%;
-    --destructive: 0 62% 50%;
+    --destructive: 350 75% 55%;
     --destructive-foreground: 240 5% 96%;
     --border: 240 4% 20%;
     --input: 240 4% 20%;
-    --ring: 224 76% 55%;
+    --ring: 243 75% 67%;
   }
 
   .dark .bg-mesh {
@@ -85,17 +108,17 @@
     --foreground: 224 47% 11%;
     --card: 0 0% 100%;
     --card-foreground: 224 47% 11%;
-    --primary: 224 76% 40%;
+    --primary: 243 75% 59%;
     --primary-foreground: 0 0% 100%;
     --secondary: 220 25% 94%;
-    --secondary-foreground: 224 47% 11%;
+    --secondary-foreground: 222 47% 11%;
     --muted: 220 20% 96%;
     --muted-foreground: 220 9% 46%;
-    --accent: 199 89% 48%;
+    --accent: 243 75% 59%;
     --accent-foreground: 0 0% 100%;
     --border: 220 20% 90%;
     --input: 220 20% 90%;
-    --ring: 224 76% 40%;
+    --ring: 243 75% 59%;
     color: hsl(var(--foreground));
     background-color: hsl(var(--background));
   }
@@ -115,6 +138,19 @@
   .katex {
     font-size: 1.02em;
     color: inherit;
+    /* KaTeX usa Computer Modern — no forzar font-family del UI */
+    font-family: KaTeX_Main, 'Times New Roman', serif;
+  }
+
+  /* Contenedor MathRenderer: aire para fracciones y exponentes */
+  .math-content {
+    line-height: 1.625;
+    letter-spacing: 0.02em;
+  }
+
+  .math-content--inline,
+  .math-content--exam-option {
+    letter-spacing: normal;
   }
 
   .katex .mord,
@@ -198,6 +234,71 @@
     display: inline;
   }
 
+  /* ── Simulador / diagnóstico: enunciado con display math legible ── */
+  .math-content--exam-stem {
+    font-size: inherit;
+    line-height: 1.625;
+    color: inherit;
+  }
+
+  .math-content--exam-stem .math-paragraph {
+    margin: 0.35rem 0;
+  }
+
+  .math-content--exam-stem .math-paragraph:first-child {
+    margin-top: 0;
+  }
+
+  .math-content--exam-stem .math-paragraph:last-child {
+    margin-bottom: 0;
+  }
+
+  .math-content--exam-stem .katex-display {
+    display: block !important;
+    margin: 0.75rem 0;
+    padding: 0.35rem 0;
+    overflow-x: auto;
+    text-align: center;
+    background: transparent;
+  }
+
+  .math-content--exam-stem .katex:not(.katex-display .katex) {
+    font-size: 1.05em;
+    vertical-align: -0.1em;
+    padding: 0 0.1em;
+  }
+
+  /* ── Opciones A–D: fracciones alineadas al texto en botones flex ── */
+  .math-content--exam-option {
+    display: inline;
+    font-size: inherit;
+    line-height: 1.45;
+  }
+
+  .math-content--exam-option .math-paragraph,
+  .math-content--exam-option p {
+    display: inline;
+    margin: 0;
+  }
+
+  .math-content--exam-option .katex {
+    font-size: 1.06em;
+    vertical-align: middle;
+  }
+
+  .math-content--exam-option .katex-display {
+    display: inline-block !important;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  .math-content--exam-option .mfrac {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   .katex-display {
     overflow-x: auto;
     margin: 0.75rem 0;
@@ -217,6 +318,11 @@
     @apply border-b border-white/60 bg-white/80 backdrop-blur-md;
   }
 
+  /** Simulacro activo: no hay ticker — más alto útil bajo el nav. */
+  .app-viewport-exam {
+    --app-viewport-main: calc(100dvh - var(--app-nav-height));
+  }
+
   .uni-header-accent {
     @apply h-1 w-full transition-colors duration-500;
   }
@@ -230,7 +336,7 @@
 
   /* UNAM: serif académico (Playfair), pergamino, navy #002B49, oro #D4AF37 */
   .uni-skin-unam {
-    --radius: 9999px;
+    --radius: 0.75rem;
   }
 
   .uni-skin-unam .exam-shell,
@@ -239,23 +345,22 @@
     box-shadow: 0 12px 40px -8px rgba(212, 175, 55, 0.22);
   }
 
-  .uni-skin-unam button[class*='bg-primary'],
   .uni-skin-unam .showcase-tab-active {
-    border-radius: 9999px;
+    border-radius: 0.75rem;
   }
 
   .uni-skin-unam .exam-timer-unam {
     box-shadow: 0 4px 20px -4px rgba(212, 175, 55, 0.35);
   }
 
-  /* IPN: sans afilado (Inter/Jakarta), mono en cronómetros, guinda #6A1B29, neón */
+  /* IPN: sans afilado, guinda #6A1B29 */
   .uni-skin-ipn {
-    --radius: 0.375rem;
+    --radius: 0.75rem;
   }
 
   .uni-skin-ipn .exam-shell,
   .uni-skin-ipn .exam-shell-ipn {
-    @apply rounded-md;
+    @apply rounded-xl;
     box-shadow:
       inset 0 1px 0 rgba(226, 232, 240, 0.25),
       0 4px 24px -4px rgba(106, 27, 41, 0.45),
@@ -350,6 +455,40 @@
       radial-gradient(at 50% 100%, hsl(var(--primary) / 0.07) 0, transparent 50%);
   }
 
+  /* Marketing en modo oscuro — tokens legibles por universidad */
+  .dark.uni-theme[data-universidad='unam'],
+  .dark .uni-theme[data-universidad='unam'] {
+    --background: 207 40% 9%;
+    --foreground: 210 25% 96%;
+    --card: 207 35% 13%;
+    --card-foreground: 210 25% 96%;
+    --muted: 207 30% 14%;
+    --muted-foreground: 210 15% 68%;
+    --border: 207 25% 20%;
+  }
+
+  .dark.uni-theme[data-universidad='ipn'],
+  .dark .uni-theme[data-universidad='ipn'] {
+    --background: 345 35% 9%;
+    --foreground: 345 15% 96%;
+    --card: 345 30% 13%;
+    --card-foreground: 345 15% 96%;
+    --muted: 345 25% 14%;
+    --muted-foreground: 345 12% 68%;
+    --border: 345 20% 20%;
+  }
+
+  .dark.uni-theme[data-universidad='todas'],
+  .dark .uni-theme[data-universidad='todas'] {
+    --background: 240 6% 10%;
+    --foreground: 240 5% 96%;
+    --card: 240 5% 12%;
+    --card-foreground: 240 5% 96%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    --border: 240 4% 20%;
+  }
+
   /* Micro-animaciones para landing premium */
   @keyframes fade-up {
     from {
@@ -385,7 +524,7 @@
 
   /* Showcase carrosserie — identidad cromática por universidad */
   .showcase-carrosserie-unam {
-    font-family: 'Playfair Display', Georgia, Garamond, 'Times New Roman', serif;
+    font-family: var(--font-serif), Georgia, Garamond, 'Times New Roman', serif;
     background: linear-gradient(145deg, #faf6ed 0%, #f5efe0 45%, hsl(var(--card)) 100%);
     border-color: hsl(207 100% 14% / 0.25);
   }
@@ -396,7 +535,7 @@
   }
 
   .showcase-carrosserie-ipn {
-    font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    font-family: var(--font-reading), system-ui, sans-serif;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.02em;
@@ -412,7 +551,7 @@
   }
 
   .showcase-carrosserie-uam {
-    font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    font-family: var(--font-reading), system-ui, sans-serif;
     font-weight: 800;
     letter-spacing: -0.04em;
     background: linear-gradient(135deg, #111111 0%, #1a1a1a 55%, hsl(0 84% 64% / 0.12) 100%);
@@ -482,7 +621,10 @@
   }
 
   .mobile-sticky-cta {
-    @apply fixed inset-x-0 bottom-0 z-40 border-t bg-white/95 p-3 backdrop-blur-md md:hidden;
+    @apply fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 backdrop-blur-md md:hidden;
+    min-height: var(--mobile-sticky-cta-height);
+    padding: 0.75rem 1rem;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
   }
 
   /* Ticker de admisión — marquee inferior */

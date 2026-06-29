@@ -64,16 +64,16 @@ export function PreparationTimeCalculator({ universidad, className }: Preparatio
       <header className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h2 className={landingSectionTitle}>Tu Cronograma de Combate</h2>
-          <p className="mt-1 text-xs font-medium text-zinc-500">
+          <p className="mt-1 text-xs font-medium text-muted-foreground">
             Telemetría en vivo para{' '}
-            <span className="font-bold text-zinc-700">{effectiveUni.toUpperCase()}</span>
+            <span className="font-bold text-foreground">{effectiveUni.toUpperCase()}</span>
             {' · '}
             {telemetry.minutesPerDay} min/día
           </p>
         </div>
 
         <div
-          className="flex w-full gap-1 rounded-xl bg-zinc-100 p-1 text-[10px] font-black uppercase sm:max-w-lg"
+          className="flex w-full gap-1 rounded-xl bg-muted p-1 text-[10px] font-black uppercase sm:max-w-lg"
           role="tablist"
           aria-label="Nivel de carga de estudio"
         >
@@ -88,7 +88,7 @@ export function PreparationTimeCalculator({ universidad, className }: Preparatio
                 onClick={() => setIntensidad(mode.id)}
                 className={cn(
                   'flex-1 rounded-lg px-2 py-2.5 transition-all duration-200',
-                  !isActive && 'text-zinc-500 hover:text-zinc-900'
+                  !isActive && 'text-muted-foreground hover:text-foreground'
                 )}
                 style={isActive ? activeBtnStyle : undefined}
               >
@@ -103,29 +103,29 @@ export function PreparationTimeCalculator({ universidad, className }: Preparatio
         key={intensidad}
         animate={prefersReducedMotion ? { scale: 1 } : { scale: [0.98, 1] }}
         transition={{ duration: 0.32, ease: [0.34, 1.56, 0.64, 1] }}
-        className="grid grid-cols-1 gap-4 rounded-xl border border-zinc-100 bg-zinc-50 p-4 sm:grid-cols-3"
+        className="grid grid-cols-1 gap-4 rounded-xl border border-border bg-muted/60 p-4 sm:grid-cols-3"
       >
         <div className="text-center sm:text-left">
-          <p className="text-[10px] font-black uppercase tracking-wider text-zinc-400">Tiempo total</p>
+          <p className="text-[10px] font-black uppercase tracking-wider text-muted-foreground">Tiempo total</p>
           <p
-            className="mt-1 text-3xl font-black tabular-nums tracking-tight text-zinc-900"
+            className="mt-1 text-3xl font-black tabular-nums tracking-tight text-foreground"
             style={hydrated ? { color: accent.primary } : undefined}
           >
             {telemetry.weeks}
           </p>
-          <p className="mt-0.5 text-xs font-bold text-zinc-500">{telemetry.readyLabel}</p>
+          <p className="mt-0.5 text-xs font-bold text-muted-foreground">{telemetry.readyLabel}</p>
         </div>
 
-        <div className="border-zinc-200 text-center sm:border-x sm:px-4 sm:text-left">
-          <p className="text-[10px] font-black uppercase tracking-wider text-zinc-400">Dosis diaria</p>
+        <div className="border-border text-center sm:border-x sm:px-4 sm:text-left">
+          <p className="text-[10px] font-black uppercase tracking-wider text-muted-foreground">Dosis diaria</p>
           <p className="mt-1 text-3xl font-black tabular-nums tracking-tight text-amber-500">
             {telemetry.dailyReactivos}
           </p>
-          <p className="mt-0.5 text-xs font-bold text-zinc-500">{telemetry.dailyLabel}</p>
+          <p className="mt-0.5 text-xs font-bold text-muted-foreground">{telemetry.dailyLabel}</p>
         </div>
 
         <div className="text-center sm:text-left">
-          <p className="text-[10px] font-black uppercase tracking-wider text-zinc-400">
+          <p className="text-[10px] font-black uppercase tracking-wider text-muted-foreground">
             Fatiga cognitiva
           </p>
           <div className="mt-2 flex justify-center sm:justify-start">

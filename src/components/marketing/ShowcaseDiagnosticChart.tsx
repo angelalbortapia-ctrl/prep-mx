@@ -46,8 +46,8 @@ function LiquidProgressBar({ label, value, weak = false, delay = 0 }: LiquidProg
           className={cn(
             'relative h-full rounded-full',
             weak
-              ? 'bg-gradient-to-r from-rose-700 via-red-500 to-rose-400 shadow-[0_0_22px_rgba(239,68,68,0.65),inset_0_1px_0_rgba(255,255,255,0.25)]'
-              : 'bg-gradient-to-r from-primary via-sky-500 to-emerald-400 shadow-[0_0_18px_rgba(59,130,246,0.5),inset_0_1px_0_rgba(255,255,255,0.2)]'
+              ? 'bg-gradient-to-r from-rose-600 via-rose-500 to-rose-400 shadow-[0_0_22px_rgba(244,63,94,0.45)]'
+              : 'bg-gradient-to-r from-indigo-600 via-indigo-500 to-emerald-500 shadow-[0_0_18px_rgba(79,70,229,0.35)]'
           )}
         >
           <span
@@ -93,8 +93,8 @@ export function ShowcaseDiagnosticChart({ metricClass }: ShowcaseDiagnosticChart
         ))}
       </div>
 
-      <div className="min-h-[140px] flex-1">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="min-h-[140px] min-w-0 flex-1">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={140}>
           <BarChart data={SUBJECT_SCORES} margin={{ top: 4, right: 8, left: -16, bottom: 0 }}>
             <XAxis
               dataKey="materia"
@@ -114,7 +114,7 @@ export function ShowcaseDiagnosticChart({ metricClass }: ShowcaseDiagnosticChart
                 <Cell
                   key={entry.materia}
                   className={entry.weak ? 'showcase-weak-blink' : undefined}
-                  fill={entry.weak ? '#ef4444' : 'hsl(var(--primary))'}
+                  fill={entry.weak ? '#f43f5e' : '#4f46e5'}
                 />
               ))}
             </Bar>
@@ -124,7 +124,7 @@ export function ShowcaseDiagnosticChart({ metricClass }: ShowcaseDiagnosticChart
 
       <p
         className={cn(
-          'rounded-xl border border-red-300/50 bg-red-50 px-4 py-3 text-sm font-medium leading-relaxed text-red-900 dark:border-red-900/40 dark:bg-red-950/30 dark:text-red-200',
+          'rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm font-medium leading-relaxed text-rose-900 dark:text-rose-200',
           metricClass
         )}
       >

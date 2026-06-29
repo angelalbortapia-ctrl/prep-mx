@@ -1,1 +1,13 @@
-{}
+{
+  "/api/study/temario/[materiaId]/route": "app/api/study/temario/[materiaId]/route.js",
+  "/(admin)/admin/ticker/page": "app/(admin)/admin/ticker/page.js",
+  "/(app)/dashboard/simulacros/page": "app/(app)/dashboard/simulacros/page.js",
+  "/(app)/dashboard/perfil/page": "app/(app)/dashboard/perfil/page.js",
+  "/(app)/dashboard/herramientas/page": "app/(app)/dashboard/herramientas/page.js",
+  "/(app)/dashboard/estudio/page": "app/(app)/dashboard/estudio/page.js",
+  "/(app)/dashboard/comparativa/page": "app/(app)/dashboard/comparativa/page.js",
+  "/(app)/dashboard/herramientas/hoja-respuestas/page": "app/(app)/dashboard/herramientas/hoja-respuestas/page.js",
+  "/(marketing)/page": "app/(marketing)/page.js",
+  "/(app)/dashboard/page": "app/(app)/dashboard/page.js",
+  "/(app)/dashboard/simulacros/[examId]/page": "app/(app)/dashboard/simulacros/[examId]/page.js"
+}

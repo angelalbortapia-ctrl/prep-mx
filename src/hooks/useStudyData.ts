@@ -1,9 +1,9 @@
 'use client';
 
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery, useQueryClient, type UseQueryResult } from '@tanstack/react-query';
 import type { StudyMateria } from '@/data/study-materias';
 import type { Question } from '@/types/question';
-import { DEFAULT_STALE_TIME } from '@/lib/query/query-client';
+import { BULK_QUESTIONS_STALE_TIME } from '@/lib/query/query-client';
 
 export const queryKeys = {
   materias: ['study', 'materias'] as const,
@@ -19,8 +19,8 @@ async function fetchJSON<T>(url: string, init?: RequestInit): Promise<T> {
 }
 
 /**
- * Materias de la Zona de Estudio con caché de 10 min + persistencia offline.
- * Si el alumno pierde señal, TanStack sirve la última copia desde LocalStorage.
+ * Materias de la Zona de Estudio — caché estático 24h (ver setQueryDefaults en query-client).
+ * TanStack sirve la última copia desde memoria/LocalStorage sin pegarle a Supabase en cada pestaña.
  */
 export function useStudyMaterias(
   initialData?: StudyMateria[]
@@ -32,13 +32,11 @@ export function useStudyMaterias(
       return data.materias;
     },
     initialData,
-    staleTime: DEFAULT_STALE_TIME,
   });
 }
 
 /**
- * Preguntas del simulador con caché. Mantiene la copia previa mientras refresca
- * (placeholderData) para que el examen no parpadee en transiciones.
+ * Preguntas del simulador — refresco más frecuente que el catálogo estático.
  */
 export function useExamQuestions(params: {
   universidad?: string;
@@ -61,6 +59,6 @@ export function useExamQuestions(params: {
     },
     initialData: params.initialData,
     enabled: params.enabled ?? true,
-    staleTime: DEFAULT_STALE_TIME,
+    staleTime: BULK_QUESTIONS_STALE_TIME,
   });
 }

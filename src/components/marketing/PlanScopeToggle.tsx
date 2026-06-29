@@ -43,7 +43,7 @@ export function PlanScopeToggle({
       <p className="text-center text-sm font-medium text-muted-foreground">
         Elige cómo quieres prepararte
       </p>
-      <div className="mx-auto flex max-w-md flex-col gap-2 sm:flex-row sm:rounded-2xl sm:border sm:bg-white sm:p-1 sm:shadow-sm">
+      <div className="mx-auto flex max-w-md flex-col gap-2 sm:flex-row sm:rounded-2xl sm:border sm:border-border sm:bg-card sm:p-1 sm:shadow-sm">
         {options.map((opt) => {
           const active = value === opt.id;
           return (
@@ -53,10 +53,10 @@ export function PlanScopeToggle({
               onClick={() => setScope(opt.id)}
               aria-pressed={active}
               className={cn(
-                'flex flex-1 flex-col rounded-xl px-4 py-3 text-left transition-all sm:rounded-lg',
+                'flex min-h-12 flex-1 flex-col rounded-xl px-4 py-3.5 text-left transition-all sm:rounded-lg',
                 active
                   ? 'bg-primary text-primary-foreground shadow-md shadow-primary/20'
-                  : 'border bg-white hover:bg-muted/50 sm:border-0 sm:bg-transparent'
+                  : 'border border-border bg-card hover:bg-muted/50 sm:border-0 sm:bg-transparent'
               )}
             >
               <span className="text-sm font-bold">{opt.label}</span>

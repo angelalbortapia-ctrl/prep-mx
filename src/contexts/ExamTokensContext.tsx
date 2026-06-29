@@ -11,7 +11,7 @@ import {
 } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { addExamTokens, consumeExamToken, readExamTokenBalance, writeExamTokenBalance } from '@/lib/exam-tokens';
-import { isDemoMode } from '@/lib/demo-mode';
+import { isDemoMode, isClerkUiReady } from '@/lib/demo-mode';
 import { DEFAULT_EXAM_TOKENS } from '@/types/exam-tokens';
 
 interface ExamTokensContextValue {
@@ -54,7 +54,7 @@ export function ExamTokensProvider({ children }: { children: ReactNode }) {
   }, [isLoaded, isSignedIn, demo]);
 
   const consumeToken = useCallback(async (): Promise<boolean> => {
-    if (!isLoaded) return false;
+    if (!isClerkUiReady(isLoaded)) return false;
     if (!sessionOk) return false;
 
     const current = readExamTokenBalance();
@@ -101,7 +101,7 @@ export function ExamTokensProvider({ children }: { children: ReactNode }) {
       canStartFullExam: balance > 0 && sessionOk,
       consumeToken,
       purchasePack,
-      authRequired: isLoaded && !sessionOk,
+      authRequired: !demo && isLoaded && !sessionOk,
     }),
     [balance, hydrated, consumeToken, purchasePack, sessionOk, isLoaded]
   );

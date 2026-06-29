@@ -4,22 +4,19 @@ import { useEffect, useMemo, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { BookMarked, ChevronDown, Construction, Lock } from 'lucide-react';
 import { StudyUniSwitcher } from '@/components/study/StudyUniSwitcher';
-import { TemarioMateriasSection } from '@/components/study/TemarioMateriasSection';
-import { UnamTemarioSection } from '@/components/study/UnamTemarioSection';
-import { UamTemarioSection } from '@/components/study/UamTemarioSection';
+import { TemarioUniTreeSection } from '@/components/study/TemarioUniTreeSection';
+import { useTemarioSummary } from '@/hooks/useTemario';
 import {
-  countTemarioTopics,
-  filterTemarioMateriasByDivision,
-  getTemarioForUni,
   isPlaceholderPesoRelativo,
   resolveTemarioUniId,
   temarioHasDetailedContent,
-  type TemarioMateria,
+  type TemarioMateriaSummary,
   type TemarioUniId,
 } from '@/data/temario-registry';
 import { useStudyAppearance } from '@/contexts/StudyAppearanceContext';
 import { useUniTheme } from '@/contexts/UniThemeContext';
 import { uniThemedHeaderBadge } from '@/lib/study-appearance-styles';
+import { SkeletonTemarioSection } from '@/components/ui/skeleton-body';
 import { cn } from '@/lib/utils';
 
 const spring = { type: 'spring' as const, stiffness: 280, damping: 26 };
@@ -35,47 +32,38 @@ export function TemarioSection({ className }: TemarioSectionProps) {
   return (
     <div className={cn('space-y-4', className)}>
       <StudyUniSwitcher />
-      {temarioUni === 'unam' ? (
-        <UnamTemarioSection key="temario-unam" />
-      ) : temarioUni === 'uam' ? (
-        <UamTemarioSection key="temario-uam" />
-      ) : temarioHasDetailedContent(temarioUni) ? (
-        <TemarioMateriasSection key={`temario-${temarioUni}`} uni={temarioUni} />
+      {temarioHasDetailedContent(temarioUni) ? (
+        <TemarioUniTreeSection key={`temario-${temarioUni}`} uni={temarioUni} />
       ) : (
-        <PlaceholderTemarioSection key={`temario-${temarioUni}`} uni={temarioUni} />
+        <PlaceholderTemarioSection key={`temario-ph-${temarioUni}`} uni={temarioUni} />
       )}
     </div>
   );
 }
 
-function PlaceholderTemarioSection({ uni }: { uni: Exclude<TemarioUniId, 'unam'> }) {
-  const [divisionFilter, setDivisionFilter] = useState<string | 'todas'>('todas');
+function PlaceholderTemarioSection({ uni }: { uni: TemarioUniId }) {
+  const [divisionFilter, setDivisionFilter] = useState<string>('todas');
   const [expandedMateria, setExpandedMateria] = useState<string | null>(null);
   const prefersReducedMotion = useReducedMotion() ?? false;
   const { isDark } = useStudyAppearance();
-  const { meta, materias, divisions } = getTemarioForUni(uni);
+  const { data, isLoading } = useTemarioSummary(uni, divisionFilter);
 
   useEffect(() => {
     setDivisionFilter('todas');
     setExpandedMateria(null);
   }, [uni]);
 
-  const visibleMaterias = useMemo(
-    () => filterTemarioMateriasByDivision(materias, divisions, divisionFilter),
-    [materias, divisions, divisionFilter]
-  );
-
-  const stats = countTemarioTopics(visibleMaterias);
-  const showDivisionTabs = Boolean(divisions && divisions.length > 1);
+  const meta = data?.meta;
+  const materias = data?.materias ?? [];
+  const filters = data?.filters ?? [];
+  const showDivisionTabs = filters.length > 1;
   const pesoRelativo = isPlaceholderPesoRelativo(uni);
 
-  const divisionTabs = [
-    { id: 'todas' as const, label: 'Todo el examen' },
-    ...(divisions ?? []).map((d) => ({
-      id: d.id,
-      label: d.label.replace(/^(CBI|CBS|CSH|CAD|CNI|CCD) — /, ''),
-    })),
-  ];
+  if (isLoading && !data) {
+    return <SkeletonTemarioSection />;
+  }
+
+  if (!meta) return null;
 
   return (
     <section
@@ -98,9 +86,9 @@ function PlaceholderTemarioSection({ uni }: { uni: Exclude<TemarioUniId, 'unam'>
           </p>
         </div>
         <div className="flex gap-3 text-center text-xs">
-          <StatPill label="Materias" value={String(visibleMaterias.length)} />
+          <StatPill label="Materias" value={String(materias.length)} />
           <StatPill label="Temas listos" value="0" muted />
-          <StatPill label="Por cargar" value={String(visibleMaterias.length)} muted />
+          <StatPill label="Por cargar" value={String(materias.length)} muted />
         </div>
       </header>
 
@@ -131,7 +119,7 @@ function PlaceholderTemarioSection({ uni }: { uni: Exclude<TemarioUniId, 'unam'>
           role="tablist"
           aria-label="Filtrar por división o área"
         >
-          {divisionTabs.map(({ id, label }) => {
+          {filters.map(({ id, label }) => {
             const active = divisionFilter === id;
             return (
               <button
@@ -155,7 +143,7 @@ function PlaceholderTemarioSection({ uni }: { uni: Exclude<TemarioUniId, 'unam'>
       )}
 
       <div className="space-y-2">
-        {visibleMaterias.map((materia, index) => (
+        {materias.map((materia, index) => (
           <PlaceholderMateriaRow
             key={materia.id}
             materia={materia}
@@ -171,7 +159,7 @@ function PlaceholderTemarioSection({ uni }: { uni: Exclude<TemarioUniId, 'unam'>
         ))}
       </div>
 
-      {stats.total === 0 && visibleMaterias.length === 0 && (
+      {materias.length === 0 && (
         <p className="mt-4 rounded-xl border border-dashed border-border bg-muted/30 px-4 py-3 text-center text-xs text-muted-foreground">
           No hay materias para esta división todavía.
         </p>
@@ -208,7 +196,7 @@ function StatPill({
 }
 
 interface PlaceholderMateriaRowProps {
-  materia: TemarioMateria;
+  materia: TemarioMateriaSummary;
   uniNombre: string;
   pesoRelativo: boolean;
   index: number;

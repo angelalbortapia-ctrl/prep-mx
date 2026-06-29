@@ -5,8 +5,15 @@ import { ExamTokensProviderShell } from '@/components/providers/ExamTokensProvid
 import { SubscriptionProviderShell } from '@/components/providers/SubscriptionProviderShell';
 import { UniThemeProviderShell } from '@/components/providers/UniThemeProviderShell';
 import { OfflineBanner } from '@/components/system/OfflineBanner';
+import { PostHogProvider } from '@/components/providers/PostHogProvider';
+import { ConversionTagsProvider } from '@/components/providers/ConversionTagsProvider';
+import { assertClientEnv } from '@/lib/env/client';
 import { PreviewExplorerShell } from '@/components/system/PreviewExplorerShell';
+import { fontReading, fontVariables } from '@/lib/fonts';
+import { cn } from '@/lib/utils';
 import './globals.css';
+import 'katex/dist/katex.min.css';
+import './katex-theme.css';
 
 export const metadata: Metadata = {
   title: 'PrepMX — Preparación UNAM, IPN y UAM',
@@ -36,11 +43,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  assertClientEnv();
+
   return (
-    <html lang="es">
-      <body className="overscroll-y-none antialiased">
+    <html lang="es" className={fontVariables}>
+      <body className={cn(fontReading.className, 'font-normal overscroll-y-none antialiased')}>
+        <ConversionTagsProvider />
         <ClerkProvider>
-          <QueryProvider>
+          <PostHogProvider>
+            <QueryProvider>
             <SubscriptionProviderShell>
               <ExamTokensProviderShell>
                 <UniThemeProviderShell>
@@ -51,7 +62,8 @@ export default function RootLayout({
                 </UniThemeProviderShell>
               </ExamTokensProviderShell>
             </SubscriptionProviderShell>
-          </QueryProvider>
+            </QueryProvider>
+          </PostHogProvider>
         </ClerkProvider>
       </body>
     </html>

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { buildJourneyHref, marketingJourneyContext } from '@/lib/journey-links';
+import { CONTACT_MAILTO, PRIVACY_PATH, TERMS_PATH } from '@/lib/legal-consent';
 import { parsePageUniversidad, parsePlanScope } from '@/lib/university-theme';
 import { cn } from '@/lib/utils';
 
@@ -35,7 +36,7 @@ export function SiteFooter({ variant = 'marketing', className }: SiteFooterProps
           className
         )}
       >
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 md:px-8">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-4 px-4 md:px-8">
           <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             <Link
               href={buildJourneyHref('/dashboard', appJourney)}
@@ -49,7 +50,7 @@ export function SiteFooter({ variant = 'marketing', className }: SiteFooterProps
             >
               Estudio
             </Link>
-            <Link href="/aviso-de-privacidad" className="hover:text-foreground hover:underline">
+            <Link href={PRIVACY_PATH} className="hover:text-foreground hover:underline">
               Privacidad
             </Link>
           </nav>
@@ -66,7 +67,7 @@ export function SiteFooter({ variant = 'marketing', className }: SiteFooterProps
         className
       )}
     >
-      <div className="mx-auto flex max-w-5xl flex-col justify-between gap-8 px-6 md:flex-row">
+      <div className="mx-auto flex max-w-5xl flex-col justify-between gap-8 px-4 sm:px-6 md:flex-row">
         <div>
           <div className="mb-1 text-sm font-black text-zinc-900 dark:text-zinc-50">PrepMX</div>
           <p className="max-w-xs leading-relaxed">
@@ -75,7 +76,7 @@ export function SiteFooter({ variant = 'marketing', className }: SiteFooterProps
           <p className="mt-4">© 2026 PrepMX. Todos los derechos reservados.</p>
         </div>
 
-        <div className="flex gap-12">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:flex sm:flex-wrap sm:gap-12">
           <div className="space-y-1.5">
             <div className="font-bold text-zinc-900 dark:text-zinc-300">Simuladores</div>
             {uniSimLinks.map(({ uni: u, label }) => (
@@ -89,10 +90,16 @@ export function SiteFooter({ variant = 'marketing', className }: SiteFooterProps
             ))}
           </div>
           <div className="space-y-1.5">
-            <div className="font-bold text-zinc-900 dark:text-zinc-300">Legal</div>
-            <Link href="/aviso-de-privacidad" className="block hover:text-zinc-900 dark:hover:text-zinc-100">
-              Privacidad
+            <div className="font-bold text-zinc-900 dark:text-zinc-300">Recursos</div>
+            <Link href="/blog" className="block hover:text-zinc-900 dark:hover:text-zinc-100">
+              Blog
             </Link>
+            <a
+              href={CONTACT_MAILTO}
+              className="block hover:text-zinc-900 dark:hover:text-zinc-100"
+            >
+              Contacto
+            </a>
             <Link
               href={buildJourneyHref('/precios', journey)}
               className={cn(
@@ -101,6 +108,15 @@ export function SiteFooter({ variant = 'marketing', className }: SiteFooterProps
               )}
             >
               Planes y precios
+            </Link>
+          </div>
+          <div className="space-y-1.5">
+            <div className="font-bold text-zinc-900 dark:text-zinc-300">Legal</div>
+            <Link href={TERMS_PATH} className="block hover:text-zinc-900 dark:hover:text-zinc-100">
+              Términos y condiciones
+            </Link>
+            <Link href={PRIVACY_PATH} className="block hover:text-zinc-900 dark:hover:text-zinc-100">
+              Aviso de privacidad
             </Link>
           </div>
         </div>

@@ -12,6 +12,7 @@ import { useSubscription } from '@/contexts/SubscriptionContext';
 import { availableExams, type ExamConfig } from '@/data/exams';
 import { filterToUniId } from '@/lib/uni-theme-config';
 import type { UniId } from '@/lib/uni-theme-config';
+import { SkeletonSimulacrosList } from '@/components/ui/skeleton-body';
 
 function examFilterToUniId(exam: ExamConfig): UniId {
   if (exam.universidad === 'general') return 'todos';
@@ -21,6 +22,10 @@ function examFilterToUniId(exam: ExamConfig): UniId {
 export function SimulacrosList() {
   const { hasAccess, canFreeDiagnostic, hydrated } = useSubscription();
   const [paywallUni, setPaywallUni] = useState<UniId | null>(null);
+
+  if (!hydrated) {
+    return <SkeletonSimulacrosList />;
+  }
 
   return (
     <>

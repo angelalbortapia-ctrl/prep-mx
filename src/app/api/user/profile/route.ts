@@ -55,5 +55,6 @@ export async function GET() {
     averageScore,
     examTokens: dbUser?.exam_tokens,
     onboardingComplete: meta.onboardingComplete === true,
+    isPremium: Boolean(dbUser?.is_premium),
   });
 }

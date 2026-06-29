@@ -1,6 +1,5 @@
 'use client';
 
-import 'katex/dist/katex.min.css';
 import { Children, isValidElement, useMemo, type ReactNode } from 'react';
 import ReactMarkdown, { type Components } from 'react-markdown';
 import rehypeKatex from 'rehype-katex';

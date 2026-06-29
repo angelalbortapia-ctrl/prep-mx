@@ -15,6 +15,8 @@ interface ExamThumbBarProps {
   onSkip: () => void;
   onToggleBookmark: () => void;
   onShowExplanation?: () => void;
+  /** Ocultar botón de explicación (modo simulacro real). */
+  showExplanationButton?: boolean;
   className?: string;
 }
 
@@ -33,6 +35,7 @@ export function ExamThumbBar({
   onSkip,
   onToggleBookmark,
   onShowExplanation,
+  showExplanationButton = true,
   className,
 }: ExamThumbBarProps) {
   return (
@@ -85,7 +88,7 @@ export function ExamThumbBar({
           </Button>
         )}
 
-        {answered && onShowExplanation && (
+        {answered && showExplanationButton && onShowExplanation && (
           <Button
             type="button"
             variant="outline"

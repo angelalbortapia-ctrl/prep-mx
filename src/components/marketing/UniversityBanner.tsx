@@ -103,8 +103,8 @@ export function UniversityBanner({
             </div>
             <h2
               className={cn(
-                'font-bold tracking-tight text-white',
-                compact ? 'text-2xl md:text-3xl' : 'text-2xl md:text-3xl lg:text-4xl'
+                'font-bold tracking-tight text-white text-balance',
+                compact ? 'text-xl sm:text-2xl md:text-3xl' : 'text-2xl md:text-3xl lg:text-4xl'
               )}
             >
               {activeUni === 'todas' ? 'Las 3 universidades' : `Prepárate para ${theme.name}`}

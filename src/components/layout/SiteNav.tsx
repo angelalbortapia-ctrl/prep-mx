@@ -9,11 +9,12 @@ import { AppNavExtras } from '@/components/app/AppNavExtras';
 import { DashboardThemeToggle } from '@/components/layout/DashboardThemeToggle';
 import { CommandPalette } from '@/components/search/CommandPalette';
 import { TokenBalanceBadge } from '@/components/exam/TokenBalanceBadge';
-import { LandingUniSwitcher } from '@/components/marketing/LandingUniSwitcher';
+import { SupportedExamsNavDropdown } from '@/components/marketing/SupportedExamsNavDropdown';
 import { Button } from '@/components/ui/button';
 import { buildJourneyHref, marketingJourneyContext } from '@/lib/journey-links';
 import { isDemoMode } from '@/lib/demo-mode';
 import { parsePageUniversidad, parsePlanScope } from '@/lib/university-theme';
+import { resolveTemarioUniId } from '@/data/temario-registry';
 import { cn } from '@/lib/utils';
 
 type SiteNavVariant = 'marketing' | 'app';
@@ -25,7 +26,7 @@ interface NavItem {
 }
 
 const marketingItems: NavItem[] = [
-  { href: '/simulador-gratis', label: 'Simulador' },
+  { href: '/simulador-gratis', label: 'Simulador Gratis' },
   { href: '/precios', label: 'Precios' },
 ];
 
@@ -50,7 +51,6 @@ function isNavActive(pathname: string, item: NavItem): boolean {
 
 interface SiteNavProps {
   variant: SiteNavVariant;
-  /** Clase Tailwind para la barra de acento universitaria (solo marketing). */
   accentBar?: string;
 }
 
@@ -63,6 +63,7 @@ export function SiteNav({ variant, accentBar }: SiteNavProps) {
   const uni = parsePageUniversidad(searchParams.get('uni'));
   const plan = parsePlanScope(searchParams.get('plan'));
   const journey = marketingJourneyContext(uni, plan);
+  const temarioUni = resolveTemarioUniId(uni);
 
   const homeHref =
     variant === 'app'
@@ -72,7 +73,7 @@ export function SiteNav({ variant, accentBar }: SiteNavProps) {
 
   const navLinkClass = (active: boolean) =>
     cn(
-      'tap-transparent whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+      'tap-transparent shrink-0 whitespace-nowrap rounded-lg px-2 py-2 text-xs font-medium transition-colors lg:px-3 lg:text-sm',
       active
         ? 'bg-primary/10 text-primary'
         : 'text-muted-foreground hover:bg-primary/5 hover:text-primary'
@@ -86,12 +87,17 @@ export function SiteNav({ variant, accentBar }: SiteNavProps) {
         : buildJourneyHref(item.href, uni !== 'todas' ? { uni, plan: 'universidad' } : undefined),
   }));
 
-  const showDashboard = demo || (isLoaded && isSignedIn);
+  const clerkSignedIn = isLoaded && isSignedIn;
 
   return (
     <header className="glass-header sticky top-0 z-50">
       {accentBar ? <div className={cn('uni-header-accent', accentBar)} aria-hidden /> : null}
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-3 px-4 md:px-6">
+      <div
+        className={cn(
+          'mx-auto flex h-16 items-center justify-between gap-2 px-4 md:gap-3 md:px-6',
+          variant === 'app' ? 'max-w-7xl' : 'max-w-5xl'
+        )}
+      >
         <Link href={homeHref} className="flex shrink-0 items-center gap-2 font-black tracking-tight">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-md shadow-primary/25">
             <GraduationCap className="h-5 w-5" />
@@ -99,9 +105,10 @@ export function SiteNav({ variant, accentBar }: SiteNavProps) {
           <span className="text-lg">PrepMX</span>
         </Link>
 
-        {variant === 'marketing' ? <LandingUniSwitcher placement="desktop" /> : null}
-
-        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 md:flex">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 overflow-x-auto scrollbar-none md:flex lg:gap-1">
+          {variant === 'marketing' ? (
+            <SupportedExamsNavDropdown activeUni={temarioUni} />
+          ) : null}
           {resolvedItems.map((item) => {
             const active = isNavActive(pathname, item);
             return (
@@ -112,25 +119,26 @@ export function SiteNav({ variant, accentBar }: SiteNavProps) {
           })}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-1 md:gap-2">
+        <div className="flex shrink-0 items-center gap-1 md:gap-1.5 lg:gap-2">
           {variant === 'marketing' ? (
             <>
+              <DashboardThemeToggle className="hidden sm:inline-flex" />
               <TokenBalanceBadge />
               <CommandPalette />
-              {showDashboard ? (
-                <Button asChild variant="outline" className="h-10 rounded-full text-xs font-bold">
-                  <Link href="/dashboard">Mi espacio</Link>
+              {clerkSignedIn ? (
+                <Button asChild size="default" className="text-xs font-bold">
+                  <Link href="/dashboard">Ir a mi Dashboard</Link>
                 </Button>
               ) : (
-                <Button asChild className="h-10 rounded-full text-xs font-bold shadow-md shadow-primary/20">
-                  <Link href="/sign-up">Empezar gratis</Link>
+                <Button asChild variant="outline" size="default" className="text-xs font-bold">
+                  <Link href="/sign-in">Iniciar Sesión</Link>
                 </Button>
               )}
             </>
           ) : (
             <>
-              <DashboardThemeToggle className="hidden sm:inline-flex" />
-              <AppNavExtras />
+              <AppNavExtras className="hidden lg:inline-flex" />
+              <DashboardThemeToggle className="hidden md:inline-flex" />
               {userIdArea(demo, isLoaded, Boolean(isSignedIn))}
               <Link
                 href={buildJourneyHref('/', journey)}
@@ -144,22 +152,31 @@ export function SiteNav({ variant, accentBar }: SiteNavProps) {
       </div>
 
       {variant === 'marketing' ? (
-        <div className="border-t border-border/40 px-4 py-2 sm:hidden">
-          <LandingUniSwitcher placement="mobile" />
-        </div>
-      ) : null}
-
-      <nav className="flex items-center gap-2 overflow-x-auto px-4 pb-2 scrollbar-none md:hidden">
-        <DashboardThemeToggle className="sm:hidden" />
-        {resolvedItems.map((item) => {
-          const active = isNavActive(pathname, item);
-          return (
-            <Link key={item.href} href={item.href} className={navLinkClass(active)}>
-              {item.label}
-            </Link>
-          );
-        })}
-      </nav>
+        <nav className="flex items-center gap-2 overflow-x-auto border-t border-border/40 px-4 py-2 scrollbar-none md:hidden">
+          <DashboardThemeToggle className="sm:hidden" />
+          <SupportedExamsNavDropdown activeUni={temarioUni} />
+          {resolvedItems.map((item) => {
+            const active = isNavActive(pathname, item);
+            return (
+              <Link key={item.href} href={item.href} className={navLinkClass(active)}>
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+      ) : (
+        <nav className="flex items-center gap-2 overflow-x-auto px-4 pb-2 scrollbar-none md:hidden">
+          <DashboardThemeToggle className="sm:hidden" />
+          {resolvedItems.map((item) => {
+            const active = isNavActive(pathname, item);
+            return (
+              <Link key={item.href} href={item.href} className={navLinkClass(active)}>
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+      )}
     </header>
   );
 }

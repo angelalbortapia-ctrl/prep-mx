@@ -6,10 +6,13 @@ import { BookOpen, Focus, Sparkles, X } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { MateriaScroller } from '@/components/study/MateriaScroller';
 import { TemarioSection } from '@/components/study/TemarioSection';
+import { COMPARATIVA_AFFINITY_HREF } from '@/components/comparativa/ComparativaAffinityEmptyState';
 import { CyberCard, NeonStatusBadge } from '@/components/ui/cyber-card';
 import { useStudyAppearance } from '@/contexts/StudyAppearanceContext';
 import { useUniTheme } from '@/contexts/UniThemeContext';
-import { getTemarioForUni, getTemarioMateriaIds, resolveTemarioUniId } from '@/data/temario-registry';
+import { useSm2Summary } from '@/hooks/useSm2Summary';
+import { useTemarioSummary } from '@/hooks/useTemario';
+import { resolveTemarioUniId } from '@/data/temario-registry';
 import type { StudyMateria } from '@/data/study-materias';
 import {
   studyBadge,
@@ -28,24 +31,34 @@ export function StudyZoneView({ materias }: StudyZoneViewProps) {
   const prefersReducedMotion = useReducedMotion() ?? false;
   const { isDark } = useStudyAppearance();
   const { entry, hydrated, filterId, uniId, universityTheme } = useUniTheme();
+  const { data: sm2 } = useSm2Summary();
+  const sm2BadgeLabel = sm2?.synced
+    ? sm2.dueTomorrow > 0
+      ? `SM-2 · ${sm2.dueTomorrow} repasos`
+      : 'SM-2 activo'
+    : 'SM-2 · local';
   const temarioUni = resolveTemarioUniId(filterId, uniId);
+  const { data: temarioSummary } = useTemarioSummary(
+    temarioUni,
+    temarioUni === 'uam' ? 'cbi' : 'todas'
+  );
   const scopeIds = useMemo(() => {
     if (temarioUni === 'unam') return undefined;
-    return Array.from(getTemarioMateriaIds(temarioUni));
-  }, [temarioUni]);
+    return temarioSummary?.materiaIds;
+  }, [temarioUni, temarioSummary?.materiaIds]);
   const scopedMaterias = useMemo(() => {
     if (!scopeIds) return materias;
     const allowed = new Set(scopeIds);
     return materias.filter((m) => allowed.has(m.id));
   }, [materias, scopeIds]);
   const temarioLabels = useMemo(() => {
-    if (temarioUni === 'unam') return undefined;
+    if (temarioUni === 'unam' || !temarioSummary?.materias) return undefined;
     const labels: Record<string, { nombre: string; icon: string }> = {};
-    for (const m of getTemarioForUni(temarioUni).materias) {
+    for (const m of temarioSummary.materias) {
       labels[m.id] = { nombre: m.nombre, icon: m.icon };
     }
     return labels;
-  }, [temarioUni]);
+  }, [temarioUni, temarioSummary?.materias]);
 
   const haloStyle = hydrated
     ? { boxShadow: `0 0 48px ${entry.colors.primary}33, 0 0 80px ${entry.colors.accent}22` }
@@ -113,9 +126,9 @@ export function StudyZoneView({ materias }: StudyZoneViewProps) {
                 {universityTheme.shortLabel}.
               </p>
               <div className="mt-3 flex flex-wrap items-center gap-2">
-                <NeonStatusBadge tone="active" label="SM-2 sincronizado" />
+                <NeonStatusBadge tone="active" label={sm2BadgeLabel} />
                 <Link
-                  href="/dashboard/comparativa"
+                  href={COMPARATIVA_AFFINITY_HREF}
                   className={cn(
                     'inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-[10px] font-black uppercase tracking-wider transition-colors',
                     isDark

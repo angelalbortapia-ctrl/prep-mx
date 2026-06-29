@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -11,30 +11,47 @@ interface TimerProps {
   className?: string;
 }
 
+/** Persistido en localStorage — solo ancla de tiempo, no contador decreciente. */
 interface TimerState {
-  remaining: number;
   startedAt: number;
+  durationSeconds: number;
+}
+
+function storageKey(sessionId: string): string {
+  return `prepmx-timer-${sessionId}`;
+}
+
+function computeRemaining(startedAt: number, durationSeconds: number): number {
+  const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+  return Math.max(0, durationSeconds - elapsed);
 }
 
 function loadState(sessionId: string, durationSeconds: number): TimerState {
+  const fallback: TimerState = { startedAt: Date.now(), durationSeconds };
+
   if (typeof window === 'undefined') {
-    return { remaining: durationSeconds, startedAt: Date.now() };
+    return fallback;
   }
 
-  const raw = localStorage.getItem(`prepmx-timer-${sessionId}`);
+  const raw = localStorage.getItem(storageKey(sessionId));
   if (!raw) {
-    return { remaining: durationSeconds, startedAt: Date.now() };
+    return fallback;
   }
 
   try {
-    const parsed = JSON.parse(raw) as TimerState;
-    const elapsed = Math.floor((Date.now() - parsed.startedAt) / 1000);
-    return {
-      startedAt: parsed.startedAt,
-      remaining: Math.max(0, parsed.remaining - elapsed),
-    };
+    const parsed = JSON.parse(raw) as Partial<TimerState> & { remaining?: number };
+    if (typeof parsed.startedAt !== 'number' || !Number.isFinite(parsed.startedAt)) {
+      return fallback;
+    }
+
+    const storedDuration =
+      typeof parsed.durationSeconds === 'number' && parsed.durationSeconds > 0
+        ? parsed.durationSeconds
+        : durationSeconds;
+
+    return { startedAt: parsed.startedAt, durationSeconds: storedDuration };
   } catch {
-    return { remaining: durationSeconds, startedAt: Date.now() };
+    return fallback;
   }
 }
 
@@ -45,46 +62,68 @@ function formatTime(seconds: number): string {
 }
 
 export function Timer({ sessionId, durationSeconds, onExpire, className }: TimerProps) {
-  const [remaining, setRemaining] = useState(durationSeconds);
   const [startedAt, setStartedAt] = useState<number | null>(null);
+  const [remaining, setRemaining] = useState(durationSeconds);
+  const expiredRef = useRef(false);
+  const onExpireRef = useRef(onExpire);
 
   useEffect(() => {
-    const state = loadState(sessionId, durationSeconds);
-    setRemaining(state.remaining);
-    setStartedAt(state.startedAt);
-    if (state.remaining === durationSeconds) {
-      localStorage.setItem(
-        `prepmx-timer-${sessionId}`,
-        JSON.stringify({ remaining: durationSeconds, startedAt: state.startedAt })
-      );
-    }
-  }, [sessionId, durationSeconds]);
+    onExpireRef.current = onExpire;
+  }, [onExpire]);
 
   const persist = useCallback(
-    (value: number) => {
-      if (startedAt === null) return;
-      localStorage.setItem(
-        `prepmx-timer-${sessionId}`,
-        JSON.stringify({ remaining: value, startedAt })
-      );
+    (state: TimerState) => {
+      localStorage.setItem(storageKey(sessionId), JSON.stringify(state));
     },
-    [sessionId, startedAt]
+    [sessionId]
+  );
+
+  const syncFromClock = useCallback(
+    (anchor: TimerState) => {
+      const next = computeRemaining(anchor.startedAt, anchor.durationSeconds);
+      setRemaining(next);
+      if (next <= 0 && !expiredRef.current) {
+        expiredRef.current = true;
+        onExpireRef.current?.();
+      }
+      return next;
+    },
+    []
   );
 
   useEffect(() => {
-    if (startedAt === null || remaining <= 0) return;
+    expiredRef.current = false;
+    const state = loadState(sessionId, durationSeconds);
+    setStartedAt(state.startedAt);
+    persist(state);
+    syncFromClock(state);
+  }, [sessionId, durationSeconds, persist, syncFromClock]);
 
-    const interval = setInterval(() => {
-      setRemaining((prev) => {
-        const next = prev - 1;
-        persist(next);
-        if (next <= 0) onExpire?.();
-        return Math.max(0, next);
-      });
-    }, 1000);
+  useEffect(() => {
+    if (startedAt === null) return;
 
-    return () => clearInterval(interval);
-  }, [startedAt, remaining, onExpire, persist]);
+    const anchor: TimerState = { startedAt, durationSeconds };
+
+    const tick = () => {
+      syncFromClock(anchor);
+    };
+
+    tick();
+    const interval = window.setInterval(tick, 1000);
+
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') tick();
+    };
+
+    document.addEventListener('visibilitychange', onVisible);
+    window.addEventListener('focus', tick);
+
+    return () => {
+      window.clearInterval(interval);
+      document.removeEventListener('visibilitychange', onVisible);
+      window.removeEventListener('focus', tick);
+    };
+  }, [startedAt, durationSeconds, syncFromClock]);
 
   const isLow = remaining <= 60;
 

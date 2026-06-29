@@ -1,90 +1,89 @@
 'use client';
 
-import Link from 'next/link';
+import { useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useAuth } from '@clerk/nextjs';
-import { LogIn } from 'lucide-react';
-import { ExamSimulator } from '@/components/exam/ExamSimulator';
-import { UniversityBanner } from '@/components/marketing/UniversityBanner';
-import { Button } from '@/components/ui/button';
 import { useSubscription } from '@/contexts/SubscriptionContext';
 import { filterToUniId } from '@/lib/uni-theme-config';
+import { getFreemiumQuestions } from '@/lib/freemium-questions';
+import { savePendingDiagnostic } from '@/lib/pending-diagnostic';
 import { isDemoMode } from '@/lib/demo-mode';
-import {
-  diagnosticTitle,
-  parsePlanScope,
-  type UniversidadFilter,
-} from '@/lib/university-theme';
 import { FREE_DIAGNOSTIC_QUESTION_LIMIT } from '@/types/subscription';
-import { useSearchParams } from 'next/navigation';
-import type { Question } from '@/types/question';
+import { UniversityBanner } from '@/components/marketing/UniversityBanner';
+import { ExamSimulator } from '@/components/exam/ExamSimulator';
+import { parseUniversidadFilter, parsePlanScope } from '@/lib/university-theme';
+import type { PendingDiagnosticPayload } from '@/lib/pending-diagnostic';
+import { useGamification } from '@/hooks/useGamification';
+import { useUserProfile } from '@/hooks/useUserProfile';
+import { FREEMIUM_DAILY_LIVES } from '@/lib/gamification/freemium-lives';
 
-interface SimuladorGratisViewProps {
-  universidad: UniversidadFilter;
-  questions: Question[];
-}
-
-export function SimuladorGratisView({ universidad, questions }: SimuladorGratisViewProps) {
+/**
+ * Simulador freemium: preguntas estáticas + 3 vidas/día (efecto Duolingo).
+ * Plan Pro = práctica ilimitada sin congelamiento.
+ */
+export function SimuladorGratisView() {
   const searchParams = useSearchParams();
+  const universidad = parseUniversidadFilter(searchParams.get('uni') ?? undefined);
   const plan = parsePlanScope(searchParams.get('plan'));
-  const isFreemium = searchParams.get('freemium') === 'diagnostico';
-  const { isLoaded, isSignedIn } = useAuth();
-  const { markDiagnosticDone, hasAccess } = useSubscription();
+  const { markDiagnosticDone } = useSubscription();
+  const { isSignedIn } = useAuth();
+  const { data: profile } = useUserProfile();
+  const { data: gamification } = useGamification();
 
   const uniId = filterToUniId(universidad);
-  const freemiumActive = isFreemium && !hasAccess(uniId);
-  const needsAuth = !freemiumActive && isLoaded && !isSignedIn && !isDemoMode();
 
-  const activeQuestions = freemiumActive
-    ? questions.slice(0, FREE_DIAGNOSTIC_QUESTION_LIMIT)
-    : questions;
+  const isPremium = useMemo(() => {
+    if (isDemoMode()) return false;
+    return Boolean(profile?.isPremium || gamification?.isPremium);
+  }, [profile?.isPremium, gamification?.isPremium]);
+
+  const questions = useMemo(
+    () => getFreemiumQuestions(universidad, FREE_DIAGNOSTIC_QUESTION_LIMIT),
+    [universidad]
+  );
+
+  function handleFreemiumComplete(
+    payload: Omit<PendingDiagnosticPayload, 'completedAt' | 'uniId'>
+  ) {
+    savePendingDiagnostic({
+      ...payload,
+      uniId,
+      completedAt: new Date().toISOString(),
+    });
+    markDiagnosticDone(uniId);
+  }
 
   return (
     <div className="space-y-8">
       <UniversityBanner value={universidad} plan={plan} basePath="/simulador-gratis" compact />
 
-      {freemiumActive && (
-        <div className="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-3 text-sm text-amber-950">
-          <strong>Diagnóstico gratuito:</strong> {FREE_DIAGNOSTIC_QUESTION_LIMIT} preguntas de
-          muestra. Al terminar, desbloquea simulacros completos con tu plan.
-        </div>
-      )}
+      <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 px-4 py-3 text-sm text-emerald-950 dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-100">
+        <strong>Sin registro para empezar:</strong> {FREE_DIAGNOSTIC_QUESTION_LIMIT} preguntas en tu
+        navegador.
+        {!isPremium ? (
+          <>
+            {' '}
+            Tienes <strong>{FREEMIUM_DAILY_LIVES} vidas</strong> al día — cada error quita una vida. Sin
+            vidas, pausa 24 h o Plan Pro.
+          </>
+        ) : (
+          <> Plan Pro activo: práctica ilimitada.</>
+        )}
+        {isSignedIn ? ' Tu racha diaria vive en el dashboard.' : ' Al terminar, crea cuenta para SM-2.'}
+      </div>
 
-      {needsAuth ? (
-        <div className="exam-shell mx-auto max-w-lg space-y-4 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-            <LogIn className="h-7 w-7" aria-hidden />
-          </div>
-          <h2 className="text-xl font-bold">Simulador completo</h2>
-          <p className="text-sm text-muted-foreground">
-            Inicia sesión para usar tus créditos de examen y acceder a reactivos premium con RLS
-            activo en Supabase.
-          </p>
-          <Button asChild className="h-12 w-full rounded-xl">
-            <Link
-              href={`/sign-in?redirect_url=${encodeURIComponent(
-                `/simulador-gratis?uni=${universidad}&plan=${plan}`
-              )}`}
-            >
-              Entrar con mi cuenta
-            </Link>
-          </Button>
-        </div>
-      ) : (
-        <ExamSimulator
-          key={`${universidad}-${freemiumActive}-${activeQuestions.map((q) => q.id).join(',')}`}
-          questions={activeQuestions}
-          title={
-            freemiumActive
-              ? `Diagnóstico gratis — ${FREE_DIAGNOSTIC_QUESTION_LIMIT} preguntas`
-              : diagnosticTitle(universidad)
-          }
-          durationMinutes={freemiumActive ? 12 : 30}
-          sessionId={`free-diagnostic-${universidad}${freemiumActive ? '-freemium' : ''}`}
-          freemiumMode={freemiumActive}
-          freemiumUniId={uniId}
-          onFreemiumComplete={() => markDiagnosticDone(uniId)}
-        />
-      )}
+      <ExamSimulator
+        key={`${universidad}-${questions.map((q) => q.id).join(',')}`}
+        questions={questions}
+        title={`Diagnóstico gratis — ${FREE_DIAGNOSTIC_QUESTION_LIMIT} preguntas`}
+        durationMinutes={12}
+        sessionId={`free-diagnostic-${universidad}`}
+        mode="practice"
+        freemiumMode
+        freemiumUniId={uniId}
+        freemiumLivesEnabled={!isPremium}
+        onFreemiumComplete={handleFreemiumComplete}
+      />
     </div>
   );
 }

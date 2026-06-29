@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import {
-  examCountdownLabel,
+  examCountdownLabelForUni,
   getAdmissionMilestones,
   resolveMilestoneStatuses,
   type MilestoneStatus,
@@ -88,7 +88,7 @@ export function AdmissionConvocatoriaTimeline() {
 
   const milestones = useMemo(() => getAdmissionMilestones(uniId, now), [uniId, now]);
   const statuses = useMemo(() => resolveMilestoneStatuses(milestones, now), [milestones, now]);
-  const countdown = examCountdownLabel(milestones, now);
+  const countdown = examCountdownLabelForUni(uniId, now);
   const primaryHex = entry.colors.primary;
   const animateIn = hydrated && !prefersReducedMotion;
 

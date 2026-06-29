@@ -1,0 +1,21 @@
+# Cursor indexing — excluir artefactos pesados
+.next/
+.next-dev.nosync/
+**/.next/
+node_modules/
+.git/
+out/
+dist/
+build/
+coverage/
+.vercel/
+*.tsbuildinfo
+
+# Caches locales
+**/.cache/
+*.log
+npm-debug.log*
+
+# Env (secrets)
+.env
+.env*.local

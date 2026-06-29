@@ -1,11 +1,21 @@
 import type { TickerCategory, TickerItem } from '@/data/ticker/types';
 import { isTickerPromo } from '@/data/ticker/types';
+import { sanitizeMarketingHref } from '@/lib/marketing-routes';
 import { inferTickerUni, type TickerUniFilter } from '@/data/ticker/utils';
 
 export type { TickerUniScope } from '@/data/ticker/types';
 
 const HOT_CATEGORIES: TickerCategory[] = ['alerta-corte', 'crono-vigente', 'estadistica-rechazo'];
+
+/** Señales tipo “aviso oficial” para el dashboard del alumno. */
+export const DASHBOARD_AVISO_CATEGORIES: TickerCategory[] = [
+  'crono-vigente',
+  'alerta-corte',
+  'criterio-oficial',
+];
+
 const MAX_FEED_ITEMS = 80;
+const MAX_DASHBOARD_AVISOS = 24;
 
 /** Uni explícita en metadata o inferida del texto. */
 export function resolveItemUni(item: TickerItem): TickerUniFilter | null {
@@ -91,6 +101,29 @@ function capFeedItems(items: TickerItem[], max = MAX_FEED_ITEMS): TickerItem[] {
   return [...hot, ...rest].slice(0, max);
 }
 
+function isCustomTickerItem(item: TickerItem): boolean {
+  return item.id.startsWith('custom-');
+}
+
+/** Cronos, alertas y avisos custom — con fallback al feed completo si hay pocos. */
+export function prepareDashboardAvisosFeed(
+  items: TickerItem[],
+  filter: TickerUniFilter,
+  now = new Date()
+): TickerItem[] {
+  const promos = items.filter((i) => isTickerPromo(i) && isPromoScheduledActive(i, now));
+  const avisos = items.filter(
+    (i) =>
+      !isTickerPromo(i) &&
+      (DASHBOARD_AVISO_CATEGORIES.includes(i.category) || isCustomTickerItem(i))
+  );
+  const pool = avisos.length >= 3 ? avisos : items.filter((i) => !isTickerPromo(i));
+  const filtered = filterTickerItemsByUni(pool, filter);
+  const capped = capFeedItems(filtered, MAX_DASHBOARD_AVISOS);
+  const promo = pickRotatingPromo(promos, filter, now);
+  return promo ? [promo, ...capped] : capped;
+}
+
 /** Filtra por uni, rota 1 promo, limita tamaño del feed. */
 export function prepareTickerFeed(
   items: TickerItem[],
@@ -105,8 +138,12 @@ export function prepareTickerFeed(
   return promo ? [promo, ...capped] : capped;
 }
 
-/** Enriquece ítem con href si aplica. */
+/** Enriquece ítem con href si aplica (solo rutas públicas conocidas). */
 export function enrichTickerItem(item: TickerItem): TickerItem {
-  const href = resolveTickerHref(item);
-  return href && !item.href ? { ...item, href } : item;
+  const custom = sanitizeMarketingHref(item.href);
+  if (custom) return { ...item, href: custom };
+
+  const fallback = resolveTickerHref(item);
+  const safe = sanitizeMarketingHref(fallback);
+  return safe ? { ...item, href: safe } : item;
 }

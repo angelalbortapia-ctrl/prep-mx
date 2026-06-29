@@ -3,6 +3,7 @@ import { ExamStartFlow } from '@/components/exam/ExamStartFlow';
 import { getExamById } from '@/data/exams';
 import { getExamQuestions } from '@/lib/supabase/questions';
 
+/** Preguntas aleatorias por sesión — debe ser dinámico; el catálogo del examen vive en src/data/exams. */
 export const dynamic = 'force-dynamic';
 
 interface PageProps {

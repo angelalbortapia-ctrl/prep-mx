@@ -74,12 +74,30 @@ export function AmbientExamMode({ className }: AmbientExamModeProps) {
   const effectiveVolume = settings.muted ? 0 : settings.volume;
 
   const stopAudio = useCallback(() => {
-    sourceRef.current?.stop();
-    sourceRef.current?.disconnect();
+    try {
+      sourceRef.current?.stop();
+    } catch {
+      /* AudioBufferSourceNode ya detenido */
+    }
+    try {
+      sourceRef.current?.disconnect();
+    } catch {
+      /* noop */
+    }
     sourceRef.current = null;
-    void audioCtxRef.current?.close();
-    audioCtxRef.current = null;
+
+    try {
+      gainRef.current?.disconnect();
+    } catch {
+      /* noop */
+    }
     gainRef.current = null;
+
+    const ctx = audioCtxRef.current;
+    audioCtxRef.current = null;
+    if (ctx && ctx.state !== 'closed') {
+      void ctx.close().catch(() => undefined);
+    }
   }, []);
 
   const startAudio = useCallback(async () => {
